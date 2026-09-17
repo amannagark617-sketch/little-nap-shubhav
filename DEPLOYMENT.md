@@ -122,9 +122,20 @@ sub-path:
 VITE_BASE=/little-nap-shubhav/ npm run build
 ```
 
-Pages has no rewrite support, so copy `dist/index.html` to `dist/404.html` as an
-SPA fallback. If you are pointing a custom domain at the root, `VITE_BASE` is
-not needed.
+Pages has no rewrite support, so either copy `dist/index.html` to `dist/404.html`
+as an SPA fallback, or build with `VITE_HASH_ROUTER=1` and skip the problem
+entirely. If you are pointing a custom domain at the root, `VITE_BASE` is not
+needed.
+
+## Sharing a preview before you deploy
+
+To hand someone a working copy without setting up hosting, build a fully
+portable bundle — relative asset paths and hash routing, so it runs from any
+folder or static host:
+
+```bash
+VITE_BASE=./ VITE_HASH_ROUTER=1 npm run build
+```
 
 ---
 
@@ -140,6 +151,7 @@ the advisor is hidden and the contact form composes an email instead.
 | `VITE_GEMINI_MODEL` | Override the model. Defaults to `gemini-2.5-flash`. |
 | `VITE_FORM_ENDPOINT` | JSON endpoint for the contact form (Formspree, Basin, Web3Forms, your own). Falls back to `mailto:`. |
 | `VITE_BASE` | Sub-path when not serving from the domain root. |
+| `VITE_HASH_ROUTER` | `1` switches to hash routing (`/#/products`) for hosts that cannot rewrite to `index.html`. Not needed on any host listed above. |
 
 ### About the Gemini key
 

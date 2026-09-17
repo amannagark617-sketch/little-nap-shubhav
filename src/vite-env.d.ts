@@ -15,6 +15,8 @@ interface ImportMetaEnv {
   readonly VITE_BASE?: string
   /** Optional form backend for the contact page. Falls back to mailto. */
   readonly VITE_FORM_ENDPOINT?: string
+  /** '1' switches to hash routing for hosts that cannot rewrite to index.html. */
+  readonly VITE_HASH_ROUTER?: string
 }
 
 interface ImportMeta {
