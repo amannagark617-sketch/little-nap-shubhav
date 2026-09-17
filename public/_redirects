@@ -1,0 +1,2 @@
+# Netlify: send every path to the SPA so client-side routes resolve on refresh.
+/*  /index.html  200
