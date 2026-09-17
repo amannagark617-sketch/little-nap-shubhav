@@ -153,7 +153,7 @@ export default function Manufacturing() {
             <div>
               <p className="eyebrow">Capability</p>
               <h2 className="h-section">{capability.headline}</h2>
-              <p className="mt-8 font-display text-6xl text-gilded">
+              <p className="mt-8 font-display text-6xl text-navy-900">
                 <Counter to={3200} />
               </p>
               <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-500">
@@ -175,7 +175,7 @@ export default function Manufacturing() {
               <h3 className="font-display text-2xl text-navy-900">
                 {capability.workforce.headline}
               </h3>
-              <p className="mt-7 font-display text-6xl text-gilded">
+              <p className="mt-7 font-display text-6xl text-navy-900">
                 <Counter to={80} suffix="%+" />
               </p>
               <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-500">

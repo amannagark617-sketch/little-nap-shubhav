@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useDialog } from '../lib/useDialog'
 import { Link } from 'react-router-dom'
 import { productImage, rangeById, type Product } from '../data/products'
 import { useEnquiry } from '../context/EnquiryContext'
@@ -22,44 +23,7 @@ export default function ProductModal({ product, onClose }: Props) {
   // Reset to the primary image whenever a different model is opened.
   useEffect(() => setView(0), [product?.id])
 
-  useEffect(() => {
-    if (!product) return
-
-    const previouslyFocused = document.activeElement as HTMLElement | null
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    closeRef.current?.focus()
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose()
-        return
-      }
-      if (e.key !== 'Tab') return
-
-      // Keep focus inside the dialog.
-      const focusables = panelRef.current?.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      )
-      if (!focusables || focusables.length === 0) return
-      const first = focusables[0]
-      const last = focusables[focusables.length - 1]
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault()
-        last.focus()
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
-      }
-    }
-
-    window.addEventListener('keydown', onKey)
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = previousOverflow
-      previouslyFocused?.focus?.()
-    }
-  }, [product, onClose])
+  useDialog(Boolean(product), panelRef, onClose, closeRef)
 
   if (!product) return null
 

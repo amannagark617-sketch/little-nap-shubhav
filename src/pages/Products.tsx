@@ -121,7 +121,7 @@ export default function Products() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search models…"
                 className="w-full rounded-full border border-navy-200/70 bg-white/60 py-2.5 pl-10 pr-9
-                           text-sm text-navy-900 backdrop-blur-sm placeholder:text-navy-300
+                           text-sm text-navy-900 backdrop-blur-sm placeholder:text-navy-400
                            focus:border-gold-300 focus:bg-white focus:outline-none"
               />
               {query && (
@@ -130,7 +130,7 @@ export default function Products() {
                   onClick={() => setQuery('')}
                   aria-label="Clear search"
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-0.5
-                             text-navy-300 transition-colors hover:text-navy-700"
+                             text-navy-400 transition-colors hover:text-navy-700"
                 >
                   <IconClose className="h-4 w-4" />
                 </button>

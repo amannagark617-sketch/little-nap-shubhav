@@ -109,7 +109,7 @@ export default function Contact() {
 
   const fieldClass =
     'w-full rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-navy-900 ' +
-    'backdrop-blur-sm placeholder:text-navy-300 transition-colors focus:border-gold-300 ' +
+    'backdrop-blur-sm placeholder:text-navy-400 transition-colors focus:border-gold-300 ' +
     'focus:bg-white focus:outline-none'
   const labelClass = 'block text-xs font-semibold uppercase tracking-wider text-navy-500'
 
@@ -162,7 +162,7 @@ export default function Contact() {
                       <label htmlFor="name" className={labelClass}>
                         Name <span className="text-gold-600">*</span>
                       </label>
-                      <input id="name" name="name" required className={`mt-2 ${fieldClass}`} />
+                      <input id="name" name="name" autoComplete="name" required className={`mt-2 ${fieldClass}`} />
                     </div>
                     <div>
                       <label htmlFor="companyName" className={labelClass}>
@@ -171,6 +171,7 @@ export default function Contact() {
                       <input
                         id="companyName"
                         name="companyName"
+                        autoComplete="organization"
                         required
                         className={`mt-2 ${fieldClass}`}
                       />
@@ -183,6 +184,7 @@ export default function Contact() {
                         id="email"
                         name="email"
                         type="email"
+                        autoComplete="email"
                         required
                         className={`mt-2 ${fieldClass}`}
                       />
@@ -195,6 +197,7 @@ export default function Contact() {
                         id="phone"
                         name="phone"
                         type="tel"
+                        autoComplete="tel"
                         className={`mt-2 ${fieldClass}`}
                       />
                     </div>
@@ -202,7 +205,7 @@ export default function Contact() {
                       <label htmlFor="country" className={labelClass}>
                         Country / region
                       </label>
-                      <input id="country" name="country" className={`mt-2 ${fieldClass}`} />
+                      <input id="country" name="country" autoComplete="country-name" className={`mt-2 ${fieldClass}`} />
                     </div>
                     <div>
                       <label htmlFor="enquiryType" className={labelClass}>

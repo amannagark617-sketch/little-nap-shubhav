@@ -255,7 +255,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="text-center">
-                  <p className="font-display text-[5.5rem] leading-none text-gilded sm:text-[7rem]">
+                  <p className="font-display text-[5.5rem] leading-none text-navy-900 sm:text-[7rem]">
                     <Counter to={80} suffix="%" />
                   </p>
                   <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">

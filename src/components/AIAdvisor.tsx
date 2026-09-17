@@ -7,7 +7,7 @@ import {
 } from '../lib/gemini'
 import { IconClose, IconSend, IconSparkle } from './Icons'
 
-type Entry = AdvisorMessage & { id: number; pending?: boolean; error?: boolean }
+type Entry = AdvisorMessage & { id: number; pending?: boolean; error?: boolean; retry?: string }
 
 const GREETING =
   'Hello — I can help you find the right range for your project, explain how we build and inspect a unit, or talk through OEM customisation. What are you working on?'
@@ -98,7 +98,9 @@ export default function AIAdvisor() {
         err instanceof Error ? err.message : 'The advisor could not answer that just now.'
       setEntries((prev) =>
         prev.map((e) =>
-          e.id === replyId ? { ...e, text: message, pending: false, error: true } : e,
+          e.id === replyId
+            ? { ...e, text: message, pending: false, error: true, retry: question }
+            : e,
         ),
       )
     } finally {
@@ -156,14 +158,23 @@ export default function AIAdvisor() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full
                          text-navy-200 transition-colors hover:bg-white/10 hover:text-white"
             >
               <IconClose className="h-4 w-4" />
             </button>
           </header>
 
-          <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+          {/* A log region: additions are announced, and aria-busy holds the
+              announcement until the streamed reply has finished arriving. */}
+          <div
+            ref={scrollRef}
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions text"
+            aria-busy={busy}
+            className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
+          >
             {entries.map((e) => (
               <div
                 key={e.id}
@@ -190,7 +201,24 @@ export default function AIAdvisor() {
                       ))}
                     </span>
                   ) : (
-                    e.text
+                    <>
+                      {e.text}
+                      {e.error && e.retry && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const question = e.retry!
+                            setEntries((prev) => prev.filter((x) => x.id !== e.id))
+                            void send(question)
+                          }}
+                          className="mt-2 block rounded-full border border-amber-300 px-3 py-1
+                                     text-xs font-semibold text-amber-900 transition-colors
+                                     hover:bg-amber-100"
+                        >
+                          Try again
+                        </button>
+                      )}
+                    </>
                   )}
                 </div>
               </div>
@@ -233,7 +261,7 @@ export default function AIAdvisor() {
               placeholder="Ask about ranges, capacity, OEM…"
               autoComplete="off"
               className="min-w-0 flex-1 rounded-full border border-navy-100 bg-porcelain-50 px-4 py-2.5
-                         text-sm text-navy-900 placeholder:text-navy-300 focus:border-gold-300
+                         text-sm text-navy-900 placeholder:text-navy-400 focus:border-gold-300
                          focus:outline-none"
             />
             <button
@@ -248,8 +276,9 @@ export default function AIAdvisor() {
             </button>
           </form>
 
-          <p className="bg-white/70 px-4 pb-3 text-center text-[0.65rem] leading-snug text-navy-400">
-            AI-generated guidance. Specifications are confirmed by our team on enquiry.
+          <p className="bg-white/70 px-4 pb-3 text-center text-[0.7rem] leading-snug text-navy-500">
+            AI-generated guidance — answers may be wrong, and your questions are sent
+            to Google Gemini. Specifications are confirmed by our team on enquiry.
           </p>
         </div>
       </div>
