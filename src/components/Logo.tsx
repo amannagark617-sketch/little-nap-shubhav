@@ -33,7 +33,7 @@ export default function Logo({ tone = 'dark', className = '', markOnly = false }
             Little <span className="text-gold-400">Nap</span>
           </span>
           <span
-            className={`mt-1 text-[0.58rem] font-semibold uppercase leading-none tracking-[0.19em] ${sub}`}
+            className={`mt-1 text-[0.75rem] font-semibold uppercase leading-none tracking-[0.19em] ${sub}`}
           >
             Subhav India Pvt. Ltd.
           </span>

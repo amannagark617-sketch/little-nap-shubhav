@@ -53,7 +53,7 @@ export default function Manufacturing() {
                 if (steps.length === 0) return null
                 return (
                   <div key={stage}>
-                    <h3 className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+                    <h3 className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
                       {stage}
                     </h3>
                     <ul className="mt-2.5 space-y-1.5">
@@ -76,7 +76,7 @@ export default function Manufacturing() {
                               <span className="flex items-center gap-3">
                                 <span
                                   className={`font-mono text-xs ${
-                                    isActive ? 'text-gold-400' : 'text-navy-300'
+                                    isActive ? 'text-gold-400' : 'text-navy-400'
                                   }`}
                                 >
                                   {String(index + 1).padStart(2, '0')}
@@ -110,7 +110,7 @@ export default function Manufacturing() {
                   />
                 </div>
                 <div className="p-7">
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+                  <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
                     Stage {active + 1} of {processSteps.length} · {step.stage}
                   </p>
                   <h3 className="mt-3 font-display text-2xl text-navy-900">{step.name}</h3>
@@ -120,7 +120,8 @@ export default function Manufacturing() {
                     <button
                       type="button"
                       onClick={() => setActive((i) => (i - 1 + processSteps.length) % processSteps.length)}
-                      className="text-sm font-semibold text-navy-500 transition-colors hover:text-navy-900"
+                      className="-my-3 inline-flex min-h-[44px] items-center text-sm font-semibold
+                                 text-navy-500 transition-colors hover:text-navy-900"
                     >
                       ← Previous
                     </button>
@@ -133,7 +134,8 @@ export default function Manufacturing() {
                     <button
                       type="button"
                       onClick={() => setActive((i) => (i + 1) % processSteps.length)}
-                      className="text-sm font-semibold text-navy-800 transition-colors hover:text-gold-600"
+                      className="-my-3 inline-flex min-h-[44px] items-center text-sm font-semibold
+                                 text-navy-800 transition-colors hover:text-gold-600"
                     >
                       Next →
                     </button>
@@ -226,7 +228,7 @@ export default function Manufacturing() {
                   </div>
                   <div className="flex items-center justify-between gap-3 px-5 py-4">
                     <span className="font-display text-lg text-navy-900">{s.name}</span>
-                    <span className="text-[0.68rem] font-semibold uppercase tracking-wider text-gold-600">
+                    <span className="text-[0.75rem] font-semibold uppercase tracking-wider text-gold-600">
                       {s.stage}
                     </span>
                   </div>

@@ -37,7 +37,7 @@ export default function App() {
       <ScrollToTop />
       <ScrollProgress />
       <Header />
-      <main id="main" className="pt-[84px]">
+      <main id="main" className="pad-main">
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />

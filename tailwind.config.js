@@ -23,9 +23,12 @@ export default {
           100: '#F9EDC7',
           200: '#F1DA8D',
           300: '#E6C258',
-          400: '#D3A320', // primary gold
-          500: '#B98B16',
-          600: '#996F12',
+          400: '#D3A320', // primary gold — brand mark and accents on dark only
+          // 500 and 600 are the text-safe steps on the light body (#F5F8FD):
+          // 3.58:1 clears the 3:1 bar for icons and large display type, 5.04:1
+          // clears 4.5:1 for body copy. Anything lighter fails WCAG AA there.
+          500: '#A87B14',
+          600: '#8A6410',
           700: '#7A5713',
           800: '#5E4315',
           900: '#3F2D0F',

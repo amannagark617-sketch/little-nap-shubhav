@@ -72,7 +72,7 @@ export default function Products() {
       />
 
       {/* ---- Filter bar ---- */}
-      <div className="sticky top-[84px] z-30 px-3 sm:px-5">
+      <div className="stick-below-header sticky z-30 px-3 sm:px-5">
         <div className="glass-strong mx-auto max-w-content px-4 py-3.5 sm:px-5">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div
@@ -84,7 +84,7 @@ export default function Products() {
                 type="button"
                 onClick={() => setFilter('all')}
                 aria-pressed={filter === 'all'}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                className={`min-h-[44px] shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   filter === 'all'
                     ? 'bg-navy-900 text-white shadow-lift'
                     : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
@@ -98,7 +98,7 @@ export default function Products() {
                   type="button"
                   onClick={() => setFilter(r.id)}
                   aria-pressed={filter === r.id}
-                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                  className={`min-h-[44px] shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                     filter === r.id
                       ? 'bg-navy-900 text-white shadow-lift'
                       : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
@@ -120,7 +120,7 @@ export default function Products() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search models…"
-                className="w-full rounded-full border border-navy-200/70 bg-white/60 py-2.5 pl-10 pr-9
+                className="min-h-[44px] w-full rounded-full border border-navy-200/70 bg-white/60 py-2.5 pl-10 pr-9
                            text-sm text-navy-900 backdrop-blur-sm placeholder:text-navy-300
                            focus:border-gold-300 focus:bg-white focus:outline-none"
               />
@@ -155,7 +155,7 @@ export default function Products() {
             <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3">
               {activeRange.specHighlights.map((s) => (
                 <div key={s.label}>
-                  <dt className="text-[0.7rem] font-semibold uppercase tracking-wider text-navy-400">
+                  <dt className="text-[0.75rem] font-semibold uppercase tracking-wider text-navy-400">
                     {s.label}
                   </dt>
                   <dd className="mt-0.5 text-sm font-medium text-navy-800">{s.value}</dd>
@@ -199,7 +199,8 @@ export default function Products() {
                     <button
                       type="button"
                       onClick={() => setFilter(range.id)}
-                      className="text-sm font-semibold text-gold-600 underline-offset-4 hover:underline"
+                      className="-my-3 inline-flex min-h-[44px] items-center text-sm font-semibold
+                                 text-gold-600 underline-offset-4 hover:underline"
                     >
                       About this range
                     </button>

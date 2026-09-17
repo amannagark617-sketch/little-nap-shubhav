@@ -52,7 +52,7 @@ export default function Header() {
         Skip to content
       </a>
 
-      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <header className="pad-header fixed inset-x-0 top-0 z-50">
         {/* The bar is a floating glass pill that tightens as you scroll. */}
         <div
           className={`mx-auto flex max-w-content items-center justify-between gap-6 rounded-full
@@ -73,7 +73,8 @@ export default function Header() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                      `relative inline-flex min-h-[44px] items-center rounded-full px-4 text-sm
+                       font-medium transition-all duration-300 ${
                         isActive
                           ? 'text-navy-900'
                           : 'text-navy-500 hover:-translate-y-0.5 hover:text-navy-900'
@@ -101,22 +102,23 @@ export default function Header() {
             <button
               type="button"
               onClick={open}
-              className="relative hidden rounded-full border border-navy-200/70 bg-white/50 px-4 py-2
-                         text-sm font-medium text-navy-700 transition-all duration-300
-                         hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white sm:inline-flex"
+              className="relative hidden min-h-[44px] items-center rounded-full border
+                         border-navy-200/70 bg-white/50 px-4 text-sm font-medium text-navy-700
+                         transition-all duration-300 hover:-translate-y-0.5 hover:border-navy-300
+                         hover:bg-white sm:inline-flex"
             >
               Enquiry
               {count > 0 && (
                 <span
                   className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full
-                             bg-gold-400 px-1.5 text-[0.7rem] font-bold text-navy-950"
+                             bg-gold-400 px-1.5 text-[0.75rem] font-bold text-navy-950"
                 >
                   {count}
                 </span>
               )}
             </button>
 
-            <Link to="/contact" className="btn-primary hidden !px-5 !py-2.5 md:inline-flex">
+            <Link to="/contact" className="btn-primary hidden min-h-[44px] !px-5 !py-2.5 md:inline-flex">
               Request a quote
               <IconArrowRight className="h-4 w-4" />
             </Link>
@@ -156,7 +158,7 @@ export default function Header() {
                         menuOpen ? 'translate-x-0' : 'translate-x-full'
                       }`}
         >
-          <div className="flex h-[76px] items-center justify-between px-5">
+          <div className="flex h-[76px] items-center justify-between px-5 pt-[var(--safe-t)]">
             <Logo markOnly />
             <button
               type="button"
@@ -193,14 +195,14 @@ export default function Header() {
                     }
                   >
                     {item.label}
-                    <IconArrowRight className="h-4 w-4 text-gold-400" />
+                    <IconArrowRight className="h-4 w-4 text-gold-500" />
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
 
-          <div className="space-y-3 border-t border-white/60 p-5">
+          <div className="space-y-3 border-t border-white/60 p-5 pb-[calc(1.25rem+var(--safe-b))]">
             <button
               type="button"
               onClick={() => {

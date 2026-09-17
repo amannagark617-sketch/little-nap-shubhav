@@ -45,7 +45,7 @@ export default function EnquiryDrawer() {
                       isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
       >
-        <header className="flex items-center justify-between border-b border-white/60 px-5 py-4">
+        <header className="flex items-center justify-between border-b border-white/60 px-5 py-4 pt-[calc(1rem+var(--safe-t))]">
           <div>
             <h2 className="font-display text-xl text-navy-900">Your enquiry list</h2>
             <p className="text-xs text-navy-400">
@@ -56,7 +56,7 @@ export default function EnquiryDrawer() {
             type="button"
             onClick={close}
             aria-label="Close enquiry list"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full
                        border border-navy-200 text-navy-800 transition-colors hover:bg-white"
           >
             <IconClose className="h-4 w-4" />
@@ -121,7 +121,7 @@ export default function EnquiryDrawer() {
                       max={100000}
                       value={line.quantity}
                       onChange={(e) => setQuantity(line.productId, Number(e.target.value))}
-                      className="w-24 rounded-lg border border-navy-100 bg-porcelain-50 px-3 py-1.5
+                      className="h-11 w-24 rounded-lg border border-navy-100 bg-porcelain-50 px-3
                                  text-sm text-navy-900 focus:border-gold-300 focus:outline-none"
                     />
                   </div>
@@ -132,7 +132,7 @@ export default function EnquiryDrawer() {
         </div>
 
         {count > 0 && (
-          <div className="space-y-3 border-t border-white/60 p-5">
+          <div className="space-y-3 border-t border-white/60 p-5 pb-[calc(1.25rem+var(--safe-b))]">
             <button
               type="button"
               onClick={() => {

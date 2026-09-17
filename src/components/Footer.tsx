@@ -34,7 +34,7 @@ export default function Footer() {
                    bg-gradient-to-r from-transparent via-gold-400/50 to-transparent"
       />
 
-      <div className="container-page relative py-16 sm:py-20">
+      <div className="container-page relative py-16 pb-[calc(4rem+var(--safe-b))] sm:py-20 sm:pb-[calc(5rem+var(--safe-b))]">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
           <div>
             <Logo tone="light" />
@@ -48,7 +48,7 @@ export default function Footer() {
                 <span
                   key={d}
                   className="rounded-full border border-white/15 bg-white/5 px-3 py-1
-                             text-[0.68rem] font-medium uppercase tracking-wider text-navy-300
+                             text-[0.75rem] font-medium uppercase tracking-wider text-navy-300
                              backdrop-blur-sm"
                 >
                   {d}
@@ -61,12 +61,14 @@ export default function Footer() {
             <h2 className="font-display text-sm uppercase tracking-[0.18em] text-gold-300">
               Company
             </h2>
-            <ul className="mt-5 space-y-3 text-sm">
+            {/* py-3 gives each link a 44px-tall tap target (HIG minimum); the
+                list gap is removed so the block height stays the same. */}
+            <ul className="mt-3 text-sm">
               {siteLinks.map((l) => (
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="inline-block text-navy-300 transition-all duration-300
+                    className="inline-block py-3 text-navy-300 transition-all duration-300
                                hover:translate-x-1 hover:text-white"
                   >
                     {l.label}
@@ -80,12 +82,12 @@ export default function Footer() {
             <h2 className="font-display text-sm uppercase tracking-[0.18em] text-gold-300">
               Ranges
             </h2>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-3 text-sm">
               {ranges.map((r) => (
                 <li key={r.id}>
                   <Link
                     to={`/products?range=${r.id}`}
-                    className="inline-block text-navy-300 transition-all duration-300
+                    className="inline-block py-3 text-navy-300 transition-all duration-300
                                hover:translate-x-1 hover:text-white"
                   >
                     {r.name}
@@ -115,8 +117,8 @@ export default function Footer() {
                     href={address.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold
-                               text-gold-300 transition-colors hover:text-gold-200"
+                    className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-xs
+                               font-semibold text-gold-300 transition-colors hover:text-gold-200"
                   >
                     Open in Google Maps
                     <IconArrowRight className="h-3.5 w-3.5" />
@@ -127,7 +129,7 @@ export default function Footer() {
                 <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
                 <a
                   href={`mailto:${company.contact.email}`}
-                  className="text-navy-300 transition-colors hover:text-white"
+                  className="-my-3 inline-flex min-h-[44px] items-center text-navy-300 transition-colors hover:text-white"
                 >
                   {company.contact.email}
                 </a>
@@ -136,7 +138,7 @@ export default function Footer() {
                 <IconPhone className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
                 <a
                   href={`tel:${company.contact.phoneHref}`}
-                  className="text-navy-300 transition-colors hover:text-white"
+                  className="-my-3 inline-flex min-h-[44px] items-center text-navy-300 transition-colors hover:text-white"
                 >
                   {company.contact.phone}
                 </a>
@@ -144,7 +146,7 @@ export default function Footer() {
             </ul>
 
             <div className="mt-5 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-              <p className="text-[0.68rem] font-semibold uppercase tracking-wider text-gold-300">
+              <p className="text-[0.75rem] font-semibold uppercase tracking-wider text-gold-300">
                 Opening hours
               </p>
               <p className="mt-2 text-xs leading-relaxed text-navy-300">
@@ -152,7 +154,7 @@ export default function Footer() {
                 <br />
                 Sunday · {sunday.hours}
                 <br />
-                <span className="text-navy-400">India Standard Time</span>
+                <span className="text-navy-300">India Standard Time</span>
               </p>
             </div>
           </div>
@@ -160,7 +162,7 @@ export default function Footer() {
 
         <div
           className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs
-                     text-navy-400 sm:flex-row sm:items-center sm:justify-between"
+                     text-navy-300 sm:flex-row sm:items-center sm:justify-between"
         >
           <p>
             © {new Date().getFullYear()} {company.legalName}. All rights reserved.

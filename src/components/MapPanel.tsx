@@ -37,7 +37,7 @@ export default function MapPanel({ variant = 'full' }: Props) {
                 href={address.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-glass mt-1 text-xs"
+                className="btn-glass mt-1 min-h-[44px] text-xs"
               >
                 Open in Google Maps
               </a>
@@ -95,8 +95,8 @@ export default function MapPanel({ variant = 'full' }: Props) {
 
         <a
           href={`tel:${company.contact.phoneHref}`}
-          className="mt-5 inline-flex items-center gap-2.5 text-sm font-semibold text-navy-800
-                     transition-colors hover:text-gold-600"
+          className="mt-3 inline-flex min-h-[44px] items-center gap-2.5 text-sm font-semibold
+                     text-navy-800 transition-colors hover:text-gold-600"
         >
           <IconPhone className="h-4 w-4 text-gold-500" />
           {company.contact.phone}
@@ -104,7 +104,7 @@ export default function MapPanel({ variant = 'full' }: Props) {
 
         {variant === 'full' && (
           <div className="mt-7 border-t border-navy-100 pt-5">
-            <h4 className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-navy-400">
+            <h4 className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-navy-400">
               Opening hours
             </h4>
             <dl className="mt-3 space-y-1.5">
@@ -119,9 +119,9 @@ export default function MapPanel({ variant = 'full' }: Props) {
                   >
                     <dt>
                       {h.label}
-                      {isToday && <span className="ml-2 text-[0.65rem] text-gold-600">TODAY</span>}
+                      {isToday && <span className="ml-2 text-[0.75rem] text-gold-600">TODAY</span>}
                     </dt>
-                    <dd className={h.hours === 'Closed' ? 'text-navy-300' : ''}>{h.hours}</dd>
+                    <dd className={h.hours === 'Closed' ? 'text-navy-400' : ''}>{h.hours}</dd>
                   </div>
                 )
               })}

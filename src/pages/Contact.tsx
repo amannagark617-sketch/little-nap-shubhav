@@ -108,7 +108,7 @@ export default function Contact() {
   }
 
   const fieldClass =
-    'w-full rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-navy-900 ' +
+    'w-full min-h-[44px] rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-navy-900 ' +
     'backdrop-blur-sm placeholder:text-navy-300 transition-colors focus:border-gold-300 ' +
     'focus:bg-white focus:outline-none'
   const labelClass = 'block text-xs font-semibold uppercase tracking-wider text-navy-500'
@@ -249,8 +249,8 @@ export default function Contact() {
                       </div>
                       <Link
                         to="/products"
-                        className="shrink-0 text-sm font-semibold text-gold-600
-                                   underline-offset-4 hover:underline"
+                        className="-my-3 inline-flex min-h-[44px] shrink-0 items-center text-sm
+                                   font-semibold text-gold-600 underline-offset-4 hover:underline"
                       >
                         {count > 0 ? 'Edit' : 'Add models'}
                       </Link>
@@ -344,39 +344,42 @@ export default function Contact() {
                 </div>
                 <ul className="mt-6 space-y-5 text-sm">
                   <li className="flex gap-3.5">
-                    <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
+                    <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
                     <div>
-                      <p className="text-[0.7rem] uppercase tracking-wider text-navy-400">Email</p>
+                      <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">Email</p>
                       <a
                         href={`mailto:${company.contact.email}`}
-                        className="mt-0.5 block font-medium text-navy-800 transition-colors hover:text-gold-600"
+                        className="mt-0.5 inline-flex min-h-[44px] items-center font-medium
+                                   text-navy-800 transition-colors hover:text-gold-600"
                       >
                         {company.contact.email}
                       </a>
                     </div>
                   </li>
                   <li className="flex gap-3.5">
-                    <IconPhone className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
+                    <IconPhone className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
                     <div>
-                      <p className="text-[0.7rem] uppercase tracking-wider text-navy-400">Phone</p>
+                      <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">Phone</p>
                       <a
                         href={`tel:${company.contact.phoneHref}`}
-                        className="mt-0.5 block font-medium text-navy-800 transition-colors hover:text-gold-600"
+                        className="mt-0.5 inline-flex min-h-[44px] items-center font-medium
+                                   text-navy-800 transition-colors hover:text-gold-600"
                       >
                         {company.contact.phone}
                       </a>
                       <a
                         href={`tel:${company.contact.altPhoneHref}`}
-                        className="mt-1 block text-xs text-navy-400 transition-colors hover:text-gold-600"
+                        className="inline-flex min-h-[44px] items-center text-xs text-navy-400
+                                   transition-colors hover:text-gold-600"
                       >
                         Alt. {company.contact.altPhone}
                       </a>
                     </div>
                   </li>
                   <li className="flex gap-3.5">
-                    <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
+                    <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
                     <div>
-                      <p className="text-[0.7rem] uppercase tracking-wider text-navy-400">
+                      <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">
                         {company.contact.address.label}
                       </p>
                       <address className="mt-0.5 not-italic text-navy-700">
@@ -412,7 +415,7 @@ export default function Contact() {
                     <li key={s} className="flex gap-3.5">
                       <span
                         className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full
-                                   bg-navy-900 text-[0.7rem] font-bold text-gold-400"
+                                   bg-navy-900 text-[0.75rem] font-bold text-gold-400"
                       >
                         {i + 1}
                       </span>

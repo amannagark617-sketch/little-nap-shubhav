@@ -5,11 +5,19 @@
 @layer base {
   :root {
     --header-h: 80px;
+
+    /* Device safe areas. These are 0 everywhere except on hardware with a
+       notch, rounded corners or a home indicator, and only resolve at all
+       because the viewport meta sets viewport-fit=cover. */
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-r: env(safe-area-inset-right, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-l: env(safe-area-inset-left, 0px);
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-h);
+    scroll-padding-top: calc(var(--header-h) + var(--safe-t));
     -webkit-text-size-adjust: 100%;
   }
 
@@ -167,12 +175,53 @@
   }
 
   /* Gold gradient text, used once or twice for emphasis. */
+  /* Display-only gold. Stops run 3.58:1 → 5.04:1 → 6.16:1 on the light body,
+     so even the lightest end clears the 3:1 bar for large text. */
   .text-gilded {
-    @apply bg-gradient-to-br from-gold-300 via-gold-400 to-gold-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-gold-500 via-gold-600 to-gold-700 bg-clip-text text-transparent;
   }
 }
 
 @layer utilities {
+  /* --- Safe-area helpers -------------------------------------------------
+     Each keeps its original spacing and adds the device inset on top, so
+     nothing moves on hardware without one. */
+  .pad-header {
+    padding-top: calc(0.75rem + var(--safe-t));
+    padding-left: calc(0.75rem + var(--safe-l));
+    padding-right: calc(0.75rem + var(--safe-r));
+  }
+  @media (min-width: 640px) {
+    .pad-header {
+      padding-top: calc(1rem + var(--safe-t));
+      padding-left: calc(1.25rem + var(--safe-l));
+      padding-right: calc(1.25rem + var(--safe-r));
+    }
+  }
+
+  /* Main content clears the fixed header plus any top inset. */
+  .pad-main {
+    padding-top: calc(var(--header-h) + var(--safe-t));
+  }
+
+  /* Sticky elements that sit directly under the header. */
+  .stick-below-header {
+    top: calc(var(--header-h) + var(--safe-t));
+  }
+
+  /* Floating bottom-right control, clear of the home indicator. */
+  .pin-fab {
+    bottom: calc(1.25rem + var(--safe-b));
+    right: calc(1.25rem + var(--safe-r));
+  }
+
+  .pb-safe {
+    padding-bottom: calc(var(--safe-b));
+  }
+  .pr-safe {
+    padding-right: var(--safe-r);
+  }
+
   .text-balance {
     text-wrap: balance;
   }

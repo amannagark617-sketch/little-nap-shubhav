@@ -35,15 +35,15 @@ export default function ProductCard({ product, onOpen }: Props) {
         />
         <span
           className="absolute left-3 top-3 rounded-full border border-white/70 bg-white/85 px-2.5
-                     py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-navy-700
+                     py-1 text-[0.75rem] font-semibold uppercase tracking-wider text-navy-700
                      backdrop-blur-md"
         >
           {range.name}
         </span>
         {product.altImage && (
           <span
-            className="absolute bottom-3 left-3 rounded-full bg-navy-900/80 px-2.5 py-1
-                       text-[0.65rem] font-semibold text-white backdrop-blur-md"
+            className="absolute bottom-3 left-3 rounded-full bg-navy-900/90 px-2.5 py-1
+                       text-[0.75rem] font-semibold text-white backdrop-blur-md"
           >
             Converts to bed
           </span>
@@ -58,7 +58,7 @@ export default function ProductCard({ product, onOpen }: Props) {
           {product.traits.map((t) => (
             <li
               key={t}
-              className="rounded-full bg-porcelain-100 px-2.5 py-1 text-[0.68rem] font-medium text-navy-600"
+              className="rounded-full bg-porcelain-100 px-2.5 py-1 text-[0.75rem] font-medium text-navy-600"
             >
               {t}
             </li>
@@ -69,7 +69,7 @@ export default function ProductCard({ product, onOpen }: Props) {
           <button
             type="button"
             onClick={() => onOpen(product)}
-            className="flex-1 rounded-full border border-navy-200/70 bg-white/50 px-4 py-2.5 text-sm
+            className="flex-1 rounded-full border border-navy-200/70 bg-white/50 min-h-[44px] px-4 py-2.5 text-sm
                        font-semibold text-navy-800 transition-all duration-300
                        hover:border-navy-300 hover:bg-white"
           >

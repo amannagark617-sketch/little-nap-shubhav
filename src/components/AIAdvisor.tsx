@@ -115,7 +115,7 @@ export default function AIAdvisor() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? 'Close the Comfort Advisor' : 'Open the Comfort Advisor'}
         aria-expanded={open}
-        className={`fixed bottom-5 right-5 z-[58] inline-flex items-center gap-2 rounded-full
+        className={`pin-fab fixed z-[58] inline-flex items-center gap-2 rounded-full
                     bg-navy-900 py-3.5 pl-4 pr-5 text-sm font-semibold text-white shadow-lg
                     shadow-navy-950/25 transition-all duration-300 hover:bg-navy-800
                     active:scale-95 ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
@@ -127,7 +127,8 @@ export default function AIAdvisor() {
       {/* Panel */}
       <div
         className={`fixed inset-x-0 bottom-0 z-[59] flex justify-end px-0 sm:inset-x-auto
-                    sm:right-5 sm:bottom-5 sm:px-0 ${open ? '' : 'pointer-events-none'}`}
+                    sm:bottom-[calc(1.25rem+var(--safe-b))] sm:right-[calc(1.25rem+var(--safe-r))]
+                    sm:px-0 ${open ? '' : 'pointer-events-none'}`}
         aria-hidden={!open}
       >
         <div
@@ -149,7 +150,7 @@ export default function AIAdvisor() {
               </span>
               <div className="leading-tight">
                 <p className="font-display text-base text-white">Comfort Advisor</p>
-                <p className="text-[0.7rem] text-navy-300">Product &amp; capability guide</p>
+                <p className="text-[0.75rem] text-navy-300">Product &amp; capability guide</p>
               </div>
             </div>
             <button
@@ -232,7 +233,7 @@ export default function AIAdvisor() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about ranges, capacity, OEM…"
               autoComplete="off"
-              className="min-w-0 flex-1 rounded-full border border-navy-100 bg-porcelain-50 px-4 py-2.5
+              className="min-h-[44px] min-w-0 flex-1 rounded-full border border-navy-100 bg-porcelain-50 px-4 py-2.5
                          text-sm text-navy-900 placeholder:text-navy-300 focus:border-gold-300
                          focus:outline-none"
             />
@@ -240,7 +241,7 @@ export default function AIAdvisor() {
               type="submit"
               disabled={busy || !input.trim()}
               aria-label="Send"
-              className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full
                          bg-navy-900 text-white transition-colors hover:bg-navy-800
                          disabled:cursor-not-allowed disabled:opacity-40"
             >
@@ -248,7 +249,7 @@ export default function AIAdvisor() {
             </button>
           </form>
 
-          <p className="bg-white/70 px-4 pb-3 text-center text-[0.65rem] leading-snug text-navy-400">
+          <p className="bg-white/70 px-4 pb-[calc(0.75rem+var(--safe-b))] text-center text-[0.75rem] leading-snug text-navy-400">
             AI-generated guidance. Specifications are confirmed by our team on enquiry.
           </p>
         </div>

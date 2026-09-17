@@ -99,7 +99,7 @@ export default function ProductModal({ product, onClose }: Props) {
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center
+          className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center
                      rounded-full bg-white/90 text-navy-800 shadow-sm backdrop-blur
                      transition-colors hover:bg-white"
         >
