@@ -37,12 +37,30 @@ without them — the AI advisor simply does not appear.
 
 | Page | What it does |
 |---|---|
-| **Home** | Hero, capability figures with count-up, the five differentiators, range navigator, construction features, vision, client marquee |
+| **Home** | Brand-led: hero, who we are, vision and mission, the plant and showroom, capability figures, the women-led workforce, differentiators, culture — with the product ranges appearing well down the page |
 | **Products** | 22 models across 8 ranges. Filter by range, free-text search, URL-synced state, detail modal |
 | **Manufacturing** | Interactive 12-stage walkthrough of the plant, capability figures, photo gallery with lightbox |
 | **Quality** | The four-stage inspection process and what traceability means per unit |
 | **About** | Vision and mission, the women-led workforce, culture, partnership model, clients |
-| **Contact** | Enquiry form pre-loaded with the visitor's selected models |
+| **Contact** | Enquiry form pre-loaded with the visitor's selected models, plus the map, address and live opening hours |
+
+### Design
+
+Light and editorial: a warm ivory base with navy reserved for type and gold for
+accents. Content sits on **frosted glass panels** over slow-drifting colour
+fields, which is what gives the blur something to work against. A single deep
+navy band closes the page — it grounds the layout rather than setting a dark
+theme.
+
+Every glass surface declares a solid background colour first and only then
+layers `backdrop-filter` behind an `@supports` guard, so a browser without
+backdrop-filter still gets an opaque, readable card.
+
+Motion: headlines reveal word by word, sections fade up on scroll, figures count
+up, the hero image drifts on a shallow parallax, a gold hairline tracks scroll
+progress, and the client list marquees. All of it is decoration — every
+animation is switched off under `prefers-reduced-motion`, and no content's
+visibility depends on one.
 
 ### Features worth knowing about
 
@@ -53,12 +71,36 @@ without them — the AI advisor simply does not appear.
 - **Sofa ↔ bed toggle** — sofa beds were photographed in both states, so the
   detail view lets you switch between them.
 - **Comfort Advisor** — an optional Gemini-powered assistant. See below.
+- **Find us** — the Dewas plant on a map, with the address, a directions link
+  and opening hours that highlight today and show a live open/closed badge
+  computed in India Standard Time (not the visitor's own clock). The map is
+  Google's keyless embed, so there is no Maps API key or billing to manage, and
+  it sits over a styled panel that already carries the address — if a corporate
+  network blocks the frame, the card still reads as intentional.
+- **Facility gallery** — the plant and showroom photographs. See below.
 - **Accessibility** — keyboard-navigable throughout, focus trapping in every
   dialog, focus restored on close, a skip link, visible focus rings, and full
   `prefers-reduced-motion` support.
 - **Never-blank content** — scroll animations degrade safely. Anything already
   on screen renders immediately, and a failsafe reveals anything an observer
   misses, so content can never be trapped invisible.
+
+---
+
+## Facility photographs — action needed
+
+The gallery on the home and About pages expects five photographs of the plant
+and showroom. **They are not in the repository**, so that section currently does
+not render at all.
+
+`FacilitySection` probes for each file before painting anything: missing ones are
+skipped, and if none are found the whole section removes itself. The site is
+therefore correct whether zero, some or all of them are present — but it is
+better with them.
+
+To add them, drop the files into `public/images/facility/` using the filenames
+in that folder's README, or drop the originals into `scripts/_source/facility/`
+and run `npm run images`. Nothing else needs changing.
 
 ---
 

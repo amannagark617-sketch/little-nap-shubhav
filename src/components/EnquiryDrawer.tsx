@@ -30,7 +30,7 @@ export default function EnquiryDrawer() {
     <div className={`fixed inset-0 z-[57] ${isOpen ? '' : 'pointer-events-none'}`} aria-hidden={!isOpen}>
       <div
         onClick={close}
-        className={`absolute inset-0 bg-navy-950/50 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-navy-950/35 backdrop-blur-md transition-opacity duration-500 ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -39,12 +39,13 @@ export default function EnquiryDrawer() {
         role="dialog"
         aria-modal="true"
         aria-label="Enquiry list"
-        className={`absolute right-0 top-0 flex h-full w-[min(92vw,26rem)] flex-col bg-sand-50
-                    shadow-2xl transition-transform duration-300 ease-out ${
+        className={`absolute right-0 top-0 flex h-full w-[min(92vw,26rem)] flex-col border-l
+                    border-white/60 bg-sand-50/92 shadow-glass-lg backdrop-blur-2xl
+                    transition-transform duration-500 ease-out ${
                       isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
       >
-        <header className="flex items-center justify-between border-b border-navy-100 px-5 py-4">
+        <header className="flex items-center justify-between border-b border-white/60 px-5 py-4">
           <div>
             <h2 className="font-display text-xl text-navy-900">Your enquiry list</h2>
             <p className="text-xs text-navy-400">
@@ -86,7 +87,7 @@ export default function EnquiryDrawer() {
               {lines.map((line) => (
                 <li
                   key={line.productId}
-                  className="rounded-xl border border-navy-100 bg-white p-4"
+                  className="glass p-4"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -131,7 +132,7 @@ export default function EnquiryDrawer() {
         </div>
 
         {count > 0 && (
-          <div className="space-y-3 border-t border-navy-100 p-5">
+          <div className="space-y-3 border-t border-white/60 p-5">
             <button
               type="button"
               onClick={() => {

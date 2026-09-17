@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import Counter from '../components/Counter'
 import Lightbox from '../components/Lightbox'
+import Aurora from '../components/Aurora'
 import { IconArrowRight, IconChevron } from '../components/Icons'
 import { factoryImage, processSteps, stageOrder } from '../data/factory'
 import { capability } from '../data/company'
@@ -68,8 +69,8 @@ export default function Manufacturing() {
                               className={`flex w-full items-center justify-between gap-3 rounded-xl
                                           px-4 py-3 text-left text-sm font-medium transition-all ${
                                             isActive
-                                              ? 'bg-navy-900 text-white shadow-sm'
-                                              : 'text-navy-600 hover:bg-white'
+                                              ? 'bg-navy-900 text-white shadow-lift'
+                                              : 'text-navy-600 hover:bg-white/70'
                                           }`}
                             >
                               <span className="flex items-center gap-3">
@@ -99,7 +100,7 @@ export default function Manufacturing() {
 
             {/* Active stage detail */}
             <div className="lg:sticky lg:top-32 lg:self-start">
-              <div className="overflow-hidden rounded-2xl border border-navy-100 bg-white">
+              <div className="glass overflow-hidden">
                 <div className="aspect-[16/9] overflow-hidden bg-sand-100">
                   <img
                     key={step.id}
@@ -145,21 +146,22 @@ export default function Manufacturing() {
       </section>
 
       {/* ---- Capability ---- */}
-      <section className="section bg-navy-950 text-white">
-        <div className="container-page grid gap-12 lg:grid-cols-2">
+      <section className="section relative overflow-hidden">
+        <Aurora tone="mixed" intensity="subtle" />
+        <div className="container-page relative grid gap-12 lg:grid-cols-2">
           <Reveal>
             <div>
-              <p className="eyebrow-light">Capability</p>
-              <h2 className="h-section text-white">{capability.headline}</h2>
-              <p className="mt-8 font-display text-6xl text-gold-400">
+              <p className="eyebrow">Capability</p>
+              <h2 className="h-section">{capability.headline}</h2>
+              <p className="mt-8 font-display text-6xl text-gilded">
                 <Counter to={3200} />
               </p>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-200">
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-500">
                 Seats per month
               </p>
               <ul className="mt-9 space-y-3.5">
                 {capability.points.map((p) => (
-                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-navy-200">
+                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-navy-600">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400" />
                     {p}
                   </li>
@@ -169,19 +171,19 @@ export default function Manufacturing() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-8">
-              <h3 className="font-display text-2xl text-white">
+            <div className="glass p-9">
+              <h3 className="font-display text-2xl text-navy-900">
                 {capability.workforce.headline}
               </h3>
-              <p className="mt-7 font-display text-6xl text-gold-400">
+              <p className="mt-7 font-display text-6xl text-gilded">
                 <Counter to={80} suffix="%+" />
               </p>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-200">
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-500">
                 Of our workforce are women
               </p>
               <ul className="mt-9 space-y-3.5">
                 {capability.workforce.points.map((p) => (
-                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-navy-200">
+                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-navy-600">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400" />
                     {p}
                   </li>
@@ -193,8 +195,9 @@ export default function Manufacturing() {
       </section>
 
       {/* ---- Gallery ---- */}
-      <section className="section bg-white">
-        <div className="container-page">
+      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/60 to-transparent">
+        <Aurora tone="warm" intensity="subtle" />
+        <div className="container-page relative">
           <Reveal>
             <p className="eyebrow">Inside the plant</p>
             <h2 className="h-section">The floor, area by area.</h2>
@@ -207,10 +210,9 @@ export default function Manufacturing() {
                 <button
                   type="button"
                   onClick={() => setLightbox(i)}
-                  className="group block w-full overflow-hidden rounded-2xl border border-navy-100
-                             bg-sand-50 text-left transition-all duration-300 hover:-translate-y-1
-                             hover:border-gold-200
-                             hover:shadow-[0_18px_40px_-22px_rgba(21,27,83,0.4)]"
+                  className="group block w-full overflow-hidden rounded-2xl border border-white/60
+                             bg-white/55 text-left shadow-glass backdrop-blur-xl transition-all
+                             duration-500 hover:-translate-y-1.5 hover:bg-white/80 hover:shadow-glass-lg"
                 >
                   <div className="aspect-[16/10] overflow-hidden bg-sand-100">
                     <img

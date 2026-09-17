@@ -182,6 +182,12 @@ Keep the old site reachable until DNS has fully propagated.
 
 ## Pre-launch checklist
 
+- [ ] Add the five facility photographs to `public/images/facility/` — that
+      section stays hidden until they are there (see README)
+- [ ] Confirm which phone number should lead: +91 62320 05722 (Google listing,
+      currently primary) or +91 88178 52528 (corporate deck, shown as alternate)
+- [ ] Check the Google Maps embed renders on the deployed domain — it is
+      keyless, but some networks block third-party frames
 - [ ] Confirm the "Miller" duplicate in Cinema Seating (see README, Known gaps)
 - [ ] Confirm client names may be listed publicly
 - [ ] Replace deck photography with studio shots when available

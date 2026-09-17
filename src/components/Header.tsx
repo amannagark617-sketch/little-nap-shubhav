@@ -19,16 +19,14 @@ export default function Header() {
   const location = useLocation()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => setScrolled(window.scrollY > 16)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Close the drawer whenever navigation happens.
   useEffect(() => setMenuOpen(false), [location.pathname])
 
-  // Lock background scroll while the drawer is open, and allow Escape to close.
   useEffect(() => {
     if (!menuOpen) return
     const previous = document.body.style.overflow
@@ -47,21 +45,23 @@ export default function Header() {
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70]
                    focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-3 focus:text-sm
                    focus:font-semibold focus:text-white"
       >
         Skip to content
       </a>
 
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'border-b border-navy-100 bg-sand-50/90 backdrop-blur-md shadow-[0_1px_24px_-12px_rgba(21,27,83,0.4)]'
-            : 'border-b border-transparent bg-sand-50/70 backdrop-blur-sm'
-        }`}
-      >
-        <div className="container-page flex h-[76px] items-center justify-between gap-6">
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+        {/* The bar is a floating glass pill that tightens as you scroll. */}
+        <div
+          className={`mx-auto flex max-w-content items-center justify-between gap-6 rounded-full
+                      px-4 transition-all duration-500 sm:px-6 ${
+                        scrolled
+                          ? 'glass-strong h-[64px]'
+                          : 'h-[68px] border border-transparent bg-transparent'
+                      }`}
+        >
           <Link to="/" aria-label="Little Nap Subhav — home" className="shrink-0">
             <Logo />
           </Link>
@@ -73,10 +73,10 @@ export default function Header() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      `relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                         isActive
                           ? 'text-navy-900'
-                          : 'text-navy-500 hover:text-navy-900'
+                          : 'text-navy-500 hover:-translate-y-0.5 hover:text-navy-900'
                       }`
                     }
                   >
@@ -84,9 +84,10 @@ export default function Header() {
                       <>
                         {item.label}
                         <span
-                          className={`absolute inset-x-4 -bottom-0.5 h-px bg-gold-400 transition-opacity ${
-                            isActive ? 'opacity-100' : 'opacity-0'
-                          }`}
+                          className={`absolute inset-x-4 bottom-1 h-px bg-gradient-to-r from-transparent
+                                      via-gold-400 to-transparent transition-all duration-300 ${
+                                        isActive ? 'opacity-100' : 'opacity-0'
+                                      }`}
                         />
                       </>
                     )}
@@ -100,11 +101,11 @@ export default function Header() {
             <button
               type="button"
               onClick={open}
-              className="relative hidden rounded-full border border-navy-200 px-4 py-2 text-sm
-                         font-medium text-navy-700 transition-colors hover:border-navy-400
-                         hover:bg-white sm:inline-flex"
+              className="relative hidden rounded-full border border-navy-200/70 bg-white/50 px-4 py-2
+                         text-sm font-medium text-navy-700 transition-all duration-300
+                         hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white sm:inline-flex"
             >
-              Enquiry list
+              Enquiry
               {count > 0 && (
                 <span
                   className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full
@@ -115,7 +116,7 @@ export default function Header() {
               )}
             </button>
 
-            <Link to="/contact" className="btn-primary hidden md:inline-flex">
+            <Link to="/contact" className="btn-primary hidden !px-5 !py-2.5 md:inline-flex">
               Request a quote
               <IconArrowRight className="h-4 w-4" />
             </Link>
@@ -126,7 +127,7 @@ export default function Header() {
               aria-label="Open menu"
               aria-expanded={menuOpen}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full
-                         border border-navy-200 text-navy-800 lg:hidden"
+                         border border-navy-200/70 bg-white/60 text-navy-800 lg:hidden"
             >
               <IconMenu className="h-5 w-5" />
             </button>
@@ -141,7 +142,7 @@ export default function Header() {
       >
         <div
           onClick={() => setMenuOpen(false)}
-          className={`absolute inset-0 bg-navy-950/50 backdrop-blur-sm transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-navy-950/30 backdrop-blur-sm transition-opacity duration-500 ${
             menuOpen ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -150,11 +151,12 @@ export default function Header() {
           aria-modal="true"
           aria-label="Site menu"
           className={`absolute right-0 top-0 flex h-full w-[min(88vw,22rem)] flex-col
-                      bg-sand-50 shadow-2xl transition-transform duration-300 ease-out ${
+                      border-l border-white/60 bg-sand-50/95 shadow-glass-lg backdrop-blur-2xl
+                      transition-transform duration-500 ease-out ${
                         menuOpen ? 'translate-x-0' : 'translate-x-full'
                       }`}
         >
-          <div className="flex h-[76px] items-center justify-between border-b border-navy-100 px-5">
+          <div className="flex h-[76px] items-center justify-between px-5">
             <Logo markOnly />
             <button
               type="button"
@@ -168,17 +170,25 @@ export default function Header() {
           </div>
 
           <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 py-6">
-            <ul className="space-y-1">
-              {nav.map((item) => (
-                <li key={item.to}>
+            <ul className="space-y-1.5">
+              {nav.map((item, i) => (
+                <li
+                  key={item.to}
+                  style={{
+                    transitionDelay: menuOpen ? `${120 + i * 55}ms` : '0ms',
+                    opacity: menuOpen ? 1 : 0,
+                    transform: menuOpen ? 'none' : 'translateX(24px)',
+                    transition: 'opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1)',
+                  }}
+                >
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
                       `flex items-center justify-between rounded-xl px-4 py-3.5 font-display
                        text-xl transition-colors ${
                          isActive
-                           ? 'bg-white text-navy-900 shadow-sm'
-                           : 'text-navy-600 hover:bg-white/70'
+                           ? 'glass text-navy-900'
+                           : 'text-navy-600 hover:bg-white/60'
                        }`
                     }
                   >
@@ -190,7 +200,7 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="space-y-3 border-t border-navy-100 p-5">
+          <div className="space-y-3 border-t border-white/60 p-5">
             <button
               type="button"
               onClick={() => {

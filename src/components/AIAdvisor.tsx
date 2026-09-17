@@ -134,9 +134,9 @@ export default function AIAdvisor() {
           role="dialog"
           aria-modal="false"
           aria-label="Comfort Advisor"
-          className={`flex h-[min(80vh,34rem)] w-full flex-col overflow-hidden border
-                      border-navy-100 bg-sand-50 shadow-2xl transition-all duration-300
-                      sm:w-[24rem] sm:rounded-2xl rounded-t-2xl ${
+          className={`flex h-[min(80vh,34rem)] w-full flex-col overflow-hidden rounded-t-2xl
+                      border border-white/60 bg-sand-50/90 shadow-glass-lg backdrop-blur-2xl
+                      transition-all duration-500 sm:w-[24rem] sm:rounded-2xl ${
                         open
                           ? 'translate-y-0 opacity-100'
                           : 'pointer-events-none translate-y-4 opacity-0'
@@ -176,7 +176,7 @@ export default function AIAdvisor() {
                                   ? 'rounded-br-sm bg-navy-700 text-white'
                                   : e.error
                                     ? 'rounded-bl-sm border border-amber-200 bg-amber-50 text-amber-900'
-                                    : 'rounded-bl-sm border border-navy-100 bg-white text-navy-800'
+                                    : 'rounded-bl-sm border border-white/70 bg-white/80 text-navy-800'
                               }`}
                 >
                   {e.pending ? (
@@ -203,9 +203,10 @@ export default function AIAdvisor() {
                     key={p}
                     type="button"
                     onClick={() => send(p)}
-                    className="block w-full rounded-xl border border-navy-100 bg-white px-3.5
+                    className="block w-full rounded-xl border border-white/70 bg-white/70 px-3.5
                                py-2.5 text-left text-[0.8rem] leading-snug text-navy-600
-                               transition-colors hover:border-gold-300 hover:text-navy-900"
+                               backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5
+                               hover:border-gold-300 hover:bg-white hover:text-navy-900"
                   >
                     {p}
                   </button>
@@ -219,7 +220,7 @@ export default function AIAdvisor() {
               e.preventDefault()
               send(input)
             }}
-            className="flex items-center gap-2 border-t border-navy-100 bg-white px-3 py-3"
+            className="flex items-center gap-2 border-t border-white/60 bg-white/70 px-3 py-3"
           >
             <label htmlFor="advisor-input" className="sr-only">
               Ask the Comfort Advisor
@@ -247,7 +248,7 @@ export default function AIAdvisor() {
             </button>
           </form>
 
-          <p className="bg-white px-4 pb-3 text-center text-[0.65rem] leading-snug text-navy-400">
+          <p className="bg-white/70 px-4 pb-3 text-center text-[0.65rem] leading-snug text-navy-400">
             AI-generated guidance. Specifications are confirmed by our team on enquiry.
           </p>
         </div>

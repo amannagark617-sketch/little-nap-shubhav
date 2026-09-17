@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import { IconArrowRight, IconCheck, IconMail, IconPhone, IconPin } from '../components/Icons'
+import Aurora from '../components/Aurora'
+import MapPanel from '../components/MapPanel'
+import OpenStatus from '../components/OpenStatus'
 import { company } from '../data/company'
 import { ranges } from '../data/products'
 import { useEnquiry } from '../context/EnquiryContext'
@@ -105,8 +108,9 @@ export default function Contact() {
   }
 
   const fieldClass =
-    'w-full rounded-xl border border-navy-100 bg-white px-4 py-3 text-sm text-navy-900 ' +
-    'placeholder:text-navy-300 transition-colors focus:border-gold-300 focus:outline-none'
+    'w-full rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-navy-900 ' +
+    'backdrop-blur-sm placeholder:text-navy-300 transition-colors focus:border-gold-300 ' +
+    'focus:bg-white focus:outline-none'
   const labelClass = 'block text-xs font-semibold uppercase tracking-wider text-navy-500'
 
   return (
@@ -117,13 +121,14 @@ export default function Contact() {
         lede="Tell us the models, the volumes and the timeline. We will come back with a specification, a sample plan and an honest production schedule."
       />
 
-      <section className="section">
-        <div className="container-page grid gap-12 lg:grid-cols-[1fr_22rem]">
+      <section className="section relative overflow-hidden">
+        <Aurora tone="warm" intensity="subtle" />
+        <div className="container-page relative grid gap-12 lg:grid-cols-[1fr_22rem]">
           {/* ---- Form ---- */}
           <Reveal>
             <div>
               {status === 'sent' ? (
-                <div className="rounded-2xl border border-gold-200 bg-gold-50 p-10 text-center">
+                <div className="glass-strong p-12 text-center">
                   <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-navy-900">
                     <IconCheck className="h-7 w-7 text-gold-400" />
                   </span>
@@ -232,7 +237,7 @@ export default function Contact() {
                   </div>
 
                   {/* Enquiry list carried over from the catalogue */}
-                  <div className="mt-8 rounded-2xl border border-navy-100 bg-white p-6">
+                  <div className="glass mt-8 p-7">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <h3 className="font-display text-lg text-navy-900">
@@ -332,8 +337,11 @@ export default function Contact() {
           {/* ---- Contact details ---- */}
           <Reveal delay={120}>
             <aside className="space-y-4 lg:sticky lg:top-32 lg:self-start">
-              <div className="rounded-2xl bg-navy-950 p-7 text-white">
-                <h2 className="font-display text-xl text-white">Reach us directly</h2>
+              <div className="glass p-7">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h2 className="font-display text-xl text-navy-900">Reach us directly</h2>
+                  <OpenStatus />
+                </div>
                 <ul className="mt-6 space-y-5 text-sm">
                   <li className="flex gap-3.5">
                     <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" />
@@ -341,7 +349,7 @@ export default function Contact() {
                       <p className="text-[0.7rem] uppercase tracking-wider text-navy-400">Email</p>
                       <a
                         href={`mailto:${company.contact.email}`}
-                        className="mt-0.5 block text-navy-100 transition-colors hover:text-gold-300"
+                        className="mt-0.5 block font-medium text-navy-800 transition-colors hover:text-gold-600"
                       >
                         {company.contact.email}
                       </a>
@@ -353,9 +361,15 @@ export default function Contact() {
                       <p className="text-[0.7rem] uppercase tracking-wider text-navy-400">Phone</p>
                       <a
                         href={`tel:${company.contact.phoneHref}`}
-                        className="mt-0.5 block text-navy-100 transition-colors hover:text-gold-300"
+                        className="mt-0.5 block font-medium text-navy-800 transition-colors hover:text-gold-600"
                       >
                         {company.contact.phone}
+                      </a>
+                      <a
+                        href={`tel:${company.contact.altPhoneHref}`}
+                        className="mt-1 block text-xs text-navy-400 transition-colors hover:text-gold-600"
+                      >
+                        Alt. {company.contact.altPhone}
                       </a>
                     </div>
                   </li>
@@ -365,7 +379,7 @@ export default function Contact() {
                       <p className="text-[0.7rem] uppercase tracking-wider text-navy-400">
                         {company.contact.address.label}
                       </p>
-                      <address className="mt-0.5 not-italic text-navy-100">
+                      <address className="mt-0.5 not-italic text-navy-700">
                         {company.contact.address.lines.map((l) => (
                           <span key={l} className="block">
                             {l}
@@ -377,18 +391,16 @@ export default function Contact() {
                 </ul>
 
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                    company.contact.address.full,
-                  )}`}
+                  href={company.contact.address.directionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-ghost-light mt-7 w-full"
+                  className="btn-glass mt-7 w-full"
                 >
-                  Open in Maps
+                  Get directions
                 </a>
               </div>
 
-              <div className="rounded-2xl border border-navy-100 bg-white p-7">
+              <div className="glass p-7">
                 <h2 className="font-display text-lg text-navy-900">What happens next</h2>
                 <ol className="mt-4 space-y-4 text-sm">
                   {[
@@ -411,6 +423,26 @@ export default function Contact() {
               </div>
             </aside>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ---- Where to find us ---- */}
+      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/60 to-transparent">
+        <Aurora tone="cool" intensity="subtle" />
+        <div className="container-page relative">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="eyebrow">Where to find us</p>
+              <h2 className="h-section">{company.contact.address.name}</h2>
+              <p className="lede">
+                On the AB Road bypass at Dewas, a short drive from Indore — with two
+                dry ports nearby and overnight reach to the major shipping ports.
+              </p>
+            </div>
+          </Reveal>
+          <div className="mt-12">
+            <MapPanel />
+          </div>
         </div>
       </section>
     </>

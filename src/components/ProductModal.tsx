@@ -81,7 +81,7 @@ export default function ProductModal({ product, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-[60] flex items-end justify-center sm:items-center sm:p-6">
       <div
-        className="absolute inset-0 animate-fade-in bg-navy-950/60 backdrop-blur-sm"
+        className="absolute inset-0 animate-fade-in bg-navy-950/40 backdrop-blur-md"
         onClick={onClose}
       />
 
@@ -91,7 +91,8 @@ export default function ProductModal({ product, onClose }: Props) {
         aria-modal="true"
         aria-labelledby="product-modal-title"
         className="relative flex max-h-[92vh] w-full max-w-4xl animate-scale-in flex-col
-                   overflow-hidden rounded-t-3xl bg-sand-50 shadow-2xl sm:rounded-3xl"
+                   overflow-hidden rounded-t-3xl border border-white/60 bg-sand-50/90
+                   shadow-glass-lg backdrop-blur-2xl sm:rounded-3xl"
       >
         <button
           ref={closeRef}
@@ -163,8 +164,8 @@ export default function ProductModal({ product, onClose }: Props) {
                 {product.traits.map((t) => (
                   <li
                     key={t}
-                    className="rounded-full bg-white px-3 py-1.5 text-xs font-medium text-navy-700
-                               ring-1 ring-navy-100"
+                    className="rounded-full border border-white/70 bg-white/70 px-3 py-1.5 text-xs
+                               font-medium text-navy-700 backdrop-blur-sm"
                   >
                     {t}
                   </li>
@@ -176,7 +177,7 @@ export default function ProductModal({ product, onClose }: Props) {
               <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-navy-400">
                 {range.name} range build
               </h3>
-              <dl className="mt-3 divide-y divide-navy-100 rounded-xl bg-white px-4 ring-1 ring-navy-100">
+              <dl className="mt-3 divide-y divide-navy-100/70 rounded-xl border border-white/70 bg-white/60 px-4 backdrop-blur-sm">
                 {range.specHighlights.map((s) => (
                   <div key={s.label} className="flex justify-between gap-4 py-2.5 text-sm">
                     <dt className="text-navy-400">{s.label}</dt>

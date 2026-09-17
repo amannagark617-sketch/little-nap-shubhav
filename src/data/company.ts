@@ -20,16 +20,51 @@ export const company = {
   ],
   contact: {
     email: 'inquiry@lnsindia.co.in',
-    phone: '+91 8817852528',
-    phoneHref: '+918817852528',
+    /** Listed on the Google Business profile for the Dewas plant. */
+    phone: '+91 62320 05722',
+    phoneHref: '+916232005722',
+    /** The number printed on the corporate deck. */
+    altPhone: '+91 88178 52528',
+    altPhoneHref: '+918817852528',
     website: 'www.lnsindia.co.in',
     address: {
-      label: 'Manufacturing Unit',
-      lines: ['Khasra No. 137 & 142', 'Awartpura, Dewas (MP) — 455111', 'India'],
-      full: 'Khasra No. 137 & 142, Awartpura, Dewas (MP) - 455111, India',
+      label: 'Manufacturing Plant',
+      name: 'Little Nap Subhav Dewas — Manufacturing Plant',
+      lines: [
+        'Shree Shubham Logistics Park, 27–28',
+        'AB Road Bypass, Dewas',
+        'Indore, Madhya Pradesh 455001',
+        'India',
+      ],
+      full: 'Shree Shubham Logistics Park, 27-28, AB Road Bypass, Dewas, Indore, Madhya Pradesh 455001, India',
+      /** Share link from the Google Business profile. */
+      mapsUrl: 'https://maps.app.goo.gl/pwn9rnyUKUYMimwa9',
+      /** Keyless embed — no Maps API key or billing needed. */
+      embedUrl:
+        'https://www.google.com/maps?q=Little+Nap+Subhav+Dewas+Manufacturing+Plant,+Shree+Shubham+Logistics+Park,+AB+Road+Bypass,+Dewas,+Madhya+Pradesh+455001&output=embed',
+      directionsUrl:
+        'https://www.google.com/maps/dir/?api=1&destination=' +
+        encodeURIComponent(
+          'Little Nap Subhav Dewas Manufacturing Plant, Shree Shubham Logistics Park, AB Road Bypass, Dewas, Madhya Pradesh 455001',
+        ),
     },
   },
 } as const
+
+/**
+ * Opening hours as published on the Google Business profile.
+ * `day` uses the JS convention where Sunday is 0, so the UI can work out
+ * whether the plant is open right now.
+ */
+export const openingHours = [
+  { day: 1, label: 'Monday', hours: '9:00 am – 5:30 pm', open: '09:00', close: '17:30' },
+  { day: 2, label: 'Tuesday', hours: '9:00 am – 5:30 pm', open: '09:00', close: '17:30' },
+  { day: 3, label: 'Wednesday', hours: '9:00 am – 5:30 pm', open: '09:00', close: '17:30' },
+  { day: 4, label: 'Thursday', hours: '9:00 am – 5:30 pm', open: '09:00', close: '17:30' },
+  { day: 5, label: 'Friday', hours: '9:00 am – 5:30 pm', open: '09:00', close: '17:30' },
+  { day: 6, label: 'Saturday', hours: '9:00 am – 5:30 pm', open: '09:00', close: '17:30' },
+  { day: 0, label: 'Sunday', hours: 'Closed', open: null, close: null },
+] as const
 
 export const vision =
   'To engineer and manufacture world-class motion furniture that brings comfort, quality and innovation from India to the world.'

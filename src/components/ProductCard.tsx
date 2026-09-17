@@ -14,9 +14,9 @@ export default function ProductCard({ product, onOpen }: Props) {
 
   return (
     <article
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-navy-100
-                 bg-white transition-all duration-300 hover:-translate-y-1
-                 hover:border-gold-200 hover:shadow-[0_20px_44px_-24px_rgba(21,27,83,0.4)]"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/60
+                 bg-white/55 shadow-glass backdrop-blur-xl transition-all duration-500
+                 hover:-translate-y-1.5 hover:bg-white/85 hover:shadow-glass-lg"
     >
       <button
         type="button"
@@ -30,19 +30,20 @@ export default function ProductCard({ product, onOpen }: Props) {
           alt={`${product.name} — ${range.name} range`}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover transition-transform duration-700
-                     group-hover:scale-[1.04]"
+          className="h-full w-full object-cover transition-transform duration-[1.2s]
+                     group-hover:scale-[1.06]"
         />
         <span
-          className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[0.65rem]
-                     font-semibold uppercase tracking-wider text-navy-700 backdrop-blur-sm"
+          className="absolute left-3 top-3 rounded-full border border-white/70 bg-white/85 px-2.5
+                     py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-navy-700
+                     backdrop-blur-md"
         >
           {range.name}
         </span>
         {product.altImage && (
           <span
-            className="absolute bottom-3 left-3 rounded-full bg-navy-900/85 px-2.5 py-1
-                       text-[0.65rem] font-semibold text-white backdrop-blur-sm"
+            className="absolute bottom-3 left-3 rounded-full bg-navy-900/80 px-2.5 py-1
+                       text-[0.65rem] font-semibold text-white backdrop-blur-md"
           >
             Converts to bed
           </span>
@@ -68,8 +69,9 @@ export default function ProductCard({ product, onOpen }: Props) {
           <button
             type="button"
             onClick={() => onOpen(product)}
-            className="flex-1 rounded-full border border-navy-200 px-4 py-2.5 text-sm font-semibold
-                       text-navy-800 transition-colors hover:border-navy-400 hover:bg-sand-50"
+            className="flex-1 rounded-full border border-navy-200/70 bg-white/50 px-4 py-2.5 text-sm
+                       font-semibold text-navy-800 transition-all duration-300
+                       hover:border-navy-300 hover:bg-white"
           >
             Details
           </button>

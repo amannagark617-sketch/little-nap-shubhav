@@ -7,6 +7,7 @@
  */
 import sharp from 'sharp'
 import { mkdir, readdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -32,6 +33,19 @@ async function run() {
   await mkdir(path.join(OUT, 'products'), { recursive: true })
   await mkdir(path.join(OUT, 'factory'), { recursive: true })
   await mkdir(path.join(OUT, 'brand'), { recursive: true })
+  await mkdir(path.join(OUT, 'facility'), { recursive: true })
+
+  // Optional: originals dropped into scripts/_source/facility are sized and
+  // converted straight into public/images/facility.
+  const facilityDir = path.join(SRC, 'facility')
+  if (existsSync(facilityDir)) {
+    for (const f of await readdir(facilityDir)) {
+      if (!/\.(png|jpe?g|webp)$/i.test(f)) continue
+      const out = f.replace(/\.[^.]+$/, '.webp')
+      await convert(path.join(facilityDir, f), path.join(OUT, 'facility', out), 1600, { quality: 82 })
+      console.log('facility:', out)
+    }
+  }
 
   const files = await readdir(SRC)
   let count = 0
@@ -47,6 +61,8 @@ async function run() {
     } else if (base.startsWith('factory-')) {
       const name = base.replace('factory-', '')
       await convert(path.join(SRC, f), path.join(OUT, 'factory', `${name}.webp`), FACTORY_WIDTH)
+    } else if (base === 'hero-portrait') {
+      await convert(path.join(SRC, f), path.join(OUT, 'brand', 'hero-portrait.webp'), 1200, { quality: 88 })
     } else if (base === 'hero-arc') {
       await convert(path.join(SRC, f), path.join(OUT, 'brand', 'hero-arc.webp'), 1100, { quality: 86 })
     } else if (base === 'hero-photo') {

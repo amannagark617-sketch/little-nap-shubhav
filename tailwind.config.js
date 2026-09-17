@@ -30,12 +30,16 @@ export default {
           800: '#5E4315',
           900: '#3F2D0F',
         },
+        // Warm ivory base. The site sits on light surfaces; navy is reserved
+        // for type and small accents rather than large blocks.
         sand: {
-          50: '#FBFAF7',
-          100: '#F5F2EB',
-          200: '#EAE4D8',
-          300: '#D9CFBC',
+          50: '#FDFCF9',
+          100: '#F8F5EE',
+          200: '#F0EBE0',
+          300: '#E2DACA',
+          400: '#CDC1AB',
         },
+        ivory: '#FEFDFB',
       },
       fontFamily: {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
@@ -44,6 +48,14 @@ export default {
       maxWidth: {
         content: '1200px',
         prose: '72ch',
+      },
+      boxShadow: {
+        glass: '0 8px 32px -8px rgba(21, 27, 83, 0.10), 0 2px 8px -2px rgba(21, 27, 83, 0.06)',
+        'glass-lg': '0 24px 64px -16px rgba(21, 27, 83, 0.16), 0 4px 16px -4px rgba(21, 27, 83, 0.08)',
+        lift: '0 28px 60px -24px rgba(21, 27, 83, 0.30)',
+      },
+      backdropBlur: {
+        xs: '2px',
       },
       keyframes: {
         'fade-up': {
@@ -58,6 +70,24 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        /* Slow drifting colour fields that glass panels sit on top of. */
+        drift: {
+          '0%, 100%': { transform: 'translate3d(0,0,0) scale(1)' },
+          '33%': { transform: 'translate3d(4%, -6%, 0) scale(1.08)' },
+          '66%': { transform: 'translate3d(-5%, 4%, 0) scale(0.95)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        'rise-in': {
+          '0%': { opacity: '0', transform: 'translateY(26px) scale(0.985)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
         'scale-in': {
           '0%': { opacity: '0', transform: 'scale(0.96)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
@@ -68,6 +98,11 @@ export default {
         'fade-in': 'fade-in 0.4s ease-out both',
         'scale-in': 'scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both',
         marquee: 'marquee 40s linear infinite',
+        drift: 'drift 26s ease-in-out infinite',
+        'drift-slow': 'drift 38s ease-in-out infinite',
+        float: 'float 7s ease-in-out infinite',
+        shimmer: 'shimmer 3.5s linear infinite',
+        'rise-in': 'rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
     },
   },

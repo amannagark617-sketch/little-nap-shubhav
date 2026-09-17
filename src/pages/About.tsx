@@ -4,6 +4,8 @@ import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import Counter from '../components/Counter'
 import { IconArrowRight, iconMap } from '../components/Icons'
+import Aurora from '../components/Aurora'
+import FacilitySection from '../components/FacilitySection'
 import {
   capability,
   clients,
@@ -15,7 +17,6 @@ import {
   stats,
   vision,
 } from '../data/company'
-import { brandImage } from '../data/factory'
 
 export default function About() {
   useEffect(() => {
@@ -37,31 +38,32 @@ export default function About() {
       />
 
       {/* ---- Vision & mission ---- */}
-      <section className="section">
-        <div className="container-page grid gap-10 lg:grid-cols-2">
+      <section className="section relative overflow-hidden">
+        <Aurora tone="warm" intensity="subtle" />
+        <div className="container-page relative grid gap-10 lg:grid-cols-2">
           <Reveal>
-            <div className="flex h-full flex-col rounded-2xl border border-navy-100 bg-white p-8">
+            <div className="glass glass-hover flex h-full flex-col p-9">
               <div className="rule-gold" />
               <h2 className="mt-6 font-display text-2xl text-navy-900">Our vision</h2>
               <p className="mt-4 flex-1 text-lg leading-relaxed text-navy-600">{vision}</p>
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <div className="flex h-full flex-col rounded-2xl border border-navy-100 bg-navy-950 p-8 text-white">
+            <div className="glass glass-hover flex h-full flex-col p-9">
               <div className="rule-gold" />
-              <h2 className="mt-6 font-display text-2xl text-white">Our mission</h2>
-              <p className="mt-4 flex-1 text-lg leading-relaxed text-navy-200">{mission}</p>
+              <h2 className="mt-6 font-display text-2xl text-navy-900">Our mission</h2>
+              <p className="mt-4 flex-1 text-lg leading-relaxed text-navy-600">{mission}</p>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ---- Numbers ---- */}
-      <section className="border-y border-navy-100 bg-white">
-        <div className="container-page grid gap-8 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="relative overflow-hidden">
+        <div className="container-page grid gap-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 80}>
-              <div className="border-l-2 border-gold-400 pl-5">
+              <div className="glass glass-hover h-full p-6">
                 <p className="font-display text-4xl text-navy-900">
                   <Counter to={s.value} suffix={s.suffix} />
                 </p>
@@ -97,19 +99,15 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="relative overflow-hidden rounded-2xl bg-navy-950 p-10 text-center">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0
-                           bg-[radial-gradient(circle_at_50%_30%,rgba(211,163,32,0.2),transparent_65%)]"
-              />
-              <p className="relative font-display text-7xl text-gold-400">
+            <div className="glass-strong relative overflow-hidden p-12 text-center">
+              <Aurora tone="warm" intensity="rich" />
+              <p className="relative font-display text-7xl text-gilded">
                 <Counter to={80} suffix="%+" />
               </p>
-              <p className="relative mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-200">
+              <p className="relative mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-500">
                 Of our workforce are women
               </p>
-              <p className="relative mx-auto mt-6 max-w-sm text-sm leading-relaxed text-navy-300">
+              <p className="relative mx-auto mt-6 max-w-sm text-sm leading-relaxed text-navy-500">
                 Committed to diversity, inclusion and sustainable social impact — in
                 a sector where it remains the exception.
               </p>
@@ -119,8 +117,9 @@ export default function About() {
       </section>
 
       {/* ---- What sets us apart ---- */}
-      <section className="section bg-white">
-        <div className="container-page">
+      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/50 to-transparent">
+        <Aurora tone="cool" intensity="subtle" />
+        <div className="container-page relative">
           <Reveal>
             <p className="eyebrow">What sets us apart</p>
             <h2 className="h-section">Five reasons brands stay with us.</h2>
@@ -131,7 +130,7 @@ export default function About() {
               const Icon = iconMap[d.icon]
               return (
                 <Reveal as="li" key={d.title} delay={i * 70}>
-                  <div className="card-hover h-full">
+                  <div className="glass glass-hover h-full p-7">
                     <Icon className="h-7 w-7 text-gold-500" />
                     <h3 className="mt-4 font-display text-lg text-navy-900">{d.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-navy-500">{d.body}</p>
@@ -162,11 +161,7 @@ export default function About() {
           <Reveal delay={120}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {culture.map((c) => (
-                <li
-                  key={c}
-                  className="rounded-xl border border-navy-100 bg-white px-5 py-4 text-sm
-                             font-medium text-navy-700"
-                >
+                <li key={c} className="glass glass-hover px-5 py-4 text-sm font-medium text-navy-700">
                   {c}
                 </li>
               ))}
@@ -175,24 +170,32 @@ export default function About() {
         </div>
       </section>
 
+      {/* ---- The plant and showroom ---- */}
+      {/* Renders only once the client's facility photographs are present. */}
+      <FacilitySection
+        eyebrow="The place"
+        title="Our plant and showroom."
+        lede="A purpose-built facility in Dewas with a showroom stocked across every range — so a visiting buyer can walk the line and sit in the models on the same day."
+        className="bg-gradient-to-b from-sand-100/60 to-transparent"
+      />
+
       {/* ---- Partnership ---- */}
-      <section className="section bg-navy-950 text-white">
-        <div className="container-page">
+      <section className="section relative overflow-hidden">
+        <Aurora tone="mixed" intensity="subtle" />
+        <div className="container-page relative">
           <Reveal>
             <div className="max-w-2xl">
-              <p className="eyebrow-light">How we work together</p>
-              <h2 className="h-section text-white">
-                What a long-term partnership looks like.
-              </h2>
+              <p className="eyebrow">How we work together</p>
+              <h2 className="h-section">What a long-term partnership looks like.</h2>
             </div>
           </Reveal>
 
           <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {partnership.map((p, i) => (
               <Reveal as="li" key={p.title} delay={i * 70}>
-                <div className="h-full border-t border-white/15 pt-6">
-                  <h3 className="font-display text-xl text-white">{p.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-navy-200">{p.body}</p>
+                <div className="glass glass-hover h-full p-7">
+                  <h3 className="font-display text-xl text-navy-900">{p.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-navy-500">{p.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -201,8 +204,8 @@ export default function About() {
       </section>
 
       {/* ---- Clients ---- */}
-      <section className="section bg-white">
-        <div className="container-page">
+      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/50 to-transparent">
+        <div className="container-page relative">
           <Reveal>
             <p className="eyebrow">Our clients</p>
             <h2 className="h-section">Brands we manufacture for.</h2>
@@ -215,11 +218,7 @@ export default function About() {
           <ul className="mt-11 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {clients.map((name, i) => (
               <Reveal as="li" key={name} delay={i * 50}>
-                <div
-                  className="flex h-full items-center justify-center rounded-2xl border
-                             border-navy-100 bg-sand-50 px-5 py-9 text-center transition-colors
-                             hover:border-gold-200"
-                >
+                <div className="glass glass-hover flex h-full items-center justify-center px-5 py-9 text-center">
                   <span className="font-display text-xl text-navy-700">{name}</span>
                 </div>
               </Reveal>
@@ -232,18 +231,14 @@ export default function About() {
       <section className="section">
         <div className="container-page">
           <Reveal>
-            <div className="relative overflow-hidden rounded-3xl bg-navy-900 px-8 py-14 sm:px-14">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full
-                           bg-[radial-gradient(circle,rgba(211,163,32,0.2),transparent_65%)]"
-              />
+            <div className="glass-strong relative overflow-hidden px-8 py-16 sm:px-14">
+              <Aurora tone="warm" intensity="rich" />
               <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
                 <div>
-                  <h2 className="font-display text-3xl text-white sm:text-4xl">
+                  <h2 className="font-display text-3xl text-navy-900 sm:text-4xl">
                     Let's build something together.
                   </h2>
-                  <p className="mt-4 max-w-xl leading-relaxed text-navy-200">
+                  <p className="mt-4 max-w-xl leading-relaxed text-navy-500">
                     Whether you need an existing model private-labelled or a new one
                     developed from scratch, the conversation starts the same way.
                   </p>
@@ -253,7 +248,7 @@ export default function About() {
                     Get in touch
                     <IconArrowRight className="h-4 w-4" />
                   </Link>
-                  <Link to="/manufacturing" className="btn-ghost-light">
+                  <Link to="/manufacturing" className="btn-glass">
                     See the factory
                   </Link>
                 </div>
@@ -263,8 +258,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Preloads the hero artwork used elsewhere on the site. */}
-      <link rel="prefetch" href={brandImage('hero-arc.webp')} />
+
     </>
   )
 }

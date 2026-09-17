@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import ProductModal from '../components/ProductModal'
 import Reveal from '../components/Reveal'
+import Aurora from '../components/Aurora'
 import { IconSearch, IconClose } from '../components/Icons'
 import { products, rangeById, ranges, type Product, type RangeId } from '../data/products'
 
@@ -71,12 +72,11 @@ export default function Products() {
       />
 
       {/* ---- Filter bar ---- */}
-      <div className="sticky top-[76px] z-30 border-b border-navy-100 bg-sand-50/95 backdrop-blur-md">
-        <div className="container-page py-4">
+      <div className="sticky top-[84px] z-30 px-3 sm:px-5">
+        <div className="glass-strong mx-auto max-w-content px-4 py-3.5 sm:px-5">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div
-              className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none]
-                         [&::-webkit-scrollbar]:hidden"
+              className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
               role="group"
               aria-label="Filter by range"
             >
@@ -84,10 +84,10 @@ export default function Products() {
                 type="button"
                 onClick={() => setFilter('all')}
                 aria-pressed={filter === 'all'}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   filter === 'all'
-                    ? 'bg-navy-900 text-white'
-                    : 'border border-navy-200 text-navy-600 hover:border-navy-400 hover:bg-white'
+                    ? 'bg-navy-900 text-white shadow-lift'
+                    : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
                 }`}
               >
                 All ranges
@@ -98,10 +98,10 @@ export default function Products() {
                   type="button"
                   onClick={() => setFilter(r.id)}
                   aria-pressed={filter === r.id}
-                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                     filter === r.id
-                      ? 'bg-navy-900 text-white'
-                      : 'border border-navy-200 text-navy-600 hover:border-navy-400 hover:bg-white'
+                      ? 'bg-navy-900 text-white shadow-lift'
+                      : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
                   }`}
                 >
                   {r.name}
@@ -120,9 +120,9 @@ export default function Products() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search models…"
-                className="w-full rounded-full border border-navy-200 bg-white py-2.5 pl-10 pr-9
-                           text-sm text-navy-900 placeholder:text-navy-300
-                           focus:border-gold-300 focus:outline-none"
+                className="w-full rounded-full border border-navy-200/70 bg-white/60 py-2.5 pl-10 pr-9
+                           text-sm text-navy-900 backdrop-blur-sm placeholder:text-navy-300
+                           focus:border-gold-300 focus:bg-white focus:outline-none"
               />
               {query && (
                 <button
@@ -142,8 +142,9 @@ export default function Products() {
 
       {/* ---- Range description ---- */}
       {activeRange && (
-        <section className="border-b border-navy-100 bg-white">
-          <div className="container-page py-10">
+        <section className="relative overflow-hidden">
+          <Aurora tone="warm" intensity="subtle" />
+          <div className="container-page relative py-12">
             <p className="eyebrow">{activeRange.positioning}</p>
             <h2 className="mt-3 font-display text-2xl text-navy-900 sm:text-3xl">
               {activeRange.name}
@@ -169,7 +170,7 @@ export default function Products() {
       <section className="section pt-14">
         <div className="container-page">
           {visible.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-navy-200 py-20 text-center">
+            <div className="glass border-dashed py-20 text-center">
               <p className="font-display text-2xl text-navy-800">No models match that.</p>
               <p className="mt-3 text-sm text-navy-500">
                 Try a different search term, or clear the filters to see all{' '}

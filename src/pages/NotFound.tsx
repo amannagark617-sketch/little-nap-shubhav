@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRight } from '../components/Icons'
+import Aurora from '../components/Aurora'
 
 export default function NotFound() {
   useEffect(() => {
@@ -8,8 +9,9 @@ export default function NotFound() {
   }, [])
 
   return (
-    <section className="flex min-h-[70vh] items-center">
-      <div className="container-page text-center">
+    <section className="relative flex min-h-[70vh] items-center overflow-hidden">
+      <Aurora tone="warm" intensity="subtle" />
+      <div className="container-page relative text-center">
         <p className="eyebrow justify-center">Error 404</p>
         <h1 className="mt-5 font-display text-4xl text-navy-900 sm:text-5xl">
           That page has reclined out of view.

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import ScrollProgress from './components/ScrollProgress'
 import EnquiryDrawer from './components/EnquiryDrawer'
 import AIAdvisor from './components/AIAdvisor'
 import { EnquiryProvider } from './context/EnquiryContext'
@@ -34,8 +35,9 @@ export default function App() {
   return (
     <EnquiryProvider>
       <ScrollToTop />
+      <ScrollProgress />
       <Header />
-      <main id="main" className="pt-[76px]">
+      <main id="main" className="pt-[84px]">
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
