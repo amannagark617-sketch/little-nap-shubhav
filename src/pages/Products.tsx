@@ -143,7 +143,7 @@ export default function Products() {
       {/* ---- Range description ---- */}
       {activeRange && (
         <section className="relative overflow-hidden">
-          <Aurora tone="warm" intensity="subtle" />
+          <Aurora tone="azure" intensity="subtle" />
           <div className="container-page relative py-12">
             <p className="eyebrow">{activeRange.positioning}</p>
             <h2 className="mt-3 font-display text-2xl text-navy-900 sm:text-3xl">

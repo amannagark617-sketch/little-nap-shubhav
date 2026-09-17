@@ -19,7 +19,7 @@ export default {
           950: '#070B2A',
         },
         gold: {
-          50: '#FDF8EA',
+          50: '#FBEFC5',
           100: '#F9EDC7',
           200: '#F1DA8D',
           300: '#E6C258',
@@ -30,16 +30,17 @@ export default {
           800: '#5E4315',
           900: '#3F2D0F',
         },
-        // Warm ivory base. The site sits on light surfaces; navy is reserved
-        // for type and small accents rather than large blocks.
-        sand: {
-          50: '#FDFCF9',
-          100: '#F8F5EE',
-          200: '#F0EBE0',
-          300: '#E2DACA',
-          400: '#CDC1AB',
+        // Cool porcelain base — a white that leans very slightly blue, pulled
+        // from the navy rather than from beige. The site sits on light
+        // surfaces; navy is reserved for type and small accents rather than
+        // large blocks.
+        porcelain: {
+          50: '#FFFFFF',
+          100: '#F5F8FD',
+          200: '#E9EFF9',
+          300: '#D7E0F0',
+          400: '#BCC8E0',
         },
-        ivory: '#FEFDFB',
       },
       fontFamily: {
         display: ['"Playfair Display"', 'Georgia', 'serif'],

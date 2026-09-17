@@ -41,7 +41,7 @@ export default function Home() {
     <>
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative overflow-hidden">
-        <Aurora tone="warm" intensity="rich" />
+        <Aurora tone="azure" intensity="rich" />
 
         <div className="container-page relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.02fr_1fr] lg:pb-28 lg:pt-16">
           <div>
@@ -117,7 +117,10 @@ export default function Home() {
                 </div>
               </Parallax>
 
-              <div className="glass-strong absolute bottom-5 left-5 w-[14.5rem] animate-float p-5">
+              {/* Sits over a warm photograph, so this panel is near-opaque —
+                  a translucent one would blur the leather and rug through it
+                  and read as a cream card. */}
+              <div className="glass-strong absolute bottom-5 left-5 w-[14.5rem] animate-float !bg-white/[0.94] p-5">
                 <p className="font-display text-4xl text-navy-900">
                   <Counter to={3200} />
                 </p>
@@ -155,7 +158,7 @@ export default function Home() {
 
       {/* ═══════════════ WHO WE ARE ═══════════════ */}
       <section className="section relative overflow-hidden">
-        <Aurora tone="cool" intensity="subtle" />
+        <Aurora tone="indigo" intensity="subtle" />
         <div className="container-page relative">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
@@ -201,7 +204,7 @@ export default function Home() {
         eyebrow="The place"
         title="Come and see where it is made."
         lede="A purpose-built plant and a showroom stocked with the full range — so a buyer can walk the line in the morning and sit in every model by the afternoon."
-        className="bg-gradient-to-b from-sand-100/60 via-sand-50 to-sand-100/60"
+        className="bg-gradient-to-b from-porcelain-200/50 via-porcelain-50 to-porcelain-200/50"
       />
 
       {/* ═══════════════ NUMBERS ═══════════════ */}
@@ -236,7 +239,7 @@ export default function Home() {
         <div className="container-page relative">
           <Reveal>
             <div className="glass-strong relative overflow-hidden p-10 sm:p-14">
-              <Aurora tone="warm" intensity="normal" />
+              <Aurora tone="azure" intensity="normal" />
               <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
                 <div>
                   <p className="eyebrow">Our unique strength</p>
@@ -266,8 +269,8 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ WHY US ═══════════════ */}
-      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/50 to-transparent">
-        <Aurora tone="cool" intensity="subtle" />
+      <section className="section relative overflow-hidden bg-gradient-to-b from-porcelain-200/45 to-transparent">
+        <Aurora tone="indigo" intensity="subtle" />
         <div className="container-page relative">
           <Reveal>
             <div className="max-w-2xl">
@@ -326,7 +329,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ WHAT WE BUILD (products, well down the page) ═══════════════ */}
-      <section className="section relative overflow-hidden bg-gradient-to-b from-transparent via-sand-100/60 to-transparent">
+      <section className="section relative overflow-hidden bg-gradient-to-b from-transparent via-porcelain-200/50 to-transparent">
         <Aurora tone="mixed" intensity="subtle" />
         <div className="container-page relative">
           <Reveal>
@@ -357,7 +360,7 @@ export default function Home() {
                              bg-white/55 shadow-glass backdrop-blur-xl transition-all duration-500
                              hover:-translate-y-1.5 hover:bg-white/80 hover:shadow-glass-lg"
                 >
-                  <div className="aspect-[5/4] overflow-hidden bg-sand-100">
+                  <div className="aspect-[5/4] overflow-hidden bg-porcelain-100">
                     <img
                       src={productImage(hero.image)}
                       alt={`${range.name} range`}
@@ -408,7 +411,7 @@ export default function Home() {
 
       {/* ═══════════════ FIND US ═══════════════ */}
       <section className="section relative overflow-hidden">
-        <Aurora tone="warm" intensity="subtle" />
+        <Aurora tone="azure" intensity="subtle" />
         <div className="container-page relative">
           <Reveal>
             <div className="max-w-2xl">
@@ -431,7 +434,7 @@ export default function Home() {
         <div className="container-page">
           <Reveal>
             <div className="glass-strong relative overflow-hidden px-8 py-16 text-center sm:px-14">
-              <Aurora tone="warm" intensity="rich" />
+              <Aurora tone="azure" intensity="rich" />
               <div className="relative mx-auto max-w-2xl">
                 <h2 className="font-display text-[2rem] leading-tight text-navy-900 sm:text-[2.75rem]">
                   Tell us what you need built.

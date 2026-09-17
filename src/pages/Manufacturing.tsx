@@ -101,7 +101,7 @@ export default function Manufacturing() {
             {/* Active stage detail */}
             <div className="lg:sticky lg:top-32 lg:self-start">
               <div className="glass overflow-hidden">
-                <div className="aspect-[16/9] overflow-hidden bg-sand-100">
+                <div className="aspect-[16/9] overflow-hidden bg-porcelain-100">
                   <img
                     key={step.id}
                     src={factoryImage(step.image)}
@@ -195,8 +195,8 @@ export default function Manufacturing() {
       </section>
 
       {/* ---- Gallery ---- */}
-      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/60 to-transparent">
-        <Aurora tone="warm" intensity="subtle" />
+      <section className="section relative overflow-hidden bg-gradient-to-b from-porcelain-200/55 to-transparent">
+        <Aurora tone="azure" intensity="subtle" />
         <div className="container-page relative">
           <Reveal>
             <p className="eyebrow">Inside the plant</p>
@@ -214,7 +214,7 @@ export default function Manufacturing() {
                              bg-white/55 text-left shadow-glass backdrop-blur-xl transition-all
                              duration-500 hover:-translate-y-1.5 hover:bg-white/80 hover:shadow-glass-lg"
                 >
-                  <div className="aspect-[16/10] overflow-hidden bg-sand-100">
+                  <div className="aspect-[16/10] overflow-hidden bg-porcelain-100">
                     <img
                       src={factoryImage(s.image)}
                       alt={s.name}

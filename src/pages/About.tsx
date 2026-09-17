@@ -39,7 +39,7 @@ export default function About() {
 
       {/* ---- Vision & mission ---- */}
       <section className="section relative overflow-hidden">
-        <Aurora tone="warm" intensity="subtle" />
+        <Aurora tone="azure" intensity="subtle" />
         <div className="container-page relative grid gap-10 lg:grid-cols-2">
           <Reveal>
             <div className="glass glass-hover flex h-full flex-col p-9">
@@ -100,7 +100,7 @@ export default function About() {
 
           <Reveal delay={120}>
             <div className="glass-strong relative overflow-hidden p-12 text-center">
-              <Aurora tone="warm" intensity="rich" />
+              <Aurora tone="azure" intensity="rich" />
               <p className="relative font-display text-7xl text-gilded">
                 <Counter to={80} suffix="%+" />
               </p>
@@ -117,8 +117,8 @@ export default function About() {
       </section>
 
       {/* ---- What sets us apart ---- */}
-      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/50 to-transparent">
-        <Aurora tone="cool" intensity="subtle" />
+      <section className="section relative overflow-hidden bg-gradient-to-b from-porcelain-200/45 to-transparent">
+        <Aurora tone="indigo" intensity="subtle" />
         <div className="container-page relative">
           <Reveal>
             <p className="eyebrow">What sets us apart</p>
@@ -176,7 +176,7 @@ export default function About() {
         eyebrow="The place"
         title="Our plant and showroom."
         lede="A purpose-built facility in Dewas with a showroom stocked across every range — so a visiting buyer can walk the line and sit in the models on the same day."
-        className="bg-gradient-to-b from-sand-100/60 to-transparent"
+        className="bg-gradient-to-b from-porcelain-200/55 to-transparent"
       />
 
       {/* ---- Partnership ---- */}
@@ -204,7 +204,7 @@ export default function About() {
       </section>
 
       {/* ---- Clients ---- */}
-      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/50 to-transparent">
+      <section className="section relative overflow-hidden bg-gradient-to-b from-porcelain-200/45 to-transparent">
         <div className="container-page relative">
           <Reveal>
             <p className="eyebrow">Our clients</p>
@@ -232,7 +232,7 @@ export default function About() {
         <div className="container-page">
           <Reveal>
             <div className="glass-strong relative overflow-hidden px-8 py-16 sm:px-14">
-              <Aurora tone="warm" intensity="rich" />
+              <Aurora tone="azure" intensity="rich" />
               <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
                 <div>
                   <h2 className="font-display text-3xl text-navy-900 sm:text-4xl">

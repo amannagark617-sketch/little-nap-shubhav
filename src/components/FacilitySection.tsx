@@ -55,7 +55,7 @@ export default function FacilitySection({ eyebrow, title, lede, className = '' }
 
   return (
     <section className={`section relative overflow-hidden ${className}`}>
-      <Aurora tone="warm" intensity="subtle" />
+      <Aurora tone="azure" intensity="subtle" />
       <div className="container-page relative">
         <Reveal>
           <div className="max-w-2xl">
@@ -79,7 +79,7 @@ export default function FacilitySection({ eyebrow, title, lede, className = '' }
                 type="button"
                 onClick={() => setLightbox(i)}
                 className="group relative block h-full w-full overflow-hidden rounded-2xl
-                           border border-white/60 bg-sand-100 text-left shadow-glass
+                           border border-white/60 bg-porcelain-100 text-left shadow-glass
                            transition-all duration-500 hover:-translate-y-1.5 hover:shadow-glass-lg"
               >
                 <img

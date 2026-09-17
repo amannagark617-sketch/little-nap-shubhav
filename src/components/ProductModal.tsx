@@ -91,7 +91,7 @@ export default function ProductModal({ product, onClose }: Props) {
         aria-modal="true"
         aria-labelledby="product-modal-title"
         className="relative flex max-h-[92vh] w-full max-w-4xl animate-scale-in flex-col
-                   overflow-hidden rounded-t-3xl border border-white/60 bg-sand-50/90
+                   overflow-hidden rounded-t-3xl border border-white/60 bg-porcelain-50/90
                    shadow-glass-lg backdrop-blur-2xl sm:rounded-3xl"
       >
         <button
@@ -108,7 +108,7 @@ export default function ProductModal({ product, onClose }: Props) {
 
         <div className="grid flex-1 overflow-y-auto md:grid-cols-2">
           {/* --- Imagery --- */}
-          <div className="relative bg-sand-100">
+          <div className="relative bg-porcelain-100">
             <div
               style={{ aspectRatio: range.imageAspect }}
               className="w-full md:h-full md:!aspect-auto md:min-h-[30rem]"

@@ -122,7 +122,7 @@ export default function Contact() {
       />
 
       <section className="section relative overflow-hidden">
-        <Aurora tone="warm" intensity="subtle" />
+        <Aurora tone="azure" intensity="subtle" />
         <div className="container-page relative grid gap-12 lg:grid-cols-[1fr_22rem]">
           {/* ---- Form ---- */}
           <Reveal>
@@ -427,8 +427,8 @@ export default function Contact() {
       </section>
 
       {/* ---- Where to find us ---- */}
-      <section className="section relative overflow-hidden bg-gradient-to-b from-sand-100/60 to-transparent">
-        <Aurora tone="cool" intensity="subtle" />
+      <section className="section relative overflow-hidden bg-gradient-to-b from-porcelain-200/55 to-transparent">
+        <Aurora tone="indigo" intensity="subtle" />
         <div className="container-page relative">
           <Reveal>
             <div className="max-w-2xl">

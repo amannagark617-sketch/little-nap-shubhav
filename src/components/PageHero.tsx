@@ -15,7 +15,7 @@ type Props = {
 export default function PageHero({ eyebrow, title, lede, children }: Props) {
   return (
     <section className="relative overflow-hidden">
-      <Aurora tone="warm" intensity="normal" />
+      <Aurora tone="azure" intensity="normal" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px

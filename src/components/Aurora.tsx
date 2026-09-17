@@ -1,15 +1,23 @@
 type Props = {
-  /** `warm` leans gold and sand, `cool` leans navy. */
-  tone?: 'warm' | 'cool' | 'mixed'
+  /** `azure` is the light field, `indigo` the deeper one. */
+  tone?: 'azure' | 'indigo' | 'mixed'
   className?: string
   /** Dials the whole field up or down. */
   intensity?: 'subtle' | 'normal' | 'rich'
 }
 
+/**
+ * Every field is cool — blue channel at or above red.
+ *
+ * This matters more than it looks: a warm hue at low alpha over white does not
+ * read as "a hint of gold", it flattens into a beige off-white. Gold therefore
+ * stays a sharp accent (type, icons, rules, buttons) and never a diffuse wash,
+ * so the background can never drift into that family.
+ */
 const FIELDS = {
-  warm: ['rgba(211,163,32,0.20)', 'rgba(230,194,88,0.16)', 'rgba(242,229,199,0.34)'],
-  cool: ['rgba(78,92,156,0.16)', 'rgba(21,27,83,0.10)', 'rgba(211,163,32,0.12)'],
-  mixed: ['rgba(211,163,32,0.18)', 'rgba(78,92,156,0.14)', 'rgba(242,229,199,0.30)'],
+  azure: ['rgba(122,152,221,0.15)', 'rgba(163,188,236,0.14)', 'rgba(203,216,240,0.34)'],
+  indigo: ['rgba(78,92,156,0.16)', 'rgba(21,27,83,0.09)', 'rgba(138,164,224,0.16)'],
+  mixed: ['rgba(100,130,205,0.14)', 'rgba(78,92,156,0.13)', 'rgba(198,213,240,0.30)'],
 }
 
 const OPACITY = { subtle: 'opacity-50', normal: 'opacity-80', rich: 'opacity-100' }

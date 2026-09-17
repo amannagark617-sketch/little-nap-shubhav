@@ -22,7 +22,7 @@ export default function ProductCard({ product, onOpen }: Props) {
         type="button"
         onClick={() => onOpen(product)}
         style={{ aspectRatio: range.imageAspect }}
-        className="relative block w-full overflow-hidden bg-sand-100 text-left"
+        className="relative block w-full overflow-hidden bg-porcelain-100 text-left"
         aria-label={`View details for ${product.name}`}
       >
         <img
@@ -58,7 +58,7 @@ export default function ProductCard({ product, onOpen }: Props) {
           {product.traits.map((t) => (
             <li
               key={t}
-              className="rounded-full bg-sand-100 px-2.5 py-1 text-[0.68rem] font-medium text-navy-600"
+              className="rounded-full bg-porcelain-100 px-2.5 py-1 text-[0.68rem] font-medium text-navy-600"
             >
               {t}
             </li>

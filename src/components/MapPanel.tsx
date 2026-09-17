@@ -26,7 +26,7 @@ export default function MapPanel({ variant = 'full' }: Props) {
     <div className="grid gap-6 lg:grid-cols-[1.25fr_1fr]">
       {/* ---- Map ---- */}
       <div className="glass overflow-hidden p-2">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-sand-200 sm:aspect-[16/10]">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-porcelain-200 sm:aspect-[16/10]">
           {/* Fallback content, covered by the iframe once it paints. */}
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8 text-center">
             <IconPin className="h-8 w-8 text-gold-500" />

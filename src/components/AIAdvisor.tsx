@@ -135,7 +135,7 @@ export default function AIAdvisor() {
           aria-modal="false"
           aria-label="Comfort Advisor"
           className={`flex h-[min(80vh,34rem)] w-full flex-col overflow-hidden rounded-t-2xl
-                      border border-white/60 bg-sand-50/90 shadow-glass-lg backdrop-blur-2xl
+                      border border-white/60 bg-porcelain-50/90 shadow-glass-lg backdrop-blur-2xl
                       transition-all duration-500 sm:w-[24rem] sm:rounded-2xl ${
                         open
                           ? 'translate-y-0 opacity-100'
@@ -232,7 +232,7 @@ export default function AIAdvisor() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about ranges, capacity, OEM…"
               autoComplete="off"
-              className="min-w-0 flex-1 rounded-full border border-navy-100 bg-sand-50 px-4 py-2.5
+              className="min-w-0 flex-1 rounded-full border border-navy-100 bg-porcelain-50 px-4 py-2.5
                          text-sm text-navy-900 placeholder:text-navy-300 focus:border-gold-300
                          focus:outline-none"
             />

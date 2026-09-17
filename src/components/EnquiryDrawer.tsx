@@ -40,7 +40,7 @@ export default function EnquiryDrawer() {
         aria-modal="true"
         aria-label="Enquiry list"
         className={`absolute right-0 top-0 flex h-full w-[min(92vw,26rem)] flex-col border-l
-                    border-white/60 bg-sand-50/92 shadow-glass-lg backdrop-blur-2xl
+                    border-white/60 bg-porcelain-50/92 shadow-glass-lg backdrop-blur-2xl
                     transition-transform duration-500 ease-out ${
                       isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
@@ -101,7 +101,7 @@ export default function EnquiryDrawer() {
                       onClick={() => remove(line.productId)}
                       aria-label={`Remove ${line.name}`}
                       className="shrink-0 rounded-full p-1.5 text-navy-300 transition-colors
-                                 hover:bg-sand-100 hover:text-navy-700"
+                                 hover:bg-porcelain-100 hover:text-navy-700"
                     >
                       <IconClose className="h-4 w-4" />
                     </button>
@@ -121,7 +121,7 @@ export default function EnquiryDrawer() {
                       max={100000}
                       value={line.quantity}
                       onChange={(e) => setQuantity(line.productId, Number(e.target.value))}
-                      className="w-24 rounded-lg border border-navy-100 bg-sand-50 px-3 py-1.5
+                      className="w-24 rounded-lg border border-navy-100 bg-porcelain-50 px-3 py-1.5
                                  text-sm text-navy-900 focus:border-gold-300 focus:outline-none"
                     />
                   </div>

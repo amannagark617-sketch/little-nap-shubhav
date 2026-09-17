@@ -151,7 +151,7 @@ export default function Header() {
           aria-modal="true"
           aria-label="Site menu"
           className={`absolute right-0 top-0 flex h-full w-[min(88vw,22rem)] flex-col
-                      border-l border-white/60 bg-sand-50/95 shadow-glass-lg backdrop-blur-2xl
+                      border-l border-white/60 bg-porcelain-50/95 shadow-glass-lg backdrop-blur-2xl
                       transition-transform duration-500 ease-out ${
                         menuOpen ? 'translate-x-0' : 'translate-x-full'
                       }`}
