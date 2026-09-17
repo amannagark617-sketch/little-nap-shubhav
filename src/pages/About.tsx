@@ -101,7 +101,7 @@ export default function About() {
           <Reveal delay={120}>
             <div className="glass-strong relative overflow-hidden p-12 text-center">
               <Aurora tone="azure" intensity="rich" />
-              <p className="relative font-display text-7xl text-gilded">
+              <p className="relative font-display text-7xl text-navy-900">
                 <Counter to={80} suffix="%+" />
               </p>
               <p className="relative mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-500">

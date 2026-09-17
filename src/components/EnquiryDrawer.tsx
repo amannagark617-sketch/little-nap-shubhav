@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEnquiry } from '../context/EnquiryContext'
+import { useDialog } from '../lib/useDialog'
 import { IconArrowRight, IconClose } from './Icons'
 
 /**
@@ -11,20 +12,10 @@ import { IconArrowRight, IconClose } from './Icons'
 export default function EnquiryDrawer() {
   const { lines, isOpen, close, remove, setQuantity, clear, count } = useEnquiry()
   const navigate = useNavigate()
+  const panelRef = useRef<HTMLElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
 
-  useEffect(() => {
-    if (!isOpen) return
-    const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = previous
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [isOpen, close])
+  useDialog(isOpen, panelRef, close, closeRef)
 
   return (
     <div className={`fixed inset-0 z-[57] ${isOpen ? '' : 'pointer-events-none'}`} aria-hidden={!isOpen}>
@@ -36,6 +27,7 @@ export default function EnquiryDrawer() {
       />
 
       <aside
+        ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Enquiry list"
@@ -53,6 +45,7 @@ export default function EnquiryDrawer() {
             </p>
           </div>
           <button
+            ref={closeRef}
             type="button"
             onClick={close}
             aria-label="Close enquiry list"

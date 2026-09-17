@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useDialog } from '../lib/useDialog'
 import { IconClose } from './Icons'
 
 export type LightboxItem = {
@@ -18,35 +19,29 @@ type Props = {
 /** Full-screen image viewer with keyboard navigation. */
 export default function Lightbox({ items, index, onClose, onNavigate }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const open = index !== null
 
+  // Scroll lock, initial focus, Tab trap, Escape and focus restore.
+  useDialog(open, panelRef, onClose, closeRef)
+
+  // Arrow keys are this dialog's own concern.
   useEffect(() => {
     if (!open) return
-
-    const previouslyFocused = document.activeElement as HTMLElement | null
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    closeRef.current?.focus()
-
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowRight') onNavigate((index! + 1) % items.length)
       if (e.key === 'ArrowLeft') onNavigate((index! - 1 + items.length) % items.length)
     }
-
     window.addEventListener('keydown', onKey)
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = previousOverflow
-      previouslyFocused?.focus?.()
-    }
-  }, [open, index, items.length, onClose, onNavigate])
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open, index, items.length, onNavigate])
 
   if (!open) return null
   const item = items[index]
 
   return (
     <div
+      ref={panelRef}
       role="dialog"
       aria-modal="true"
       aria-label={item.title}

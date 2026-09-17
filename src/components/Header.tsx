@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import { IconClose, IconMenu, IconArrowRight } from './Icons'
 import { useEnquiry } from '../context/EnquiryContext'
+import { useDialog } from '../lib/useDialog'
 
 const nav = [
   { to: '/products', label: 'Products' },
@@ -17,6 +18,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { count, open } = useEnquiry()
   const location = useLocation()
+  const drawerRef = useRef<HTMLDivElement>(null)
+  const drawerCloseRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -27,19 +30,8 @@ export default function Header() {
 
   useEffect(() => setMenuOpen(false), [location.pathname])
 
-  useEffect(() => {
-    if (!menuOpen) return
-    const previous = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMenuOpen(false)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => {
-      document.body.style.overflow = previous
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [menuOpen])
+  const closeMenu = useCallback(() => setMenuOpen(false), [])
+  useDialog(menuOpen, drawerRef, closeMenu, drawerCloseRef)
 
   return (
     <>
@@ -147,6 +139,7 @@ export default function Header() {
           }`}
         />
         <div
+          ref={drawerRef}
           role="dialog"
           aria-modal="true"
           aria-label="Site menu"
@@ -159,6 +152,7 @@ export default function Header() {
           <div className="flex h-[76px] items-center justify-between px-5">
             <Logo markOnly />
             <button
+              ref={drawerCloseRef}
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"

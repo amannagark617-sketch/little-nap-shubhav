@@ -137,7 +137,7 @@
 
   .eyebrow {
     @apply inline-flex items-center gap-3 text-xs font-semibold uppercase
-           tracking-[0.24em] text-gold-600;
+           tracking-[0.24em] text-gold-700;
   }
   .eyebrow::before {
     content: '';
@@ -166,9 +166,20 @@
     @apply h-px w-16 bg-gradient-to-r from-gold-400 to-gold-200;
   }
 
-  /* Gold gradient text, used once or twice for emphasis. */
+  /* Antique-brass gradient text, reserved for the homepage headline.
+     Every stop clears 3:1 on porcelain (4.25 / 6.16 / 8.62), which the old
+     gold-300 -> gold-400 -> gold-600 ramp did not: it started at 1.61:1. */
   .text-gilded {
-    @apply bg-gradient-to-br from-gold-300 via-gold-400 to-gold-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-gold-600 via-gold-700 to-gold-800 bg-clip-text text-transparent;
+  }
+  /* Clipped text is invisible in forced-colors mode, so hand the word back. */
+  @media (forced-colors: active) {
+    .text-gilded {
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      background-image: none;
+      color: CanvasText;
+    }
   }
 }
 
@@ -191,6 +202,50 @@
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reduce Transparency / Increase Contrast
+   Glass is the site's signature, so it needs an answer for the people who
+   switch translucency off rather than a silent no-op. The opaque path already
+   exists (it is the pre-@supports fallback); these queries just route to it
+   and firm up the hairline borders, which are the first thing to disappear
+   once the blur is gone.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-strong,
+  .btn-glass {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: #ffffff !important;
+    border-color: theme('colors.navy.200') !important;
+  }
+  .glass-dark {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: theme('colors.navy.950') !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .glass,
+  .glass-strong,
+  .btn-glass {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: #ffffff !important;
+    border-color: theme('colors.navy.400') !important;
+  }
+  .card,
+  .card-hover {
+    border-color: theme('colors.navy.400');
+  }
+  /* The drifting colour fields exist to give the blur something to work with;
+     with the blur gone they are just noise behind text. */
+  [aria-hidden='true'].pointer-events-none {
+    opacity: 0.25;
   }
 }
 
