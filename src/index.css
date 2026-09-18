@@ -25,11 +25,18 @@
     @apply bg-porcelain-100 text-navy-950 font-sans antialiased;
   }
 
+  /* Apple's own type system: one sans face, weight and tight tracking doing
+     the work a separate display face used to do. */
   h1,
   h2,
   h3 {
-    @apply font-display text-navy-900;
+    @apply font-display font-bold text-navy-900;
+    letter-spacing: -0.022em;
     text-wrap: balance;
+  }
+
+  h1 {
+    letter-spacing: -0.028em;
   }
 
   p {
@@ -52,32 +59,56 @@
 
   /* ---------------------------------------------------------------------
      Glass surfaces
-     Frosted panels are the site's primary container. They sit over the soft
-     colour fields painted by <Aurora>, which is what gives the blur something
-     to actually blur. A solid fallback colour is always set first, so a
-     browser without backdrop-filter still gets a readable, opaque card.
+     Frosted panels are the site's primary container. They sit over the
+     saturated colour fields painted by <Aurora> — that field is what the
+     blur actually refracts; without it behind, glass just reads as a plain
+     card. Each panel layers three things: a base tint (the fallback for
+     browsers without backdrop-filter), a soft top-to-bottom sheen so the
+     surface reads as curved glass rather than a flat tinted rectangle, and a
+     tinted ambient shadow instead of a neutral grey one, so the panel looks
+     like it is genuinely catching colour from what is behind it.
      --------------------------------------------------------------------- */
   .glass {
-    background-color: rgb(255 255 255 / 0.72);
-    @apply rounded-2xl border border-white/60 shadow-glass;
+    background-color: rgb(255 255 255 / 0.78);
+    @apply rounded-2xl border border-white/70;
+    box-shadow:
+      0 1px 1px 0 rgb(255 255 255 / 0.8) inset,
+      0 18px 40px -20px rgb(78 92 156 / 0.35),
+      0 4px 14px -6px rgb(21 27 83 / 0.12);
   }
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .glass {
-      background-color: rgb(255 255 255 / 0.55);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      backdrop-filter: blur(20px) saturate(150%);
+      background-color: rgb(255 255 255 / 0.42);
+      background-image: linear-gradient(
+        165deg,
+        rgb(255 255 255 / 0.55) 0%,
+        rgb(255 255 255 / 0.14) 45%,
+        rgb(255 255 255 / 0.28) 100%
+      );
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      backdrop-filter: blur(24px) saturate(190%);
     }
   }
 
   .glass-strong {
-    background-color: rgb(255 255 255 / 0.9);
-    @apply rounded-2xl border border-white/70 shadow-glass-lg;
+    background-color: rgb(255 255 255 / 0.92);
+    @apply rounded-2xl border border-white/80;
+    box-shadow:
+      0 1px 1px 0 rgb(255 255 255 / 0.9) inset,
+      0 32px 64px -24px rgb(78 92 156 / 0.4),
+      0 8px 20px -8px rgb(21 27 83 / 0.16);
   }
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .glass-strong {
-      background-color: rgb(255 255 255 / 0.78);
-      -webkit-backdrop-filter: blur(28px) saturate(160%);
-      backdrop-filter: blur(28px) saturate(160%);
+      background-color: rgb(255 255 255 / 0.6);
+      background-image: linear-gradient(
+        165deg,
+        rgb(255 255 255 / 0.6) 0%,
+        rgb(255 255 255 / 0.2) 45%,
+        rgb(255 255 255 / 0.34) 100%
+      );
+      -webkit-backdrop-filter: blur(34px) saturate(200%);
+      backdrop-filter: blur(34px) saturate(200%);
     }
   }
 
@@ -88,9 +119,10 @@
   }
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
     .glass-dark {
-      background-color: rgb(7 11 42 / 0.55);
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
+      background-color: rgb(7 11 42 / 0.5);
+      background-image: linear-gradient(165deg, rgb(255 255 255 / 0.1) 0%, transparent 45%);
+      -webkit-backdrop-filter: blur(16px) saturate(150%);
+      backdrop-filter: blur(16px) saturate(150%);
     }
   }
 
@@ -98,8 +130,17 @@
     @apply transition-all duration-500;
   }
   .glass-hover:hover {
-    @apply -translate-y-1.5 border-white/80 shadow-glass-lg;
-    background-color: rgb(255 255 255 / 0.82);
+    @apply -translate-y-1.5 border-white/90;
+    background-color: rgb(255 255 255 / 0.88);
+    box-shadow:
+      0 1px 1px 0 rgb(255 255 255 / 0.9) inset,
+      0 36px 70px -24px rgb(211 163 32 / 0.22),
+      0 12px 28px -10px rgb(21 27 83 / 0.22);
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .glass-hover:hover {
+      background-color: rgb(255 255 255 / 0.58);
+    }
   }
 
   /* --- Buttons ------------------------------------------------------------ */

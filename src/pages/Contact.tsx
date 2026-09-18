@@ -362,14 +362,14 @@ export default function Contact() {
                       <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">Phone</p>
                       <a
                         href={`tel:${company.contact.phoneHref}`}
-                        className="mt-0.5 inline-flex min-h-[44px] items-center font-medium
+                        className="mt-0.5 flex min-h-[44px] w-fit items-center font-medium
                                    text-navy-800 transition-colors hover:text-gold-600"
                       >
                         {company.contact.phone}
                       </a>
                       <a
                         href={`tel:${company.contact.altPhoneHref}`}
-                        className="inline-flex min-h-[44px] items-center text-xs text-navy-400
+                        className="-mt-2 flex min-h-[44px] w-fit items-center text-xs text-navy-400
                                    transition-colors hover:text-gold-600"
                       >
                         Alt. {company.contact.altPhone}

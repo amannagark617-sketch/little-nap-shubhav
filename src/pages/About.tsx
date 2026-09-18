@@ -100,7 +100,7 @@ export default function About() {
 
           <Reveal delay={120}>
             <div className="glass-strong relative overflow-hidden p-12 text-center">
-              <Aurora tone="azure" intensity="rich" />
+              <Aurora tone="signature" intensity="rich" />
               <p className="relative font-display text-7xl text-gilded">
                 <Counter to={80} suffix="%+" />
               </p>
@@ -232,7 +232,7 @@ export default function About() {
         <div className="container-page">
           <Reveal>
             <div className="glass-strong relative overflow-hidden px-8 py-16 sm:px-14">
-              <Aurora tone="azure" intensity="rich" />
+              <Aurora tone="signature" intensity="rich" />
               <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
                 <div>
                   <h2 className="font-display text-3xl text-navy-900 sm:text-4xl">

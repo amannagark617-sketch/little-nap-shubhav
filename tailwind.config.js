@@ -46,8 +46,32 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        // -apple-system / BlinkMacSystemFont invoke the OS's own system font —
+        // on macOS and iOS that is literally San Francisco. Nothing is
+        // redistributed; every other platform falls through to Inter, which
+        // was chosen specifically because its metrics and shapes are close to
+        // SF Pro. `display` and `sans` share the same stack: headings are a
+        // heavier weight of the same face rather than a separate serif, to
+        // match Apple's own typographic system.
+        display: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Inter',
+          'Segoe UI',
+          'system-ui',
+          'sans-serif',
+        ],
+        sans: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Inter',
+          'Segoe UI',
+          'Roboto',
+          'system-ui',
+          'sans-serif',
+        ],
+        /** Not used by any heading today — kept only in case a future page wants one deliberately editorial moment. */
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       maxWidth: {
         content: '1200px',

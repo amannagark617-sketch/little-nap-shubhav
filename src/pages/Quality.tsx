@@ -2,9 +2,12 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
-import { IconArrowRight, iconMap } from '../components/Icons'
+import { IconArrowRight, IconCheck, IconGear, IconSearch, IconShield, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
 import { productFeatures, qualityStages } from '../data/company'
+
+/** One icon per stage, in order: sourcing, inward check, in-process control, final sign-off. */
+const STAGE_ICONS = [IconGear, IconSearch, IconShield, IconCheck]
 
 export default function Quality() {
   useEffect(() => {
@@ -27,31 +30,67 @@ export default function Quality() {
 
       {/* ---- The four stages ---- */}
       <section className="section relative overflow-hidden">
-        <Aurora tone="azure" intensity="subtle" />
+        <Aurora tone="signature" intensity="subtle" />
         <div className="container-page relative">
-          <ol className="relative space-y-6">
-            {/* Vertical rule connecting the stages on larger screens. */}
-            <div
-              aria-hidden="true"
-              className="absolute left-[2.15rem] top-4 hidden h-[calc(100%-2rem)] w-px bg-navy-100 lg:block"
-            />
+          <ol className="relative flex flex-col gap-8">
+            {qualityStages.map((stage, i) => {
+              const Icon = STAGE_ICONS[i % STAGE_ICONS.length]
+              const flip = i % 2 === 1
+              return (
+                <Reveal as="li" key={stage.step} delay={i * 100} className="relative">
+                  {/* The connector: a gradient thread running stage to stage,
+                      not a flat grey rule — reads as a single continuous
+                      process rather than four separate boxes. */}
+                  {i < qualityStages.length - 1 && (
+                    <div
+                      aria-hidden="true"
+                      className="absolute left-1/2 top-full z-0 hidden h-8 w-px
+                                 bg-gradient-to-b from-gold-400/70 to-navy-300/40 lg:block"
+                    />
+                  )}
 
-            {qualityStages.map((stage, i) => (
-              <Reveal as="li" key={stage.step} delay={i * 90}>
-                <div className="glass glass-hover relative flex flex-col gap-5 p-8 lg:flex-row lg:gap-8">
                   <div
-                    className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center
-                               rounded-full bg-navy-900 font-display text-xl text-gold-400"
+                    className={`glass glass-hover group relative flex flex-col gap-8 overflow-hidden
+                                p-8 sm:p-10 lg:flex-row lg:items-center lg:gap-12 ${
+                                  flip ? 'lg:flex-row-reverse' : ''
+                                }`}
                   >
-                    {stage.step}
+                    {/* Oversized watermark numeral — the editorial touch that
+                        makes each stage feel like a considered spread rather
+                        than a list item. */}
+                    <span
+                      aria-hidden="true"
+                      className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none
+                                  font-display text-[9rem] font-bold leading-none text-navy-900/[0.05]
+                                  transition-colors duration-500 group-hover:text-gold-500/[0.08]
+                                  sm:text-[12rem] ${flip ? 'right-2 sm:right-4' : 'left-2 sm:left-4'}`}
+                    >
+                      {stage.step}
+                    </span>
+
+                    <div className="relative z-10 flex shrink-0 flex-col items-start gap-4 lg:w-48">
+                      <span
+                        className="flex h-16 w-16 items-center justify-center rounded-2xl
+                                   bg-navy-900 text-gold-400 shadow-lift transition-transform
+                                   duration-500 group-hover:scale-105 group-hover:rotate-3"
+                      >
+                        <Icon className="h-7 w-7" />
+                      </span>
+                      <span className="font-display text-sm font-bold uppercase tracking-[0.2em] text-gold-600">
+                        Stage {stage.step}
+                      </span>
+                    </div>
+
+                    <div className="relative z-10 lg:flex-1">
+                      <h2 className="font-display text-2xl text-navy-900 sm:text-[1.75rem]">
+                        {stage.title}
+                      </h2>
+                      <p className="mt-3 max-w-2xl leading-relaxed text-navy-500">{stage.body}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h2 className="font-display text-2xl text-navy-900">{stage.title}</h2>
-                    <p className="mt-3 max-w-3xl leading-relaxed text-navy-500">{stage.body}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              )
+            })}
           </ol>
         </div>
       </section>

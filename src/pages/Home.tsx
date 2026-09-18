@@ -41,7 +41,7 @@ export default function Home() {
     <>
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative overflow-hidden">
-        <Aurora tone="azure" intensity="rich" />
+        <Aurora tone="signature" intensity="rich" />
 
         <div className="container-page relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.02fr_1fr] lg:pb-28 lg:pt-16">
           <div>
@@ -434,7 +434,7 @@ export default function Home() {
         <div className="container-page">
           <Reveal>
             <div className="glass-strong relative overflow-hidden px-8 py-16 text-center sm:px-14">
-              <Aurora tone="azure" intensity="rich" />
+              <Aurora tone="signature" intensity="rich" />
               <div className="relative mx-auto max-w-2xl">
                 <h2 className="font-display text-[2rem] leading-tight text-navy-900 sm:text-[2.75rem]">
                   Tell us what you need built.
