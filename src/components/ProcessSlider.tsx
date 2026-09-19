@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import { IconChevron } from './Icons'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { factoryImage, processSteps } from '../data/factory'
 
 const AUTO_ADVANCE_MS = 4200
+/** Minimum horizontal drag, in pixels, before a swipe counts as a slide change. */
+const SWIPE_THRESHOLD = 40
 
 /**
  * A cinematic, auto-advancing pass through the real production floor — one
@@ -11,11 +12,14 @@ const AUTO_ADVANCE_MS = 4200
  * bleed photography rather than the grid of <FacilitySection>.
  *
  * Same interaction contract as <CampaignCarousel>: auto-advances, pauses on
- * hover/focus/manual interaction, and holds still under prefers-reduced-motion.
+ * hover/focus/drag, and holds still under prefers-reduced-motion. Manual
+ * control is a drag/swipe on the photo itself — no arrow buttons — plus the
+ * dot row for jumping straight to a stage.
  */
 export default function ProcessSlider() {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
+  const dragRef = useRef<{ startX: number } | null>(null)
 
   const go = useCallback((next: number) => {
     setIndex(((next % processSteps.length) + processSteps.length) % processSteps.length)
@@ -30,6 +34,19 @@ export default function ProcessSlider() {
 
   const active = processSteps[index]
 
+  const onPointerDown = (e: React.PointerEvent) => {
+    dragRef.current = { startX: e.clientX }
+    setPaused(true)
+  }
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (dragRef.current) {
+      const delta = e.clientX - dragRef.current.startX
+      dragRef.current = null
+      if (Math.abs(delta) > SWIPE_THRESHOLD) go(index + (delta < 0 ? 1 : -1))
+    }
+    setPaused(false)
+  }
+
   return (
     <div
       className="glass-strong relative overflow-hidden"
@@ -41,13 +58,22 @@ export default function ProcessSlider() {
       aria-roledescription="carousel"
       aria-label="Inside the plant — the production process"
     >
-      <div className="relative h-[22rem] sm:h-[28rem] lg:h-[32rem]">
+      <div
+        className="relative h-[22rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[28rem] lg:h-[32rem]"
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={() => {
+          dragRef.current = null
+          setPaused(false)
+        }}
+      >
         <img
           key={active.id}
           src={factoryImage(active.image)}
           alt={active.name}
           loading="lazy"
           decoding="async"
+          draggable={false}
           className="absolute inset-0 h-full w-full animate-fade-in object-cover"
         />
         <div
@@ -56,7 +82,7 @@ export default function ProcessSlider() {
                      bg-gradient-to-t from-ink-950/85 via-ink-950/30 to-transparent"
         />
 
-        <div className="absolute inset-x-6 bottom-6 sm:inset-x-10 sm:bottom-8">
+        <div className="pointer-events-none absolute inset-x-6 bottom-6 sm:inset-x-10 sm:bottom-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
             Stage {index + 1} of {processSteps.length} · {active.stage}
           </p>
@@ -64,27 +90,6 @@ export default function ProcessSlider() {
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
             {active.body}
           </p>
-        </div>
-
-        <div className="absolute right-6 top-6 flex items-center gap-1.5 sm:right-10 sm:top-8">
-          <button
-            type="button"
-            onClick={() => go(index - 1)}
-            aria-label="Previous stage"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border
-                       border-white/30 text-white backdrop-blur-sm transition-colors hover:bg-white/15"
-          >
-            <IconChevron className="h-4 w-4 rotate-180" />
-          </button>
-          <button
-            type="button"
-            onClick={() => go(index + 1)}
-            aria-label="Next stage"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border
-                       border-white/30 text-white backdrop-blur-sm transition-colors hover:bg-white/15"
-          >
-            <IconChevron className="h-4 w-4" />
-          </button>
         </div>
       </div>
 

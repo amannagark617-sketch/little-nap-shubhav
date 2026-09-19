@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import PlaceholderImage from './PlaceholderImage'
-import { IconArrowRight, IconChevron } from './Icons'
+import { IconArrowRight } from './Icons'
 import { campaigns } from '../data/campaigns'
 
 const AUTO_ADVANCE_MS = 6500
+/** Minimum horizontal drag, in pixels, before a swipe counts as a slide change. */
+const SWIPE_THRESHOLD = 40
 
 /**
  * The rotating promotional banner under the hero — the site's answer to the
@@ -12,13 +14,16 @@ const AUTO_ADVANCE_MS = 6500
  * manufacturer actually promotes: a new range, a programme, a capability.
  *
  * Auto-advances, but stops the moment a visitor touches it (hover, focus, or
- * a manual arrow/dot click) so it never fights someone trying to read or
- * click through. Fully still under prefers-reduced-motion.
+ * a drag) so it never fights someone trying to read or click through.
+ * Manual control is a drag/swipe on the card itself — no arrow buttons —
+ * plus the dot row for jumping straight to a slide. Fully still under
+ * prefers-reduced-motion.
  */
 export default function CampaignCarousel() {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
   const timerRef = useRef<number | null>(null)
+  const dragRef = useRef<{ startX: number } | null>(null)
 
   const go = useCallback((next: number) => {
     setIndex(((next % campaigns.length) + campaigns.length) % campaigns.length)
@@ -35,13 +40,32 @@ export default function CampaignCarousel() {
 
   const active = campaigns[index]
 
+  const onPointerDown = (e: React.PointerEvent) => {
+    dragRef.current = { startX: e.clientX }
+    setPaused(true)
+  }
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (dragRef.current) {
+      const delta = e.clientX - dragRef.current.startX
+      dragRef.current = null
+      if (Math.abs(delta) > SWIPE_THRESHOLD) go(index + (delta < 0 ? 1 : -1))
+    }
+    setPaused(false)
+  }
+
   return (
     <div
-      className="glass relative overflow-hidden"
+      className="glass relative cursor-grab overflow-hidden touch-pan-y select-none active:cursor-grabbing"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerCancel={() => {
+        dragRef.current = null
+        setPaused(false)
+      }}
       role="region"
       aria-roledescription="carousel"
       aria-label="Featured programmes and ranges"
@@ -72,43 +96,21 @@ export default function CampaignCarousel() {
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="flex items-center justify-between gap-4 border-t border-white/50 px-6 py-4">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Choose a slide">
-          {campaigns.map((c, i) => (
-            <button
-              key={c.id}
-              type="button"
-              role="tab"
-              aria-selected={i === index}
-              aria-label={`Show slide: ${c.title}`}
-              onClick={() => go(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === index ? 'w-7 bg-accent-500' : 'w-2 bg-ink-200 hover:bg-ink-300'
-              }`}
-            />
-          ))}
-        </div>
-        <div className="flex items-center gap-1.5">
+      {/* Controls — dots only; drag/swipe the card itself to move manually. */}
+      <div className="flex items-center justify-center gap-2 border-t border-white/50 px-6 py-4" role="tablist" aria-label="Choose a slide">
+        {campaigns.map((c, i) => (
           <button
+            key={c.id}
             type="button"
-            onClick={() => go(index - 1)}
-            aria-label="Previous slide"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border
-                       border-ink-200/70 text-ink-600 transition-colors hover:bg-white"
-          >
-            <IconChevron className="h-4 w-4 rotate-180" />
-          </button>
-          <button
-            type="button"
-            onClick={() => go(index + 1)}
-            aria-label="Next slide"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border
-                       border-ink-200/70 text-ink-600 transition-colors hover:bg-white"
-          >
-            <IconChevron className="h-4 w-4" />
-          </button>
-        </div>
+            role="tab"
+            aria-selected={i === index}
+            aria-label={`Show slide: ${c.title}`}
+            onClick={() => go(i)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              i === index ? 'w-7 bg-accent-500' : 'w-2 bg-ink-200 hover:bg-ink-300'
+            }`}
+          />
+        ))}
       </div>
     </div>
   )

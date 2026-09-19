@@ -39,7 +39,7 @@ export default function Home() {
       {/* ═══════════════ HERO — full-bleed banner ═══════════════ */}
       <section className="relative h-[88vh] min-h-[560px] w-full overflow-hidden sm:h-[85vh]">
         <HeroMedia
-          videoFile="hero-loop.mp4"
+          videoBase="hero-loop"
           fallbackSrc={brandImage('hero-photo.webp')}
           alt="A Little Nap Subhav power recliner in a contemporary living room"
           className="absolute inset-0 h-full w-full object-cover"
