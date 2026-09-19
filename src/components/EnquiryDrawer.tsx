@@ -30,7 +30,7 @@ export default function EnquiryDrawer() {
     <div className={`fixed inset-0 z-[57] ${isOpen ? '' : 'pointer-events-none'}`} aria-hidden={!isOpen}>
       <div
         onClick={close}
-        className={`absolute inset-0 bg-navy-950/35 backdrop-blur-md transition-opacity duration-500 ${
+        className={`absolute inset-0 bg-ink-950/35 backdrop-blur-md transition-opacity duration-500 ${
           isOpen ? 'opacity-100' : 'opacity-0'
         }`}
       />
@@ -47,8 +47,8 @@ export default function EnquiryDrawer() {
       >
         <header className="flex items-center justify-between border-b border-white/60 px-5 py-4 pt-[calc(1rem+var(--safe-t))]">
           <div>
-            <h2 className="font-display text-xl text-navy-900">Your enquiry list</h2>
-            <p className="text-xs text-navy-400">
+            <h2 className="font-display text-xl text-ink-900">Your enquiry list</h2>
+            <p className="text-xs text-ink-400">
               {count === 0 ? 'Nothing added yet' : `${count} model${count === 1 ? '' : 's'} selected`}
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function EnquiryDrawer() {
             onClick={close}
             aria-label="Close enquiry list"
             className="inline-flex h-11 w-11 items-center justify-center rounded-full
-                       border border-navy-200 text-navy-800 transition-colors hover:bg-white"
+                       border border-ink-200 text-ink-800 transition-colors hover:bg-white"
           >
             <IconClose className="h-4 w-4" />
           </button>
@@ -65,9 +65,9 @@ export default function EnquiryDrawer() {
 
         <div className="flex-1 overflow-y-auto px-5 py-5">
           {count === 0 ? (
-            <div className="rounded-2xl border border-dashed border-navy-200 p-8 text-center">
-              <p className="font-display text-lg text-navy-800">Build a specification</p>
-              <p className="mt-2 text-sm leading-relaxed text-navy-500">
+            <div className="rounded-2xl border border-dashed border-ink-200 p-8 text-center">
+              <p className="font-display text-lg text-ink-800">Build a specification</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-500">
                 Add models from any range and set indicative quantities. We will
                 quote the list as one enquiry — nothing is priced or sold online.
               </p>
@@ -91,17 +91,17 @@ export default function EnquiryDrawer() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <p className="font-display text-lg leading-tight text-navy-900">
+                      <p className="font-display text-lg leading-tight text-ink-900">
                         {line.name}
                       </p>
-                      <p className="text-xs text-navy-400">{line.range}</p>
+                      <p className="text-xs text-ink-400">{line.range}</p>
                     </div>
                     <button
                       type="button"
                       onClick={() => remove(line.productId)}
                       aria-label={`Remove ${line.name}`}
-                      className="shrink-0 rounded-full p-1.5 text-navy-300 transition-colors
-                                 hover:bg-porcelain-100 hover:text-navy-700"
+                      className="shrink-0 rounded-full p-1.5 text-ink-300 transition-colors
+                                 hover:bg-porcelain-100 hover:text-ink-700"
                     >
                       <IconClose className="h-4 w-4" />
                     </button>
@@ -110,7 +110,7 @@ export default function EnquiryDrawer() {
                   <div className="mt-3 flex items-center gap-3">
                     <label
                       htmlFor={`qty-${line.productId}`}
-                      className="text-xs font-medium text-navy-500"
+                      className="text-xs font-medium text-ink-500"
                     >
                       Indicative qty
                     </label>
@@ -121,8 +121,8 @@ export default function EnquiryDrawer() {
                       max={100000}
                       value={line.quantity}
                       onChange={(e) => setQuantity(line.productId, Number(e.target.value))}
-                      className="h-11 w-24 rounded-lg border border-navy-100 bg-porcelain-50 px-3
-                                 text-sm text-navy-900 focus:border-gold-300 focus:outline-none"
+                      className="h-11 w-24 rounded-lg border border-ink-100 bg-porcelain-50 px-3
+                                 text-sm text-ink-900 focus:border-accent-300 focus:outline-none"
                     />
                   </div>
                 </li>
@@ -147,8 +147,8 @@ export default function EnquiryDrawer() {
             <button
               type="button"
               onClick={clear}
-              className="w-full text-xs font-medium text-navy-400 underline-offset-4
-                         transition-colors hover:text-navy-700 hover:underline"
+              className="w-full text-xs font-medium text-ink-400 underline-offset-4
+                         transition-colors hover:text-ink-700 hover:underline"
             >
               Clear the list
             </button>

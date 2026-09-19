@@ -108,10 +108,10 @@ export default function Contact() {
   }
 
   const fieldClass =
-    'w-full min-h-[44px] rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-navy-900 ' +
-    'backdrop-blur-sm placeholder:text-navy-300 transition-colors focus:border-gold-300 ' +
+    'w-full min-h-[44px] rounded-xl border border-white/70 bg-white/70 px-4 py-3 text-sm text-ink-900 ' +
+    'backdrop-blur-sm placeholder:text-ink-300 transition-colors focus:border-accent-300 ' +
     'focus:bg-white focus:outline-none'
-  const labelClass = 'block text-xs font-semibold uppercase tracking-wider text-navy-500'
+  const labelClass = 'block text-xs font-semibold uppercase tracking-wider text-ink-500'
 
   return (
     <>
@@ -129,13 +129,13 @@ export default function Contact() {
             <div>
               {status === 'sent' ? (
                 <div className="glass-strong p-12 text-center">
-                  <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-navy-900">
-                    <IconCheck className="h-7 w-7 text-gold-400" />
+                  <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-ink-900">
+                    <IconCheck className="h-7 w-7 text-accent-300" />
                   </span>
-                  <h2 className="mt-6 font-display text-2xl text-navy-900">
+                  <h2 className="mt-6 font-display text-2xl text-ink-900">
                     {FORM_ENDPOINT ? 'Enquiry received.' : 'Your email is ready to send.'}
                   </h2>
-                  <p className="mx-auto mt-3 max-w-md leading-relaxed text-navy-600">
+                  <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-600">
                     {FORM_ENDPOINT
                       ? 'Thank you — our team will come back to you shortly. For anything urgent, call us directly.'
                       : `We have opened a pre-filled email in your mail app. If nothing appeared, write to ${company.contact.email} and we will pick it up from there.`}
@@ -155,18 +155,18 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="relative">
-                  <h2 className="font-display text-2xl text-navy-900">Your details</h2>
+                  <h2 className="font-display text-2xl text-ink-900">Your details</h2>
 
                   <div className="mt-6 grid gap-5 sm:grid-cols-2">
                     <div>
                       <label htmlFor="name" className={labelClass}>
-                        Name <span className="text-gold-600">*</span>
+                        Name <span className="text-accent-600">*</span>
                       </label>
                       <input id="name" name="name" required className={`mt-2 ${fieldClass}`} />
                     </div>
                     <div>
                       <label htmlFor="companyName" className={labelClass}>
-                        Company <span className="text-gold-600">*</span>
+                        Company <span className="text-accent-600">*</span>
                       </label>
                       <input
                         id="companyName"
@@ -177,7 +177,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <label htmlFor="email" className={labelClass}>
-                        Email <span className="text-gold-600">*</span>
+                        Email <span className="text-accent-600">*</span>
                       </label>
                       <input
                         id="email"
@@ -206,7 +206,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <label htmlFor="enquiryType" className={labelClass}>
-                        Enquiry type <span className="text-gold-600">*</span>
+                        Enquiry type <span className="text-accent-600">*</span>
                       </label>
                       <select
                         id="enquiryType"
@@ -240,39 +240,39 @@ export default function Contact() {
                   <div className="glass mt-8 p-7">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h3 className="font-display text-lg text-navy-900">
+                        <h3 className="font-display text-lg text-ink-900">
                           Models on your enquiry list
                         </h3>
-                        <p className="mt-1 text-xs text-navy-400">
+                        <p className="mt-1 text-xs text-ink-400">
                           Sent with this enquiry so we can quote the whole list at once.
                         </p>
                       </div>
                       <Link
                         to="/products"
                         className="-my-3 inline-flex min-h-[44px] shrink-0 items-center text-sm
-                                   font-semibold text-gold-600 underline-offset-4 hover:underline"
+                                   font-semibold text-accent-600 underline-offset-4 hover:underline"
                       >
                         {count > 0 ? 'Edit' : 'Add models'}
                       </Link>
                     </div>
 
                     {count === 0 ? (
-                      <p className="mt-4 rounded-xl border border-dashed border-navy-200 px-5 py-6 text-center text-sm text-navy-400">
+                      <p className="mt-4 rounded-xl border border-dashed border-ink-200 px-5 py-6 text-center text-sm text-ink-400">
                         Nothing selected — that is fine. Describe what you need below
                         and we will work it out together.
                       </p>
                     ) : (
-                      <ul className="mt-4 divide-y divide-navy-100">
+                      <ul className="mt-4 divide-y divide-ink-100">
                         {lines.map((l) => (
                           <li
                             key={l.productId}
                             className="flex items-center justify-between gap-4 py-2.5 text-sm"
                           >
-                            <span className="text-navy-800">
+                            <span className="text-ink-800">
                               <span className="font-medium">{l.name}</span>
-                              <span className="text-navy-400"> · {l.range}</span>
+                              <span className="text-ink-400"> · {l.range}</span>
                             </span>
-                            <span className="shrink-0 text-navy-500">qty {l.quantity}</span>
+                            <span className="shrink-0 text-ink-500">qty {l.quantity}</span>
                           </li>
                         ))}
                       </ul>
@@ -325,7 +325,7 @@ export default function Contact() {
                     <IconArrowRight className="h-4 w-4" />
                   </button>
 
-                  <p className="mt-4 text-xs leading-relaxed text-navy-400">
+                  <p className="mt-4 text-xs leading-relaxed text-ink-400">
                     We use your details only to respond to this enquiry. Nothing on
                     this site is an online sale — every order is quoted individually.
                   </p>
@@ -339,50 +339,50 @@ export default function Contact() {
             <aside className="space-y-4 lg:sticky lg:top-32 lg:self-start">
               <div className="glass p-7">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <h2 className="font-display text-xl text-navy-900">Reach us directly</h2>
+                  <h2 className="font-display text-xl text-ink-900">Reach us directly</h2>
                   <OpenStatus />
                 </div>
                 <ul className="mt-6 space-y-5 text-sm">
                   <li className="flex gap-3.5">
-                    <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
+                    <IconMail className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">Email</p>
+                      <p className="text-[0.75rem] uppercase tracking-wider text-ink-400">Email</p>
                       <a
                         href={`mailto:${company.contact.email}`}
                         className="mt-0.5 inline-flex min-h-[44px] items-center font-medium
-                                   text-navy-800 transition-colors hover:text-gold-600"
+                                   text-ink-800 transition-colors hover:text-accent-600"
                       >
                         {company.contact.email}
                       </a>
                     </div>
                   </li>
                   <li className="flex gap-3.5">
-                    <IconPhone className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
+                    <IconPhone className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">Phone</p>
+                      <p className="text-[0.75rem] uppercase tracking-wider text-ink-400">Phone</p>
                       <a
                         href={`tel:${company.contact.phoneHref}`}
                         className="mt-0.5 flex min-h-[44px] w-fit items-center font-medium
-                                   text-navy-800 transition-colors hover:text-gold-600"
+                                   text-ink-800 transition-colors hover:text-accent-600"
                       >
                         {company.contact.phone}
                       </a>
                       <a
                         href={`tel:${company.contact.altPhoneHref}`}
-                        className="-mt-2 flex min-h-[44px] w-fit items-center text-xs text-navy-400
-                                   transition-colors hover:text-gold-600"
+                        className="-mt-2 flex min-h-[44px] w-fit items-center text-xs text-ink-400
+                                   transition-colors hover:text-accent-600"
                       >
                         Alt. {company.contact.altPhone}
                       </a>
                     </div>
                   </li>
                   <li className="flex gap-3.5">
-                    <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-gold-500" />
+                    <IconPin className="mt-0.5 h-4 w-4 shrink-0 text-accent-500" />
                     <div>
-                      <p className="text-[0.75rem] uppercase tracking-wider text-navy-400">
+                      <p className="text-[0.75rem] uppercase tracking-wider text-ink-400">
                         {company.contact.address.label}
                       </p>
-                      <address className="mt-0.5 not-italic text-navy-700">
+                      <address className="mt-0.5 not-italic text-ink-700">
                         {company.contact.address.lines.map((l) => (
                           <span key={l} className="block">
                             {l}
@@ -404,7 +404,7 @@ export default function Contact() {
               </div>
 
               <div className="glass p-7">
-                <h2 className="font-display text-lg text-navy-900">What happens next</h2>
+                <h2 className="font-display text-lg text-ink-900">What happens next</h2>
                 <ol className="mt-4 space-y-4 text-sm">
                   {[
                     'We read your enquiry and come back with clarifying questions.',
@@ -415,11 +415,11 @@ export default function Contact() {
                     <li key={s} className="flex gap-3.5">
                       <span
                         className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full
-                                   bg-navy-900 text-[0.75rem] font-bold text-gold-400"
+                                   bg-ink-900 text-[0.75rem] font-bold text-accent-300"
                       >
                         {i + 1}
                       </span>
-                      <span className="leading-relaxed text-navy-600">{s}</span>
+                      <span className="leading-relaxed text-ink-600">{s}</span>
                     </li>
                   ))}
                 </ol>

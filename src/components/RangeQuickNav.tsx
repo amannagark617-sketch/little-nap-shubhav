@@ -24,7 +24,7 @@ export default function RangeQuickNav() {
               <span
                 className="block h-20 w-20 overflow-hidden rounded-full border-2 border-white/80
                            shadow-glass transition-all duration-300 group-hover:-translate-y-1
-                           group-hover:border-gold-300 group-hover:shadow-glass-lg sm:h-24 sm:w-24"
+                           group-hover:border-accent-300 group-hover:shadow-glass-lg sm:h-24 sm:w-24"
               >
                 <img
                   src={productImage(hero.image)}
@@ -35,7 +35,7 @@ export default function RangeQuickNav() {
                              group-hover:scale-110"
                 />
               </span>
-              <span className="text-center text-xs font-medium leading-tight text-navy-600 transition-colors group-hover:text-navy-900">
+              <span className="text-center text-xs font-medium leading-tight text-ink-600 transition-colors group-hover:text-ink-900">
                 {range.name}
               </span>
             </Link>

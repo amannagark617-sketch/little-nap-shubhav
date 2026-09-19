@@ -65,7 +65,7 @@ export default function OpenStatus({ className = '' }: { className?: string }) {
   return (
     <span
       className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold ${
-        isOpen ? 'bg-emerald-50 text-emerald-800' : 'bg-navy-50 text-navy-500'
+        isOpen ? 'bg-emerald-50 text-emerald-800' : 'bg-ink-50 text-ink-500'
       } ${className}`}
     >
       <span className="relative flex h-2 w-2">
@@ -74,7 +74,7 @@ export default function OpenStatus({ className = '' }: { className?: string }) {
         )}
         <span
           className={`relative inline-flex h-2 w-2 rounded-full ${
-            isOpen ? 'bg-emerald-500' : 'bg-navy-300'
+            isOpen ? 'bg-emerald-500' : 'bg-ink-300'
           }`}
         />
       </span>

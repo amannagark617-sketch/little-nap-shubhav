@@ -116,11 +116,11 @@ export default function AIAdvisor() {
         aria-label={open ? 'Close the Comfort Advisor' : 'Open the Comfort Advisor'}
         aria-expanded={open}
         className={`pin-fab fixed z-[58] inline-flex items-center gap-2 rounded-full
-                    bg-navy-900 py-3.5 pl-4 pr-5 text-sm font-semibold text-white shadow-lg
-                    shadow-navy-950/25 transition-all duration-300 hover:bg-navy-800
+                    bg-ink-900 py-3.5 pl-4 pr-5 text-sm font-semibold text-white shadow-lg
+                    shadow-ink-950/25 transition-all duration-300 hover:bg-ink-800
                     active:scale-95 ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
       >
-        <IconSparkle className="h-5 w-5 text-gold-400" />
+        <IconSparkle className="h-5 w-5 text-accent-400" />
         Comfort Advisor
       </button>
 
@@ -143,14 +143,14 @@ export default function AIAdvisor() {
                           : 'pointer-events-none translate-y-4 opacity-0'
                       }`}
         >
-          <header className="flex items-center justify-between gap-3 bg-navy-900 px-4 py-3.5">
+          <header className="flex items-center justify-between gap-3 bg-ink-900 px-4 py-3.5">
             <div className="flex items-center gap-2.5">
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
-                <IconSparkle className="h-4 w-4 text-gold-400" />
+                <IconSparkle className="h-4 w-4 text-accent-400" />
               </span>
               <div className="leading-tight">
                 <p className="font-display text-base text-white">Comfort Advisor</p>
-                <p className="text-[0.75rem] text-navy-300">Product &amp; capability guide</p>
+                <p className="text-[0.75rem] text-ink-300">Product &amp; capability guide</p>
               </div>
             </div>
             <button
@@ -158,7 +158,7 @@ export default function AIAdvisor() {
               onClick={() => setOpen(false)}
               aria-label="Close"
               className="inline-flex h-8 w-8 items-center justify-center rounded-full
-                         text-navy-200 transition-colors hover:bg-white/10 hover:text-white"
+                         text-ink-200 transition-colors hover:bg-white/10 hover:text-white"
             >
               <IconClose className="h-4 w-4" />
             </button>
@@ -174,10 +174,10 @@ export default function AIAdvisor() {
                   className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3.5 py-2.5 text-sm
                               leading-relaxed ${
                                 e.role === 'user'
-                                  ? 'rounded-br-sm bg-navy-700 text-white'
+                                  ? 'rounded-br-sm bg-ink-700 text-white'
                                   : e.error
                                     ? 'rounded-bl-sm border border-amber-200 bg-amber-50 text-amber-900'
-                                    : 'rounded-bl-sm border border-white/70 bg-white/80 text-navy-800'
+                                    : 'rounded-bl-sm border border-white/70 bg-white/80 text-ink-800'
                               }`}
                 >
                   {e.pending ? (
@@ -185,7 +185,7 @@ export default function AIAdvisor() {
                       {[0, 1, 2].map((i) => (
                         <span
                           key={i}
-                          className="h-1.5 w-1.5 animate-bounce rounded-full bg-navy-300"
+                          className="h-1.5 w-1.5 animate-bounce rounded-full bg-ink-300"
                           style={{ animationDelay: `${i * 120}ms` }}
                         />
                       ))}
@@ -205,9 +205,9 @@ export default function AIAdvisor() {
                     type="button"
                     onClick={() => send(p)}
                     className="block w-full rounded-xl border border-white/70 bg-white/70 px-3.5
-                               py-2.5 text-left text-[0.8rem] leading-snug text-navy-600
+                               py-2.5 text-left text-[0.8rem] leading-snug text-ink-600
                                backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5
-                               hover:border-gold-300 hover:bg-white hover:text-navy-900"
+                               hover:border-accent-300 hover:bg-white hover:text-ink-900"
                   >
                     {p}
                   </button>
@@ -233,8 +233,8 @@ export default function AIAdvisor() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about ranges, capacity, OEM…"
               autoComplete="off"
-              className="min-h-[44px] min-w-0 flex-1 rounded-full border border-navy-100 bg-porcelain-50 px-4 py-2.5
-                         text-sm text-navy-900 placeholder:text-navy-300 focus:border-gold-300
+              className="min-h-[44px] min-w-0 flex-1 rounded-full border border-ink-100 bg-porcelain-50 px-4 py-2.5
+                         text-sm text-ink-900 placeholder:text-ink-300 focus:border-accent-300
                          focus:outline-none"
             />
             <button
@@ -242,14 +242,14 @@ export default function AIAdvisor() {
               disabled={busy || !input.trim()}
               aria-label="Send"
               className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full
-                         bg-navy-900 text-white transition-colors hover:bg-navy-800
+                         bg-ink-900 text-white transition-colors hover:bg-ink-800
                          disabled:cursor-not-allowed disabled:opacity-40"
             >
               <IconSend className="h-4 w-4" />
             </button>
           </form>
 
-          <p className="bg-white/70 px-4 pb-[calc(0.75rem+var(--safe-b))] text-center text-[0.75rem] leading-snug text-navy-400">
+          <p className="bg-white/70 px-4 pb-[calc(0.75rem+var(--safe-b))] text-center text-[0.75rem] leading-snug text-ink-400">
             AI-generated guidance. Specifications are confirmed by our team on enquiry.
           </p>
         </div>

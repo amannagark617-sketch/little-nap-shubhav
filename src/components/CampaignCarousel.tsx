@@ -49,8 +49,8 @@ export default function CampaignCarousel() {
       <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
         <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
           <p className="eyebrow">{active.eyebrow}</p>
-          <h3 className="mt-4 font-display text-2xl text-navy-900 sm:text-3xl">{active.title}</h3>
-          <p className="mt-3 max-w-md text-[0.98rem] leading-relaxed text-navy-500">
+          <h3 className="mt-4 font-display text-2xl text-ink-900 sm:text-3xl">{active.title}</h3>
+          <p className="mt-3 max-w-md text-[0.98rem] leading-relaxed text-ink-500">
             {active.body}
           </p>
           <Link to={active.href} className="btn-primary mt-7 w-fit">
@@ -84,7 +84,7 @@ export default function CampaignCarousel() {
               aria-label={`Show slide: ${c.title}`}
               onClick={() => go(i)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                i === index ? 'w-7 bg-gold-500' : 'w-2 bg-navy-200 hover:bg-navy-300'
+                i === index ? 'w-7 bg-accent-500' : 'w-2 bg-ink-200 hover:bg-ink-300'
               }`}
             />
           ))}
@@ -95,7 +95,7 @@ export default function CampaignCarousel() {
             onClick={() => go(index - 1)}
             aria-label="Previous slide"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border
-                       border-navy-200/70 text-navy-600 transition-colors hover:bg-white"
+                       border-ink-200/70 text-ink-600 transition-colors hover:bg-white"
           >
             <IconChevron className="h-4 w-4 rotate-180" />
           </button>
@@ -104,7 +104,7 @@ export default function CampaignCarousel() {
             onClick={() => go(index + 1)}
             aria-label="Next slide"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border
-                       border-navy-200/70 text-navy-600 transition-colors hover:bg-white"
+                       border-ink-200/70 text-ink-600 transition-colors hover:bg-white"
           >
             <IconChevron className="h-4 w-4" />
           </button>

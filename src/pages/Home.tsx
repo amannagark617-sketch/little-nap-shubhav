@@ -50,13 +50,13 @@ export default function Home() {
         <div className="container-page relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.02fr_1fr] lg:pb-28 lg:pt-16">
           <div>
             <Reveal>
-              <span className="glass inline-flex items-center gap-2.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-navy-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
+              <span className="glass inline-flex items-center gap-2.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
                 Est. in Dewas, Madhya Pradesh
               </span>
             </Reveal>
 
-            <h1 className="mt-7 font-display text-[2.7rem] leading-[1.05] text-navy-900 sm:text-[3.4rem] lg:text-[4.1rem]">
+            <h1 className="mt-7 font-display text-[2.7rem] leading-[1.05] text-ink-900 sm:text-[3.4rem] lg:text-[4.1rem]">
               <SplitText as="span" className="block">
                 Where production
               </SplitText>
@@ -64,12 +64,12 @@ export default function Home() {
                 <SplitText as="span" delay={180}>
                   meets
                 </SplitText>{' '}
-                <span className="text-gilded">passion.</span>
+                <span className="text-emphasis">passion.</span>
               </span>
             </h1>
 
             <Reveal delay={320}>
-              <p className="mt-8 max-w-xl text-lg leading-[1.75] text-navy-500">
+              <p className="mt-8 max-w-xl text-lg leading-[1.75] text-ink-500">
                 {company.legalName} engineers and manufactures world-class motion
                 furniture — recliners, motion sofas, cinema seating and sofa beds —
                 for brands that need consistent quality at volume.
@@ -94,8 +94,8 @@ export default function Home() {
                   const Icon = disciplineIcons[i]
                   return (
                     <li key={d} className="glass glass-hover p-4">
-                      <Icon className="h-7 w-7 text-gold-500" />
-                      <span className="mt-3 block text-[0.78rem] font-medium leading-snug text-navy-700">
+                      <Icon className="h-7 w-7 text-accent-500" />
+                      <span className="mt-3 block text-[0.78rem] font-medium leading-snug text-ink-700">
                         {d}
                       </span>
                     </li>
@@ -125,13 +125,13 @@ export default function Home() {
                   a translucent one would blur the leather and rug through it
                   and read as a cream card. */}
               <div className="glass-strong absolute bottom-5 left-5 w-[14.5rem] animate-float !bg-white/[0.94] p-5">
-                <p className="font-display text-4xl text-navy-900">
+                <p className="font-display text-4xl text-ink-900">
                   <Counter to={3200} />
                 </p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gold-600">
+                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent-600">
                   Seats per month
                 </p>
-                <p className="mt-2 text-xs leading-relaxed text-navy-500">
+                <p className="mt-2 text-xs leading-relaxed text-ink-500">
                   Current monthly manufacturing capacity
                 </p>
               </div>
@@ -150,8 +150,8 @@ export default function Home() {
                     key={pillar.title}
                     className="flex items-center gap-3 rounded-xl px-4 py-4 transition-colors hover:bg-white/50"
                   >
-                    <Icon className="h-6 w-6 shrink-0 text-gold-500" />
-                    <span className="text-sm font-medium text-navy-700">{pillar.title}</span>
+                    <Icon className="h-6 w-6 shrink-0 text-accent-500" />
+                    <span className="text-sm font-medium text-ink-700">{pillar.title}</span>
                   </li>
                 )
               })}
@@ -188,7 +188,7 @@ export default function Home() {
               A manufacturing partner, not just a supplier.
             </SplitText>
             <Reveal delay={200}>
-              <p className="mx-auto mt-7 max-w-2xl text-lg leading-[1.8] text-navy-500">
+              <p className="mx-auto mt-7 max-w-2xl text-lg leading-[1.8] text-ink-500">
                 {positioningStatement}
               </p>
             </Reveal>
@@ -198,16 +198,16 @@ export default function Home() {
           <div className="mt-16 grid gap-6 lg:grid-cols-2">
             <Reveal>
               <div className="glass glass-hover h-full p-9">
-                <div className="rule-gold" />
-                <h3 className="mt-6 font-display text-2xl text-navy-900">Our vision</h3>
-                <p className="mt-4 text-[1.05rem] leading-[1.8] text-navy-600">{vision}</p>
+                <div className="rule-accent" />
+                <h3 className="mt-6 font-display text-2xl text-ink-900">Our vision</h3>
+                <p className="mt-4 text-[1.05rem] leading-[1.8] text-ink-600">{vision}</p>
               </div>
             </Reveal>
             <Reveal delay={120}>
               <div className="glass glass-hover h-full p-9">
-                <div className="rule-gold" />
-                <h3 className="mt-6 font-display text-2xl text-navy-900">Our mission</h3>
-                <p className="mt-4 text-[1.05rem] leading-[1.8] text-navy-600">{mission}</p>
+                <div className="rule-accent" />
+                <h3 className="mt-6 font-display text-2xl text-ink-900">Our mission</h3>
+                <p className="mt-4 text-[1.05rem] leading-[1.8] text-ink-600">{mission}</p>
               </div>
             </Reveal>
           </div>
@@ -238,11 +238,11 @@ export default function Home() {
             {stats.map((s, i) => (
               <Reveal as="li" key={s.label} delay={i * 90}>
                 <div className="glass glass-hover h-full p-7">
-                  <p className="font-display text-[2.75rem] leading-none text-navy-900">
+                  <p className="font-display text-[2.75rem] leading-none text-ink-900">
                     <Counter to={s.value} suffix={s.suffix} />
                   </p>
-                  <p className="mt-3 text-sm font-semibold text-navy-800">{s.label}</p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-navy-400">{s.detail}</p>
+                  <p className="mt-3 text-sm font-semibold text-ink-800">{s.label}</p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink-400">{s.detail}</p>
                 </div>
               </Reveal>
             ))}
@@ -271,10 +271,10 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="text-center">
-                  <p className="font-display text-[5.5rem] leading-none text-gilded sm:text-[7rem]">
+                  <p className="font-display text-[5.5rem] leading-none text-emphasis sm:text-[7rem]">
                     <Counter to={80} suffix="%" />
                   </p>
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-navy-500">
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-500">
                     of our workforce
                   </p>
                 </div>
@@ -308,11 +308,11 @@ export default function Home() {
               return (
                 <Reveal as="li" key={d.title} delay={i * 80}>
                   <div className="glass glass-hover group h-full p-7">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-gold-100 to-gold-200/60 transition-transform duration-500 group-hover:scale-110">
-                      <Icon className="h-6 w-6 text-gold-600" />
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent-100 to-accent-200/60 transition-transform duration-500 group-hover:scale-110">
+                      <Icon className="h-6 w-6 text-accent-600" />
                     </span>
-                    <h3 className="mt-5 font-display text-xl text-navy-900">{d.title}</h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-navy-500">{d.body}</p>
+                    <h3 className="mt-5 font-display text-xl text-ink-900">{d.title}</h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-ink-500">{d.body}</p>
                   </div>
                 </Reveal>
               )
@@ -340,7 +340,7 @@ export default function Home() {
               {culture.map((c, i) => (
                 <li
                   key={c}
-                  className="glass glass-hover px-5 py-4 text-sm font-medium text-navy-700"
+                  className="glass glass-hover px-5 py-4 text-sm font-medium text-ink-700"
                   style={{ transitionDelay: `${i * 30}ms` }}
                 >
                   {c}
@@ -394,11 +394,11 @@ export default function Home() {
                     />
                   </div>
                   <div className="p-5">
-                    <h3 className="font-display text-lg text-navy-900">{range.name}</h3>
-                    <p className="mt-1 text-xs font-medium uppercase tracking-wide text-gold-600">
+                    <h3 className="font-display text-lg text-ink-900">{range.name}</h3>
+                    <p className="mt-1 text-xs font-medium uppercase tracking-wide text-accent-600">
                       {range.positioning}
                     </p>
-                    <p className="mt-3 text-xs text-navy-400">
+                    <p className="mt-3 text-xs text-ink-400">
                       {count} model{count === 1 ? '' : 's'}
                     </p>
                   </div>
@@ -432,7 +432,7 @@ export default function Home() {
       {/* ═══════════════ CLIENTS ═══════════════ */}
       <section className="relative overflow-hidden py-16">
         <div className="container-page">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-navy-400">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-ink-400">
             Manufacturing for
           </p>
         </div>
@@ -442,8 +442,8 @@ export default function Home() {
               <li
                 key={`${name}-${i}`}
                 aria-hidden={i >= clients.length}
-                className="whitespace-nowrap font-display text-2xl text-navy-300
-                           transition-colors duration-300 hover:text-navy-700"
+                className="whitespace-nowrap font-display text-2xl text-ink-300
+                           transition-colors duration-300 hover:text-ink-700"
               >
                 {name}
               </li>
@@ -479,16 +479,16 @@ export default function Home() {
             <div className="glass-strong relative overflow-hidden px-8 py-16 text-center sm:px-14">
               <Aurora tone="signature" intensity="rich" />
               <div className="relative mx-auto max-w-2xl">
-                <h2 className="font-display text-[2rem] leading-tight text-navy-900 sm:text-[2.75rem]">
+                <h2 className="font-display text-[2rem] leading-tight text-ink-900 sm:text-[2.75rem]">
                   Tell us what you need built.
                 </h2>
-                <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-navy-500">
+                <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-500">
                   Send us your drawings, or build a list of the models you want
                   quoted. We will come back with a specification, a sample plan and
                   a production schedule.
                 </p>
                 <div className="mt-9 flex flex-wrap justify-center gap-3">
-                  <Link to="/contact" className="btn-gold">
+                  <Link to="/contact" className="btn-secondary">
                     Start an enquiry
                     <IconArrowRight className="h-4 w-4" />
                   </Link>

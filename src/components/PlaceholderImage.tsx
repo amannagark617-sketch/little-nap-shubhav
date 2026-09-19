@@ -55,14 +55,14 @@ export default function PlaceholderImage({
     return (
       <div
         style={{ aspectRatio: aspect }}
-        className={`flex flex-col items-center justify-center gap-2 border-navy-200
-                    bg-navy-50/40 p-6 text-center ${
+        className={`flex flex-col items-center justify-center gap-2 border-ink-200
+                    bg-ink-50/40 p-6 text-center ${
                       framed ? 'rounded-2xl border-2 border-dashed' : ''
                     } ${className}`}
       >
-        <IconImage className="h-7 w-7 text-navy-300" />
-        <p className="text-sm font-semibold text-navy-500">{label}</p>
-        <p className="text-xs text-navy-400">
+        <IconImage className="h-7 w-7 text-ink-300" />
+        <p className="text-sm font-semibold text-ink-500">{label}</p>
+        <p className="text-xs text-ink-400">
           Recommended {recommended} · drop the file at{' '}
           <code className="rounded bg-white/60 px-1 py-0.5 text-[0.7rem]">
             public/images/{path}

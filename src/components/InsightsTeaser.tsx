@@ -27,15 +27,15 @@ export default function InsightsTeaser() {
             />
             <div className="flex flex-1 flex-col p-6">
               <span
-                className="w-fit rounded-full bg-navy-50 px-2.5 py-1 text-[0.68rem]
-                           font-semibold uppercase tracking-wider text-navy-400"
+                className="w-fit rounded-full bg-ink-50 px-2.5 py-1 text-[0.68rem]
+                           font-semibold uppercase tracking-wider text-ink-400"
               >
                 Coming soon
               </span>
-              <h3 className="mt-3 font-display text-lg leading-snug text-navy-900">
+              <h3 className="mt-3 font-display text-lg leading-snug text-ink-900">
                 {post.title}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-500">{post.excerpt}</p>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{post.excerpt}</p>
             </div>
           </div>
         </Reveal>

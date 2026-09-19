@@ -17,10 +17,10 @@ export default function PartnerBanner() {
 
         <div className="relative flex flex-col justify-center p-9 sm:p-12">
           <p className="eyebrow">For brands, not shoppers</p>
-          <h2 className="mt-4 font-display text-[1.9rem] leading-tight text-navy-900 sm:text-4xl">
+          <h2 className="mt-4 font-display text-[1.9rem] leading-tight text-ink-900 sm:text-4xl">
             One manufacturing partner for the whole programme.
           </h2>
-          <p className="mt-4 max-w-md leading-relaxed text-navy-500">
+          <p className="mt-4 max-w-md leading-relaxed text-ink-500">
             Not a single order — a relationship. We plan capacity around your
             volumes, develop new models with you, and hold the same quality
             standard from the first unit to the ten-thousandth.
@@ -28,21 +28,21 @@ export default function PartnerBanner() {
 
           <div className="mt-7 flex items-center gap-8">
             <div>
-              <p className="font-display text-3xl text-navy-900">
+              <p className="font-display text-3xl text-ink-900">
                 <Counter to={3200} />
               </p>
-              <p className="text-xs font-medium text-navy-400">Seats / month</p>
+              <p className="text-xs font-medium text-ink-400">Seats / month</p>
             </div>
-            <div className="h-10 w-px bg-navy-200" />
+            <div className="h-10 w-px bg-ink-200" />
             <div>
-              <p className="font-display text-3xl text-navy-900">
+              <p className="font-display text-3xl text-ink-900">
                 <Counter to={80} suffix="%+" />
               </p>
-              <p className="text-xs font-medium text-navy-400">Women-led floor</p>
+              <p className="text-xs font-medium text-ink-400">Women-led floor</p>
             </div>
           </div>
 
-          <Link to="/contact" className="btn-gold mt-8 w-fit">
+          <Link to="/contact" className="btn-secondary mt-8 w-fit">
             Talk to our team
             <IconArrowRight className="h-4 w-4" />
           </Link>

@@ -27,7 +27,7 @@ function RouteFallback() {
   return (
     <div className="flex min-h-[70vh] items-center justify-center" role="status" aria-live="polite">
       <span className="sr-only">Loading…</span>
-      <span className="h-8 w-8 animate-spin rounded-full border-2 border-navy-100 border-t-gold-400" />
+      <span className="h-8 w-8 animate-spin rounded-full border-2 border-ink-100 border-t-accent-400" />
     </div>
   )
 }

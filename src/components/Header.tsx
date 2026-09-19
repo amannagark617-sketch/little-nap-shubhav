@@ -46,7 +46,7 @@ export default function Header() {
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70]
-                   focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-3 focus:text-sm
+                   focus:rounded-full focus:bg-ink-900 focus:px-5 focus:py-3 focus:text-sm
                    focus:font-semibold focus:text-white"
       >
         Skip to content
@@ -76,8 +76,8 @@ export default function Header() {
                       `relative inline-flex min-h-[44px] items-center rounded-full px-4 text-sm
                        font-medium transition-all duration-300 ${
                         isActive
-                          ? 'text-navy-900'
-                          : 'text-navy-500 hover:-translate-y-0.5 hover:text-navy-900'
+                          ? 'text-ink-900'
+                          : 'text-ink-500 hover:-translate-y-0.5 hover:text-ink-900'
                       }`
                     }
                   >
@@ -86,7 +86,7 @@ export default function Header() {
                         {item.label}
                         <span
                           className={`absolute inset-x-4 bottom-1 h-px bg-gradient-to-r from-transparent
-                                      via-gold-400 to-transparent transition-all duration-300 ${
+                                      via-accent-400 to-transparent transition-all duration-300 ${
                                         isActive ? 'opacity-100' : 'opacity-0'
                                       }`}
                         />
@@ -103,15 +103,15 @@ export default function Header() {
               type="button"
               onClick={open}
               className="relative hidden min-h-[44px] items-center rounded-full border
-                         border-navy-200/70 bg-white/50 px-4 text-sm font-medium text-navy-700
-                         transition-all duration-300 hover:-translate-y-0.5 hover:border-navy-300
+                         border-ink-200/70 bg-white/50 px-4 text-sm font-medium text-ink-700
+                         transition-all duration-300 hover:-translate-y-0.5 hover:border-ink-300
                          hover:bg-white sm:inline-flex"
             >
               Enquiry
               {count > 0 && (
                 <span
                   className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full
-                             bg-gold-400 px-1.5 text-[0.75rem] font-bold text-navy-950"
+                             bg-accent-400 px-1.5 text-[0.75rem] font-bold text-white"
                 >
                   {count}
                 </span>
@@ -129,7 +129,7 @@ export default function Header() {
               aria-label="Open menu"
               aria-expanded={menuOpen}
               className="inline-flex h-11 w-11 items-center justify-center rounded-full
-                         border border-navy-200/70 bg-white/60 text-navy-800 lg:hidden"
+                         border border-ink-200/70 bg-white/60 text-ink-800 lg:hidden"
             >
               <IconMenu className="h-5 w-5" />
             </button>
@@ -144,7 +144,7 @@ export default function Header() {
       >
         <div
           onClick={() => setMenuOpen(false)}
-          className={`absolute inset-0 bg-navy-950/30 backdrop-blur-sm transition-opacity duration-500 ${
+          className={`absolute inset-0 bg-ink-950/30 backdrop-blur-sm transition-opacity duration-500 ${
             menuOpen ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -165,7 +165,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
               className="inline-flex h-11 w-11 items-center justify-center rounded-full
-                         border border-navy-200 text-navy-800"
+                         border border-ink-200 text-ink-800"
             >
               <IconClose className="h-5 w-5" />
             </button>
@@ -189,13 +189,13 @@ export default function Header() {
                       `flex items-center justify-between rounded-xl px-4 py-3.5 font-display
                        text-xl transition-colors ${
                          isActive
-                           ? 'glass text-navy-900'
-                           : 'text-navy-600 hover:bg-white/60'
+                           ? 'glass text-ink-900'
+                           : 'text-ink-600 hover:bg-white/60'
                        }`
                     }
                   >
                     {item.label}
-                    <IconArrowRight className="h-4 w-4 text-gold-500" />
+                    <IconArrowRight className="h-4 w-4 text-accent-500" />
                   </NavLink>
                 </li>
               ))}

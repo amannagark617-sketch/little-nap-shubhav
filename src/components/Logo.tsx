@@ -1,7 +1,7 @@
 import { brandImage } from '../data/factory'
 
 type Props = {
-  /** `dark` sets the wordmark for light backgrounds, `light` for navy ones. */
+  /** `dark` sets the wordmark for light backgrounds, `light` for dark ones. */
   tone?: 'dark' | 'light'
   className?: string
   /** Hides the wordmark, leaving only the chair mark (used in tight spaces). */
@@ -25,13 +25,12 @@ type Props = {
  * this component becomes unnecessary.
  */
 export default function Logo({ tone = 'dark', className = '', markOnly = false }: Props) {
-  const primary = tone === 'dark' ? 'text-navy-900' : 'text-white'
-  const sub = tone === 'dark' ? 'text-navy-400' : 'text-navy-200'
-  // gold-600 is the darkened, text-safe step for the light body (5.04:1 there).
-  // On the dark footer that same dark gold is dark-on-dark (2.87:1), so the
-  // brighter gold-400 — the shade meant for dark surfaces — is used instead
-  // (6.63:1 on navy-900).
-  const accent = tone === 'dark' ? 'text-gold-600' : 'text-gold-400'
+  const primary = tone === 'dark' ? 'text-ink-900' : 'text-white'
+  const sub = tone === 'dark' ? 'text-ink-400' : 'text-ink-200'
+  // accent-600 is the darkened, text-safe step for the light body (14.4:1
+  // there). On the dark footer that same near-black accent is dark-on-dark
+  // (2.3:1), so the much lighter accent-300 is used instead (6.9:1 on ink-900).
+  const accent = tone === 'dark' ? 'text-accent-600' : 'text-accent-300'
 
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>

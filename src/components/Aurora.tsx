@@ -1,6 +1,7 @@
 type Props = {
-  /** `azure` is the light field, `indigo` the deeper one, `signature` the
-   *  richest — gold + indigo together, for the hero and closing CTA only. */
+  /** `azure` is the lightest field, `indigo` the deepest, `signature` the
+   *  richest — for the hero and closing CTA only. Despite the names, every
+   *  tone below is pure grayscale — no hue, per the site's no-colour brief. */
   tone?: 'azure' | 'indigo' | 'mixed' | 'signature'
   className?: string
   /** Dials the whole field up or down. */
@@ -8,20 +9,18 @@ type Props = {
 }
 
 /**
- * Blue-led fields, with gold reserved for the `signature` tone.
+ * Grayscale fields, varying by depth rather than hue.
  *
- * A warm hue washed thinly across the *entire* background does not read as
- * "a hint of gold" — it flattens into a beige off-white (this is what
- * happened before and was corrected). A warm hue concentrated in one tight,
- * heavily blurred blob is a different thing entirely: it reads as a glow,
- * not a tint, so `signature` can carry real gold saturation without ever
- * touching the porcelain body colour.
+ * Glass needs *something* behind it for the blur to refract, or a panel
+ * reads as a flat card. With colour off the table, that something is
+ * tonal contrast: each blob is black or gray at a given opacity, so the
+ * field still reads as a soft, drifting glow rather than a flat tint.
  */
 const FIELDS: Record<NonNullable<Props['tone']>, string[]> = {
-  azure: ['rgba(99,135,219,0.30)', 'rgba(150,178,232,0.26)', 'rgba(203,216,240,0.4)'],
-  indigo: ['rgba(66,83,156,0.32)', 'rgba(21,27,83,0.16)', 'rgba(120,148,224,0.26)'],
-  mixed: ['rgba(88,120,205,0.28)', 'rgba(66,83,156,0.24)', 'rgba(190,208,240,0.36)'],
-  signature: ['rgba(211,163,32,0.32)', 'rgba(66,83,156,0.30)', 'rgba(150,178,232,0.30)'],
+  azure: ['rgba(161,161,170,0.26)', 'rgba(212,212,216,0.28)', 'rgba(228,228,231,0.42)'],
+  indigo: ['rgba(63,63,70,0.28)', 'rgba(24,24,27,0.18)', 'rgba(113,113,122,0.22)'],
+  mixed: ['rgba(82,82,91,0.24)', 'rgba(63,63,70,0.2)', 'rgba(200,200,204,0.32)'],
+  signature: ['rgba(9,9,11,0.28)', 'rgba(63,63,70,0.26)', 'rgba(161,161,170,0.26)'],
 }
 
 const OPACITY = { subtle: 'opacity-60', normal: 'opacity-90', rich: 'opacity-100' }
@@ -65,7 +64,7 @@ export default function Aurora({ tone = 'mixed', className = '', intensity = 'no
         <div
           className="absolute right-[20%] bottom-[-10%] h-[26rem] w-[26rem] rounded-full blur-3xl animate-drift-slow"
           style={{
-            background: 'radial-gradient(circle, rgba(211,163,32,0.24), transparent 70%)',
+            background: 'radial-gradient(circle, rgba(9,9,11,0.24), transparent 70%)',
             animationDelay: '-22s',
           }}
         />

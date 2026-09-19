@@ -19,7 +19,7 @@ export default function PageHero({ eyebrow, title, lede, children }: Props) {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-px
-                   bg-gradient-to-r from-transparent via-gold-300/60 to-transparent"
+                   bg-gradient-to-r from-transparent via-accent-300/60 to-transparent"
       />
 
       <div className="container-page relative pb-16 pt-14 sm:pb-20 sm:pt-20">
@@ -30,20 +30,20 @@ export default function PageHero({ eyebrow, title, lede, children }: Props) {
         {typeof title === 'string' ? (
           <SplitText
             as="h1"
-            className="mt-6 block max-w-4xl font-display text-[2.4rem] leading-[1.08] text-navy-900 sm:text-[3.2rem] lg:text-[3.8rem]"
+            className="mt-6 block max-w-4xl font-display text-[2.4rem] leading-[1.08] text-ink-900 sm:text-[3.2rem] lg:text-[3.8rem]"
             stagger={45}
           >
             {title}
           </SplitText>
         ) : (
-          <h1 className="mt-6 max-w-4xl font-display text-[2.4rem] leading-[1.08] text-navy-900 sm:text-[3.2rem] lg:text-[3.8rem]">
+          <h1 className="mt-6 max-w-4xl font-display text-[2.4rem] leading-[1.08] text-ink-900 sm:text-[3.2rem] lg:text-[3.8rem]">
             {title}
           </h1>
         )}
 
         {lede && (
           <Reveal delay={240}>
-            <p className="mt-7 max-w-2xl text-lg leading-[1.75] text-navy-500">{lede}</p>
+            <p className="mt-7 max-w-2xl text-lg leading-[1.75] text-ink-500">{lede}</p>
           </Reveal>
         )}
         {children}

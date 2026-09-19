@@ -1,8 +1,9 @@
 import type { SVGProps } from 'react'
 
 /**
- * Line icons drawn to match the gold outline set on the corporate deck cover:
- * 24px grid, 1.5 stroke, round caps, no fills.
+ * Line icons matching the outline style on the corporate deck cover:
+ * 24px grid, 1.5 stroke, round caps, no fills. Colourless by design — every
+ * icon inherits `currentColor`, so it takes whatever the caller's className sets.
  */
 
 type IconProps = SVGProps<SVGSVGElement>

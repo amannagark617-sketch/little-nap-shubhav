@@ -45,7 +45,7 @@ export default function Quality() {
                     <div
                       aria-hidden="true"
                       className="absolute left-1/2 top-full z-0 hidden h-8 w-px
-                                 bg-gradient-to-b from-gold-400/70 to-navy-300/40 lg:block"
+                                 bg-gradient-to-b from-accent-400/70 to-ink-300/40 lg:block"
                     />
                   )}
 
@@ -61,8 +61,8 @@ export default function Quality() {
                     <span
                       aria-hidden="true"
                       className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none
-                                  font-display text-[9rem] font-bold leading-none text-navy-900/[0.05]
-                                  transition-colors duration-500 group-hover:text-gold-500/[0.08]
+                                  font-display text-[9rem] font-bold leading-none text-ink-900/[0.05]
+                                  transition-colors duration-500 group-hover:text-accent-500/[0.08]
                                   sm:text-[12rem] ${flip ? 'right-2 sm:right-4' : 'left-2 sm:left-4'}`}
                     >
                       {stage.step}
@@ -71,21 +71,21 @@ export default function Quality() {
                     <div className="relative z-10 flex shrink-0 flex-col items-start gap-4 lg:w-48">
                       <span
                         className="flex h-16 w-16 items-center justify-center rounded-2xl
-                                   bg-navy-900 text-gold-400 shadow-lift transition-transform
+                                   bg-ink-900 text-accent-300 shadow-lift transition-transform
                                    duration-500 group-hover:scale-105 group-hover:rotate-3"
                       >
                         <Icon className="h-7 w-7" />
                       </span>
-                      <span className="font-display text-sm font-bold uppercase tracking-[0.2em] text-gold-600">
+                      <span className="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent-600">
                         Stage {stage.step}
                       </span>
                     </div>
 
                     <div className="relative z-10 lg:flex-1">
-                      <h2 className="font-display text-2xl text-navy-900 sm:text-[1.75rem]">
+                      <h2 className="font-display text-2xl text-ink-900 sm:text-[1.75rem]">
                         {stage.title}
                       </h2>
-                      <p className="mt-3 max-w-2xl leading-relaxed text-navy-500">{stage.body}</p>
+                      <p className="mt-3 max-w-2xl leading-relaxed text-ink-500">{stage.body}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -103,7 +103,7 @@ export default function Quality() {
             <div>
               <p className="eyebrow">Traceability</p>
               <h2 className="h-section">Every unit carries its own record.</h2>
-              <p className="mt-6 text-[1.05rem] leading-[1.8] text-navy-500">
+              <p className="mt-6 text-[1.05rem] leading-[1.8] text-ink-500">
                 A unique identification code is assigned to each finished product
                 and a quality inspection video is recorded before dispatch.
                 Complete quality records are maintained, so if a question is ever
@@ -122,8 +122,8 @@ export default function Quality() {
                 { title: 'Dimensional checks', body: 'Accuracy, stitching, structural strength and finishing.' },
               ].map((c) => (
                 <li key={c.title} className="glass glass-hover p-6">
-                  <h3 className="font-display text-lg text-navy-900">{c.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-500">{c.body}</p>
+                  <h3 className="font-display text-lg text-ink-900">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-500">{c.body}</p>
                 </li>
               ))}
             </ul>
@@ -146,10 +146,10 @@ export default function Quality() {
               return (
                 <Reveal as="li" key={f.title} delay={i * 70}>
                   <div className="glass glass-hover flex h-full gap-5 p-7">
-                    <Icon className="h-8 w-8 shrink-0 text-gold-500" />
+                    <Icon className="h-8 w-8 shrink-0 text-accent-500" />
                     <div>
-                      <h3 className="font-display text-xl text-navy-900">{f.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-navy-500">{f.body}</p>
+                      <h3 className="font-display text-xl text-ink-900">{f.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-500">{f.body}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -158,9 +158,9 @@ export default function Quality() {
           </ul>
 
           <Reveal delay={200}>
-            <div className="mt-12 rounded-2xl border border-gold-200/70 bg-gold-50/70 p-8 backdrop-blur-xl">
-              <p className="leading-relaxed text-navy-700">
-                <strong className="font-semibold text-navy-900">
+            <div className="mt-12 rounded-2xl border border-accent-200/70 bg-accent-50/70 p-8 backdrop-blur-xl">
+              <p className="leading-relaxed text-ink-700">
+                <strong className="font-semibold text-ink-900">
                   Working to your standard?
                 </strong>{' '}
                 Where a programme requires specific test protocols, material

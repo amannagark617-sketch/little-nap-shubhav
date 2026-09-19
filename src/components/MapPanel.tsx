@@ -29,9 +29,9 @@ export default function MapPanel({ variant = 'full' }: Props) {
         <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-porcelain-200 sm:aspect-[16/10]">
           {/* Fallback content, covered by the iframe once it paints. */}
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8 text-center">
-            <IconPin className="h-8 w-8 text-gold-500" />
-            <p className="font-display text-lg text-navy-800">{address.name}</p>
-            <p className="max-w-xs text-sm leading-relaxed text-navy-500">{address.full}</p>
+            <IconPin className="h-8 w-8 text-accent-500" />
+            <p className="font-display text-lg text-ink-800">{address.name}</p>
+            <p className="max-w-xs text-sm leading-relaxed text-ink-500">{address.full}</p>
             {!loaded && (
               <a
                 href={address.mapsUrl}
@@ -81,11 +81,11 @@ export default function MapPanel({ variant = 'full' }: Props) {
       {/* ---- Address, hours, phone ---- */}
       <div className="glass flex flex-col p-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="font-display text-xl text-navy-900">Visit the plant</h3>
+          <h3 className="font-display text-xl text-ink-900">Visit the plant</h3>
           <OpenStatus />
         </div>
 
-        <address className="mt-5 not-italic leading-relaxed text-navy-600">
+        <address className="mt-5 not-italic leading-relaxed text-ink-600">
           {address.lines.map((line) => (
             <span key={line} className="block">
               {line}
@@ -96,15 +96,15 @@ export default function MapPanel({ variant = 'full' }: Props) {
         <a
           href={`tel:${company.contact.phoneHref}`}
           className="mt-3 inline-flex min-h-[44px] items-center gap-2.5 text-sm font-semibold
-                     text-navy-800 transition-colors hover:text-gold-600"
+                     text-ink-800 transition-colors hover:text-accent-600"
         >
-          <IconPhone className="h-4 w-4 text-gold-500" />
+          <IconPhone className="h-4 w-4 text-accent-500" />
           {company.contact.phone}
         </a>
 
         {variant === 'full' && (
-          <div className="mt-7 border-t border-navy-100 pt-5">
-            <h4 className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-navy-400">
+          <div className="mt-7 border-t border-ink-100 pt-5">
+            <h4 className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-ink-400">
               Opening hours
             </h4>
             <dl className="mt-3 space-y-1.5">
@@ -114,19 +114,19 @@ export default function MapPanel({ variant = 'full' }: Props) {
                   <div
                     key={h.label}
                     className={`flex items-center justify-between gap-4 rounded-lg px-2.5 py-1.5 text-sm ${
-                      isToday ? 'bg-gold-50 font-semibold text-navy-900' : 'text-navy-500'
+                      isToday ? 'bg-accent-50 font-semibold text-ink-900' : 'text-ink-500'
                     }`}
                   >
                     <dt>
                       {h.label}
-                      {isToday && <span className="ml-2 text-[0.75rem] text-gold-600">TODAY</span>}
+                      {isToday && <span className="ml-2 text-[0.75rem] text-accent-600">TODAY</span>}
                     </dt>
-                    <dd className={h.hours === 'Closed' ? 'text-navy-400' : ''}>{h.hours}</dd>
+                    <dd className={h.hours === 'Closed' ? 'text-ink-400' : ''}>{h.hours}</dd>
                   </div>
                 )
               })}
             </dl>
-            <p className="mt-4 text-xs leading-relaxed text-navy-400">
+            <p className="mt-4 text-xs leading-relaxed text-ink-400">
               Times are India Standard Time. We host buyers and technical teams —
               please arrange a visit in advance so the right people are on site.
             </p>

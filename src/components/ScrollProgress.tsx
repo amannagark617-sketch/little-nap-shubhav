@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-/** A hairline gold bar across the top showing how far down the page you are. */
+/** A hairline gray-to-black bar across the top showing how far down the page you are. */
 export default function ScrollProgress() {
   const [progress, setProgress] = useState(0)
 
@@ -28,7 +28,7 @@ export default function ScrollProgress() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-gradient-to-r from-gold-300 via-gold-400 to-gold-600"
+      className="fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-gradient-to-r from-accent-300 via-accent-400 to-accent-600"
       style={{ transform: `scaleX(${progress})`, transition: 'transform 120ms linear' }}
     />
   )

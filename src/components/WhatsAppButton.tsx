@@ -37,8 +37,8 @@ export default function WhatsAppButton() {
         onClick={() => setDismissed(true)}
         aria-label="Hide WhatsApp button"
         className="inline-flex h-6 w-6 items-center justify-center rounded-full border
-                   border-navy-200 bg-white text-navy-400 shadow-glass transition-colors
-                   hover:text-navy-700"
+                   border-ink-200 bg-white text-ink-400 shadow-glass transition-colors
+                   hover:text-ink-700"
       >
         <IconClose className="h-3 w-3" />
       </button>

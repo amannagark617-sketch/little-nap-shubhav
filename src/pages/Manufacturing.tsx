@@ -53,7 +53,7 @@ export default function Manufacturing() {
                 if (steps.length === 0) return null
                 return (
                   <div key={stage}>
-                    <h3 className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+                    <h3 className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-accent-600">
                       {stage}
                     </h3>
                     <ul className="mt-2.5 space-y-1.5">
@@ -69,14 +69,14 @@ export default function Manufacturing() {
                               className={`flex w-full items-center justify-between gap-3 rounded-xl
                                           px-4 py-3 text-left text-sm font-medium transition-all ${
                                             isActive
-                                              ? 'bg-navy-900 text-white shadow-lift'
-                                              : 'text-navy-600 hover:bg-white/70'
+                                              ? 'bg-ink-900 text-white shadow-lift'
+                                              : 'text-ink-600 hover:bg-white/70'
                                           }`}
                             >
                               <span className="flex items-center gap-3">
                                 <span
                                   className={`font-mono text-xs ${
-                                    isActive ? 'text-gold-400' : 'text-navy-400'
+                                    isActive ? 'text-accent-300' : 'text-ink-400'
                                   }`}
                                 >
                                   {String(index + 1).padStart(2, '0')}
@@ -85,7 +85,7 @@ export default function Manufacturing() {
                               </span>
                               <IconChevron
                                 className={`h-4 w-4 shrink-0 transition-transform ${
-                                  isActive ? 'translate-x-0.5 text-gold-400' : 'text-navy-200'
+                                  isActive ? 'translate-x-0.5 text-accent-300' : 'text-ink-200'
                                 }`}
                               />
                             </button>
@@ -110,24 +110,24 @@ export default function Manufacturing() {
                   />
                 </div>
                 <div className="p-7">
-                  <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-gold-600">
+                  <p className="text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-accent-600">
                     Stage {active + 1} of {processSteps.length} · {step.stage}
                   </p>
-                  <h3 className="mt-3 font-display text-2xl text-navy-900">{step.name}</h3>
-                  <p className="mt-3 leading-relaxed text-navy-500">{step.body}</p>
+                  <h3 className="mt-3 font-display text-2xl text-ink-900">{step.name}</h3>
+                  <p className="mt-3 leading-relaxed text-ink-500">{step.body}</p>
 
                   <div className="mt-7 flex items-center justify-between gap-4">
                     <button
                       type="button"
                       onClick={() => setActive((i) => (i - 1 + processSteps.length) % processSteps.length)}
                       className="-my-3 inline-flex min-h-[44px] items-center text-sm font-semibold
-                                 text-navy-500 transition-colors hover:text-navy-900"
+                                 text-ink-500 transition-colors hover:text-ink-900"
                     >
                       ← Previous
                     </button>
-                    <div className="h-1 flex-1 overflow-hidden rounded-full bg-navy-100">
+                    <div className="h-1 flex-1 overflow-hidden rounded-full bg-ink-100">
                       <div
-                        className="h-full rounded-full bg-gold-400 transition-[width] duration-500"
+                        className="h-full rounded-full bg-accent-400 transition-[width] duration-500"
                         style={{ width: `${((active + 1) / processSteps.length) * 100}%` }}
                       />
                     </div>
@@ -135,7 +135,7 @@ export default function Manufacturing() {
                       type="button"
                       onClick={() => setActive((i) => (i + 1) % processSteps.length)}
                       className="-my-3 inline-flex min-h-[44px] items-center text-sm font-semibold
-                                 text-navy-800 transition-colors hover:text-gold-600"
+                                 text-ink-800 transition-colors hover:text-accent-600"
                     >
                       Next →
                     </button>
@@ -155,16 +155,16 @@ export default function Manufacturing() {
             <div>
               <p className="eyebrow">Capability</p>
               <h2 className="h-section">{capability.headline}</h2>
-              <p className="mt-8 font-display text-6xl text-gilded">
+              <p className="mt-8 font-display text-6xl text-emphasis">
                 <Counter to={3200} />
               </p>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-500">
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-ink-500">
                 Seats per month
               </p>
               <ul className="mt-9 space-y-3.5">
                 {capability.points.map((p) => (
-                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-navy-600">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400" />
+                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-ink-600">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-400" />
                     {p}
                   </li>
                 ))}
@@ -174,19 +174,19 @@ export default function Manufacturing() {
 
           <Reveal delay={120}>
             <div className="glass p-9">
-              <h3 className="font-display text-2xl text-navy-900">
+              <h3 className="font-display text-2xl text-ink-900">
                 {capability.workforce.headline}
               </h3>
-              <p className="mt-7 font-display text-6xl text-gilded">
+              <p className="mt-7 font-display text-6xl text-emphasis">
                 <Counter to={80} suffix="%+" />
               </p>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-navy-500">
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-ink-500">
                 Of our workforce are women
               </p>
               <ul className="mt-9 space-y-3.5">
                 {capability.workforce.points.map((p) => (
-                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-navy-600">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold-400" />
+                  <li key={p} className="flex gap-3 text-sm leading-relaxed text-ink-600">
+                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-400" />
                     {p}
                   </li>
                 ))}
@@ -227,8 +227,8 @@ export default function Manufacturing() {
                     />
                   </div>
                   <div className="flex items-center justify-between gap-3 px-5 py-4">
-                    <span className="font-display text-lg text-navy-900">{s.name}</span>
-                    <span className="text-[0.75rem] font-semibold uppercase tracking-wider text-gold-600">
+                    <span className="font-display text-lg text-ink-900">{s.name}</span>
+                    <span className="text-[0.75rem] font-semibold uppercase tracking-wider text-accent-600">
                       {s.stage}
                     </span>
                   </div>
@@ -243,10 +243,10 @@ export default function Manufacturing() {
       <section className="section">
         <div className="container-page text-center">
           <Reveal>
-            <h2 className="font-display text-3xl text-navy-900 sm:text-4xl">
+            <h2 className="font-display text-3xl text-ink-900 sm:text-4xl">
               Want to see it in person?
             </h2>
-            <p className="mx-auto mt-4 max-w-xl leading-relaxed text-navy-500">
+            <p className="mx-auto mt-4 max-w-xl leading-relaxed text-ink-500">
               We host buyers and technical teams at the Dewas plant. Tell us when
               works and we will arrange a walkthrough of the full line.
             </p>

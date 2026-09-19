@@ -94,7 +94,7 @@ export default function FacilitySection({ eyebrow, title, lede, className = '' }
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3
-                             bg-gradient-to-t from-navy-950/85 via-navy-950/35 to-transparent"
+                             bg-gradient-to-t from-ink-950/85 via-ink-950/35 to-transparent"
                 />
                 <div className="absolute inset-x-3 bottom-3">
                   <div className="glass-dark px-4 py-3">

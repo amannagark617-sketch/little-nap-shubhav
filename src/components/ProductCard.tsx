@@ -35,14 +35,14 @@ export default function ProductCard({ product, onOpen }: Props) {
         />
         <span
           className="absolute left-3 top-3 rounded-full border border-white/70 bg-white/85 px-2.5
-                     py-1 text-[0.75rem] font-semibold uppercase tracking-wider text-navy-700
+                     py-1 text-[0.75rem] font-semibold uppercase tracking-wider text-ink-700
                      backdrop-blur-md"
         >
           {range.name}
         </span>
         {product.altImage && (
           <span
-            className="absolute bottom-3 left-3 rounded-full bg-navy-900/90 px-2.5 py-1
+            className="absolute bottom-3 left-3 rounded-full bg-ink-900/90 px-2.5 py-1
                        text-[0.75rem] font-semibold text-white backdrop-blur-md"
           >
             Converts to bed
@@ -51,14 +51,14 @@ export default function ProductCard({ product, onOpen }: Props) {
       </button>
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-xl text-navy-900">{product.name}</h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-500">{product.blurb}</p>
+        <h3 className="font-display text-xl text-ink-900">{product.name}</h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-500">{product.blurb}</p>
 
         <ul className="mt-4 flex flex-wrap gap-1.5">
           {product.traits.map((t) => (
             <li
               key={t}
-              className="rounded-full bg-porcelain-100 px-2.5 py-1 text-[0.75rem] font-medium text-navy-600"
+              className="rounded-full bg-porcelain-100 px-2.5 py-1 text-[0.75rem] font-medium text-ink-600"
             >
               {t}
             </li>
@@ -69,9 +69,9 @@ export default function ProductCard({ product, onOpen }: Props) {
           <button
             type="button"
             onClick={() => onOpen(product)}
-            className="flex-1 rounded-full border border-navy-200/70 bg-white/50 min-h-[44px] px-4 py-2.5 text-sm
-                       font-semibold text-navy-800 transition-all duration-300
-                       hover:border-navy-300 hover:bg-white"
+            className="flex-1 rounded-full border border-ink-200/70 bg-white/50 min-h-[44px] px-4 py-2.5 text-sm
+                       font-semibold text-ink-800 transition-all duration-300
+                       hover:border-ink-300 hover:bg-white"
           >
             Details
           </button>
@@ -84,8 +84,8 @@ export default function ProductCard({ product, onOpen }: Props) {
             className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full
                         transition-colors ${
                           inList
-                            ? 'bg-gold-400 text-navy-950 hover:bg-gold-300'
-                            : 'bg-navy-900 text-white hover:bg-navy-800'
+                            ? 'bg-accent-400 text-white hover:bg-accent-500'
+                            : 'bg-ink-900 text-white hover:bg-ink-800'
                         }`}
           >
             {inList ? <IconCheck className="h-4 w-4" /> : <IconPlus className="h-4 w-4" />}

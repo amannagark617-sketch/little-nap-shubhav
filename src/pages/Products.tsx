@@ -91,8 +91,8 @@ export default function Products() {
                 aria-pressed={filter === 'all'}
                 className={`min-h-[44px] shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   filter === 'all'
-                    ? 'bg-navy-900 text-white shadow-lift'
-                    : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
+                    ? 'bg-ink-900 text-white shadow-lift'
+                    : 'border border-ink-200/70 bg-white/50 text-ink-600 hover:-translate-y-0.5 hover:border-ink-300 hover:bg-white'
                 }`}
               >
                 All ranges
@@ -106,8 +106,8 @@ export default function Products() {
                   className={`flex min-h-[44px] shrink-0 items-center gap-2 rounded-full py-1.5 pl-1.5
                               pr-4 text-sm font-medium transition-all duration-300 ${
                                 filter === r.id
-                                  ? 'bg-navy-900 text-white shadow-lift'
-                                  : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
+                                  ? 'bg-ink-900 text-white shadow-lift'
+                                  : 'border border-ink-200/70 bg-white/50 text-ink-600 hover:-translate-y-0.5 hover:border-ink-300 hover:bg-white'
                               }`}
                 >
                   <img
@@ -115,7 +115,7 @@ export default function Products() {
                     alt=""
                     aria-hidden="true"
                     className={`h-7 w-7 shrink-0 rounded-full object-cover ring-2 transition-colors ${
-                      filter === r.id ? 'ring-gold-400' : 'ring-white'
+                      filter === r.id ? 'ring-accent-400' : 'ring-white'
                     }`}
                   />
                   {r.name}
@@ -124,7 +124,7 @@ export default function Products() {
             </div>
 
             <div className="relative shrink-0 lg:w-64">
-              <IconSearch className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-300" />
+              <IconSearch className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-300" />
               <label htmlFor="product-search" className="sr-only">
                 Search models
               </label>
@@ -134,9 +134,9 @@ export default function Products() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search models…"
-                className="min-h-[44px] w-full rounded-full border border-navy-200/70 bg-white/60 py-2.5 pl-10 pr-9
-                           text-sm text-navy-900 backdrop-blur-sm placeholder:text-navy-300
-                           focus:border-gold-300 focus:bg-white focus:outline-none"
+                className="min-h-[44px] w-full rounded-full border border-ink-200/70 bg-white/60 py-2.5 pl-10 pr-9
+                           text-sm text-ink-900 backdrop-blur-sm placeholder:text-ink-300
+                           focus:border-accent-300 focus:bg-white focus:outline-none"
               />
               {query && (
                 <button
@@ -144,7 +144,7 @@ export default function Products() {
                   onClick={() => setQuery('')}
                   aria-label="Clear search"
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-0.5
-                             text-navy-300 transition-colors hover:text-navy-700"
+                             text-ink-300 transition-colors hover:text-ink-700"
                 >
                   <IconClose className="h-4 w-4" />
                 </button>
@@ -160,19 +160,19 @@ export default function Products() {
           <Aurora tone="azure" intensity="subtle" />
           <div className="container-page relative py-12">
             <p className="eyebrow">{activeRange.positioning}</p>
-            <h2 className="mt-3 font-display text-2xl text-navy-900 sm:text-3xl">
+            <h2 className="mt-3 font-display text-2xl text-ink-900 sm:text-3xl">
               {activeRange.name}
             </h2>
-            <p className="mt-4 max-w-3xl leading-relaxed text-navy-500">
+            <p className="mt-4 max-w-3xl leading-relaxed text-ink-500">
               {activeRange.description}
             </p>
             <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3">
               {activeRange.specHighlights.map((s) => (
                 <div key={s.label}>
-                  <dt className="text-[0.75rem] font-semibold uppercase tracking-wider text-navy-400">
+                  <dt className="text-[0.75rem] font-semibold uppercase tracking-wider text-ink-400">
                     {s.label}
                   </dt>
-                  <dd className="mt-0.5 text-sm font-medium text-navy-800">{s.value}</dd>
+                  <dd className="mt-0.5 text-sm font-medium text-ink-800">{s.value}</dd>
                 </div>
               ))}
             </dl>
@@ -185,8 +185,8 @@ export default function Products() {
         <div className="container-page">
           {visible.length === 0 ? (
             <div className="glass border-dashed py-20 text-center">
-              <p className="font-display text-2xl text-navy-800">No models match that.</p>
-              <p className="mt-3 text-sm text-navy-500">
+              <p className="font-display text-2xl text-ink-800">No models match that.</p>
+              <p className="mt-3 text-sm text-ink-500">
                 Try a different search term, or clear the filters to see all{' '}
                 {products.length} models.
               </p>
@@ -205,16 +205,16 @@ export default function Products() {
             <div className="space-y-16">
               {grouped.map(({ range, items }) => (
                 <div key={range.id}>
-                  <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-navy-100 pb-4">
+                  <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink-100 pb-4">
                     <div>
-                      <h2 className="font-display text-2xl text-navy-900">{range.name}</h2>
-                      <p className="mt-1 text-sm text-navy-400">{range.positioning}</p>
+                      <h2 className="font-display text-2xl text-ink-900">{range.name}</h2>
+                      <p className="mt-1 text-sm text-ink-400">{range.positioning}</p>
                     </div>
                     <button
                       type="button"
                       onClick={() => setFilter(range.id)}
                       className="-my-3 inline-flex min-h-[44px] items-center text-sm font-semibold
-                                 text-gold-600 underline-offset-4 hover:underline"
+                                 text-accent-600 underline-offset-4 hover:underline"
                     >
                       About this range
                     </button>

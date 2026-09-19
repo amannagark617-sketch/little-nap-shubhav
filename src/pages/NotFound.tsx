@@ -13,10 +13,10 @@ export default function NotFound() {
       <Aurora tone="azure" intensity="subtle" />
       <div className="container-page relative text-center">
         <p className="eyebrow justify-center">Error 404</p>
-        <h1 className="mt-5 font-display text-4xl text-navy-900 sm:text-5xl">
+        <h1 className="mt-5 font-display text-4xl text-ink-900 sm:text-5xl">
           That page has reclined out of view.
         </h1>
-        <p className="mx-auto mt-5 max-w-lg leading-relaxed text-navy-500">
+        <p className="mx-auto mt-5 max-w-lg leading-relaxed text-ink-500">
           The link may be old, or the page may have moved. The catalogue and the
           factory tour are both still where you left them.
         </p>

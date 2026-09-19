@@ -43,16 +43,16 @@ export default function About() {
         <div className="container-page relative grid gap-10 lg:grid-cols-2">
           <Reveal>
             <div className="glass glass-hover flex h-full flex-col p-9">
-              <div className="rule-gold" />
-              <h2 className="mt-6 font-display text-2xl text-navy-900">Our vision</h2>
-              <p className="mt-4 flex-1 text-lg leading-relaxed text-navy-600">{vision}</p>
+              <div className="rule-accent" />
+              <h2 className="mt-6 font-display text-2xl text-ink-900">Our vision</h2>
+              <p className="mt-4 flex-1 text-lg leading-relaxed text-ink-600">{vision}</p>
             </div>
           </Reveal>
           <Reveal delay={100}>
             <div className="glass glass-hover flex h-full flex-col p-9">
-              <div className="rule-gold" />
-              <h2 className="mt-6 font-display text-2xl text-navy-900">Our mission</h2>
-              <p className="mt-4 flex-1 text-lg leading-relaxed text-navy-600">{mission}</p>
+              <div className="rule-accent" />
+              <h2 className="mt-6 font-display text-2xl text-ink-900">Our mission</h2>
+              <p className="mt-4 flex-1 text-lg leading-relaxed text-ink-600">{mission}</p>
             </div>
           </Reveal>
         </div>
@@ -64,11 +64,11 @@ export default function About() {
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 80}>
               <div className="glass glass-hover h-full p-6">
-                <p className="font-display text-4xl text-navy-900">
+                <p className="font-display text-4xl text-ink-900">
                   <Counter to={s.value} suffix={s.suffix} />
                 </p>
-                <p className="mt-1.5 text-sm font-semibold text-navy-800">{s.label}</p>
-                <p className="mt-1 text-xs leading-relaxed text-navy-400">{s.detail}</p>
+                <p className="mt-1.5 text-sm font-semibold text-ink-800">{s.label}</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-400">{s.detail}</p>
               </div>
             </Reveal>
           ))}
@@ -89,8 +89,8 @@ export default function About() {
               </p>
               <ul className="mt-8 space-y-3.5">
                 {capability.workforce.points.map((p) => (
-                  <li key={p} className="flex gap-3 leading-relaxed text-navy-600">
-                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-gold-400" />
+                  <li key={p} className="flex gap-3 leading-relaxed text-ink-600">
+                    <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-400" />
                     {p}
                   </li>
                 ))}
@@ -101,13 +101,13 @@ export default function About() {
           <Reveal delay={120}>
             <div className="glass-strong relative overflow-hidden p-12 text-center">
               <Aurora tone="signature" intensity="rich" />
-              <p className="relative font-display text-7xl text-gilded">
+              <p className="relative font-display text-7xl text-emphasis">
                 <Counter to={80} suffix="%+" />
               </p>
-              <p className="relative mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-navy-500">
+              <p className="relative mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-ink-500">
                 Of our workforce are women
               </p>
-              <p className="relative mx-auto mt-6 max-w-sm text-sm leading-relaxed text-navy-500">
+              <p className="relative mx-auto mt-6 max-w-sm text-sm leading-relaxed text-ink-500">
                 Committed to diversity, inclusion and sustainable social impact — in
                 a sector where it remains the exception.
               </p>
@@ -131,9 +131,9 @@ export default function About() {
               return (
                 <Reveal as="li" key={d.title} delay={i * 70}>
                   <div className="glass glass-hover h-full p-7">
-                    <Icon className="h-7 w-7 text-gold-500" />
-                    <h3 className="mt-4 font-display text-lg text-navy-900">{d.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-navy-500">{d.body}</p>
+                    <Icon className="h-7 w-7 text-accent-500" />
+                    <h3 className="mt-4 font-display text-lg text-ink-900">{d.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-500">{d.body}</p>
                   </div>
                 </Reveal>
               )
@@ -161,7 +161,7 @@ export default function About() {
           <Reveal delay={120}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {culture.map((c) => (
-                <li key={c} className="glass glass-hover px-5 py-4 text-sm font-medium text-navy-700">
+                <li key={c} className="glass glass-hover px-5 py-4 text-sm font-medium text-ink-700">
                   {c}
                 </li>
               ))}
@@ -194,8 +194,8 @@ export default function About() {
             {partnership.map((p, i) => (
               <Reveal as="li" key={p.title} delay={i * 70}>
                 <div className="glass glass-hover h-full p-7">
-                  <h3 className="font-display text-xl text-navy-900">{p.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-navy-500">{p.body}</p>
+                  <h3 className="font-display text-xl text-ink-900">{p.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-ink-500">{p.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -219,7 +219,7 @@ export default function About() {
             {clients.map((name, i) => (
               <Reveal as="li" key={name} delay={i * 50}>
                 <div className="glass glass-hover flex h-full items-center justify-center px-5 py-9 text-center">
-                  <span className="font-display text-xl text-navy-700">{name}</span>
+                  <span className="font-display text-xl text-ink-700">{name}</span>
                 </div>
               </Reveal>
             ))}
@@ -235,16 +235,16 @@ export default function About() {
               <Aurora tone="signature" intensity="rich" />
               <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
                 <div>
-                  <h2 className="font-display text-3xl text-navy-900 sm:text-4xl">
+                  <h2 className="font-display text-3xl text-ink-900 sm:text-4xl">
                     Let's build something together.
                   </h2>
-                  <p className="mt-4 max-w-xl leading-relaxed text-navy-500">
+                  <p className="mt-4 max-w-xl leading-relaxed text-ink-500">
                     Whether you need an existing model private-labelled or a new one
                     developed from scratch, the conversation starts the same way.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 lg:justify-end">
-                  <Link to="/contact" className="btn-gold">
+                  <Link to="/contact" className="btn-secondary">
                     Get in touch
                     <IconArrowRight className="h-4 w-4" />
                   </Link>

@@ -4,45 +4,51 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Sampled directly from the Little Nap Subhav corporate deck.
-        navy: {
-          50: '#EEF1FA',
-          100: '#D8DEF2',
-          200: '#AEB9E0',
-          300: '#7F8DC6',
-          400: '#4E5C9C',
-          500: '#2A3675',
-          600: '#1B2560',
-          700: '#151B53', // header bar
-          800: '#0E1440',
-          900: '#001F5F', // display headings
-          950: '#070B2A',
+        // A neutral, no-hue palette by explicit client request — no navy, no
+        // gold, anywhere in the design system. `ink` is the workhorse scale
+        // for text, backgrounds and borders (Tailwind's own zinc ramp, with
+        // ink-500 nudged one step darker than stock zinc-500 — #71717A only
+        // clears 4.43:1 against the porcelain body, just short of the 4.5:1
+        // AA bar for body text; #6B6B74 clears 4.84:1).
+        ink: {
+          50: '#FAFAFA',
+          100: '#F4F4F5',
+          200: '#E4E4E7',
+          300: '#D4D4D8',
+          400: '#A1A1AA',
+          500: '#6B6B74',
+          600: '#52525B',
+          700: '#3F3F46',
+          800: '#27272A',
+          900: '#18181B',
+          950: '#09090B',
         },
-        gold: {
-          50: '#FBEFC5',
-          100: '#F9EDC7',
-          200: '#F1DA8D',
-          300: '#E6C258',
-          400: '#D3A320', // primary gold — brand mark and accents on dark only
-          // 500 and 600 are the text-safe steps on the light body (#F5F8FD):
-          // 3.58:1 clears the 3:1 bar for icons and large display type, 5.04:1
-          // clears 4.5:1 for body copy. Anything lighter fails WCAG AA there.
-          500: '#A87B14',
-          600: '#8A6410',
-          700: '#7A5713',
-          800: '#5E4315',
-          900: '#3F2D0F',
+        // `accent` is where gold used to carry emphasis (eyebrows, icons,
+        // active states, rules). With hue off the table, emphasis comes from
+        // going darker/heavier rather than from colour — so this ramps to
+        // black faster than `ink` does, giving accented elements a visibly
+        // stronger, more deliberate weight than ordinary body text at the
+        // same nominal "step". 400/500/600 all clear 4.5:1+ against the
+        // porcelain body, so any of them is safe for small text.
+        accent: {
+          50: '#F4F4F5',
+          100: '#E4E4E7',
+          200: '#D4D4D8',
+          300: '#A1A1AA',
+          400: '#52525B',
+          500: '#33333A',
+          600: '#232326',
+          700: '#161618',
+          800: '#000000',
+          900: '#000000',
         },
-        // Cool porcelain base — a white that leans very slightly blue, pulled
-        // from the navy rather than from beige. The site sits on light
-        // surfaces; navy is reserved for type and small accents rather than
-        // large blocks.
+        // The light base the site sits on — true neutral now, no blue lean.
         porcelain: {
           50: '#FFFFFF',
-          100: '#F5F8FD',
-          200: '#E9EFF9',
-          300: '#D7E0F0',
-          400: '#BCC8E0',
+          100: '#F5F5F5',
+          200: '#EBEBEB',
+          300: '#D9D9D9',
+          400: '#BFBFBF',
         },
       },
       fontFamily: {
@@ -78,9 +84,9 @@ export default {
         prose: '72ch',
       },
       boxShadow: {
-        glass: '0 8px 32px -8px rgba(21, 27, 83, 0.10), 0 2px 8px -2px rgba(21, 27, 83, 0.06)',
-        'glass-lg': '0 24px 64px -16px rgba(21, 27, 83, 0.16), 0 4px 16px -4px rgba(21, 27, 83, 0.08)',
-        lift: '0 28px 60px -24px rgba(21, 27, 83, 0.30)',
+        glass: '0 8px 32px -8px rgba(0, 0, 0, 0.10), 0 2px 8px -2px rgba(0, 0, 0, 0.06)',
+        'glass-lg': '0 24px 64px -16px rgba(0, 0, 0, 0.16), 0 4px 16px -4px rgba(0, 0, 0, 0.08)',
+        lift: '0 28px 60px -24px rgba(0, 0, 0, 0.30)',
       },
       backdropBlur: {
         xs: '2px',

@@ -50,10 +50,10 @@ export default function Lightbox({ items, index, onClose, onNavigate }: Props) {
       role="dialog"
       aria-modal="true"
       aria-label={item.title}
-      className="fixed inset-0 z-[70] flex flex-col bg-navy-950/95 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-[70] flex flex-col bg-ink-950/95 backdrop-blur-sm animate-fade-in"
     >
       <div className="flex items-center justify-between gap-4 px-5 py-4">
-        <p className="text-sm font-medium text-navy-200">
+        <p className="text-sm font-medium text-ink-200">
           {index + 1} / {items.length}
         </p>
         <button
@@ -81,7 +81,7 @@ export default function Lightbox({ items, index, onClose, onNavigate }: Props) {
       <div className="px-5 pb-7 text-center">
         <h2 className="font-display text-2xl text-white">{item.title}</h2>
         {item.caption && (
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-navy-200">
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-ink-200">
             {item.caption}
           </p>
         )}
