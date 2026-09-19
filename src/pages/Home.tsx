@@ -3,7 +3,6 @@ import Reveal from '../components/Reveal'
 import Counter from '../components/Counter'
 import Aurora from '../components/Aurora'
 import SplitText from '../components/SplitText'
-import Parallax from '../components/Parallax'
 import FacilitySection from '../components/FacilitySection'
 import MapPanel from '../components/MapPanel'
 import RangeQuickNav from '../components/RangeQuickNav'
@@ -12,14 +11,7 @@ import ProcessSlider from '../components/ProcessSlider'
 import PartnerBanner from '../components/PartnerBanner'
 import InsightsTeaser from '../components/InsightsTeaser'
 import PlaceholderImage from '../components/PlaceholderImage'
-import {
-  IconArrowRight,
-  IconCinema,
-  IconRecliner,
-  IconSofa,
-  IconSofaBed,
-  iconMap,
-} from '../components/Icons'
+import { IconArrowRight, iconMap } from '../components/Icons'
 import {
   brandPillars,
   clients,
@@ -34,8 +26,6 @@ import {
 import { brandImage } from '../data/factory'
 import { productImage, products, ranges } from '../data/products'
 
-const disciplineIcons = [IconRecliner, IconSofa, IconCinema, IconSofaBed]
-
 const rangePreview = ranges.map((r) => ({
   range: r,
   hero: products.find((p) => p.range === r.id)!,
@@ -45,104 +35,64 @@ const rangePreview = ranges.map((r) => ({
 export default function Home() {
   return (
     <>
-      {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative overflow-hidden">
-        <Aurora tone="signature" intensity="rich" />
+      {/* ═══════════════ HERO — full-bleed banner ═══════════════ */}
+      <section className="relative h-[88vh] min-h-[560px] w-full overflow-hidden sm:h-[85vh]">
+        <img
+          src={brandImage('hero-photo.webp')}
+          alt="A Little Nap Subhav power recliner in a contemporary living room"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/35 to-ink-950/10"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-r from-ink-950/70 via-ink-950/5 to-transparent"
+        />
 
-        <div className="container-page relative grid items-center gap-14 pb-20 pt-10 lg:grid-cols-[1.02fr_1fr] lg:pb-28 lg:pt-16">
-          <div>
-            <Reveal>
-              <span className="glass inline-flex items-center gap-2.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-600">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent-400" />
-                Est. in Dewas, Madhya Pradesh
-              </span>
-            </Reveal>
+        <div className="container-page relative flex h-full flex-col justify-end pb-16 sm:pb-20">
+          <Reveal>
+            <span className="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+              Est. in Dewas, Madhya Pradesh
+            </span>
+          </Reveal>
 
-            <h1 className="mt-7 font-display text-[2.7rem] leading-[1.05] text-ink-900 sm:text-[3.4rem] lg:text-[4.1rem]">
-              <SplitText as="span" className="block">
-                Where production
-              </SplitText>
-              <span className="mt-1 block">
-                <SplitText as="span" delay={180}>
-                  meets
-                </SplitText>{' '}
-                <span className="text-emphasis">passion.</span>
-              </span>
-            </h1>
+          <h1 className="mt-6 max-w-2xl font-display text-[2.6rem] leading-[1.05] text-white sm:text-[3.6rem] lg:text-[4.4rem]">
+            <SplitText as="span" className="block">
+              Where production
+            </SplitText>
+            <SplitText as="span" delay={180} className="mt-1 block">
+              meets passion.
+            </SplitText>
+          </h1>
 
-            <Reveal delay={320}>
-              <p className="mt-8 max-w-xl text-lg leading-[1.75] text-ink-500">
-                {company.legalName} engineers and manufactures world-class motion
-                furniture — recliners, motion sofas, cinema seating and sofa beds —
-                for brands that need consistent quality at volume.
-              </p>
-            </Reveal>
+          <Reveal delay={320}>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+              {company.legalName} engineers and manufactures world-class motion
+              furniture — recliners, motion sofas, cinema seating and sofa beds —
+              for brands that need consistent quality at volume.
+            </p>
+          </Reveal>
 
-            <Reveal delay={420}>
-              <div className="mt-10 flex flex-wrap gap-3">
-                <Link to="/about" className="btn-primary">
-                  Our story
-                  <IconArrowRight className="h-4 w-4" />
-                </Link>
-                <Link to="/manufacturing" className="btn-glass">
-                  Inside the plant
-                </Link>
-              </div>
-            </Reveal>
-
-            <Reveal delay={520}>
-              <ul className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {company.disciplines.map((d, i) => {
-                  const Icon = disciplineIcons[i]
-                  return (
-                    <li key={d} className="glass glass-hover p-4">
-                      <Icon className="h-7 w-7 text-accent-500" />
-                      <span className="mt-3 block text-[0.78rem] font-medium leading-snug text-ink-700">
-                        {d}
-                      </span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </Reveal>
-          </div>
-
-          {/* Hero image with a floating glass credential card */}
-          <Reveal delay={200}>
-            <div className="relative">
-              <Parallax strength={26}>
-                <div className="overflow-hidden rounded-[2rem] border border-white/60 shadow-glass-lg">
-                  <img
-                    src={brandImage('hero-portrait.webp')}
-                    alt="A Little Nap Subhav power recliner in a contemporary living room"
-                    width={1200}
-                    height={1462}
-                    fetchPriority="high"
-                    className="w-full object-cover"
-                  />
-                </div>
-              </Parallax>
-
-              {/* Sits over a warm photograph, so this panel is near-opaque —
-                  a translucent one would blur the leather and rug through it
-                  and read as a cream card. */}
-              <div className="glass-strong absolute bottom-5 left-5 w-[14.5rem] animate-float !bg-white/[0.94] p-5">
-                <p className="font-display text-4xl text-ink-900">
-                  <Counter to={3200} />
-                </p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent-600">
-                  Seats per month
-                </p>
-                <p className="mt-2 text-xs leading-relaxed text-ink-500">
-                  Current monthly manufacturing capacity
-                </p>
-              </div>
+          <Reveal delay={420}>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link to="/about" className="btn bg-white text-ink-900 hover:-translate-y-0.5 hover:bg-white/90">
+                Our story
+                <IconArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/manufacturing" className="btn-ghost-light">
+                Inside the plant
+              </Link>
             </div>
           </Reveal>
         </div>
+      </section>
 
-        {/* Brand pillars */}
-        <div className="container-page relative pb-8">
+      {/* Brand pillars */}
+      <section className="relative">
+        <div className="container-page relative py-8">
           <Reveal>
             <ul className="glass grid gap-px p-2 sm:grid-cols-2 lg:grid-cols-4">
               {brandPillars.map((pillar) => {
