@@ -126,6 +126,12 @@ export default {
           '0%': { opacity: '0', transform: 'scale(0.96)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        /* A slow, continuous zoom — the fallback "motion" for a hero photo
+           standing in until a real background video is supplied. */
+        kenburns: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.12)' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
@@ -137,6 +143,7 @@ export default {
         float: 'float 7s ease-in-out infinite',
         shimmer: 'shimmer 3.5s linear infinite',
         'rise-in': 'rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
+        kenburns: 'kenburns 20s ease-out both',
       },
     },
   },

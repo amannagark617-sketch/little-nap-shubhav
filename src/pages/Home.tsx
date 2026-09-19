@@ -11,6 +11,7 @@ import ProcessSlider from '../components/ProcessSlider'
 import PartnerBanner from '../components/PartnerBanner'
 import InsightsTeaser from '../components/InsightsTeaser'
 import PlaceholderImage from '../components/PlaceholderImage'
+import HeroMedia from '../components/HeroMedia'
 import { IconArrowRight, iconMap } from '../components/Icons'
 import {
   brandPillars,
@@ -37,10 +38,10 @@ export default function Home() {
     <>
       {/* ═══════════════ HERO — full-bleed banner ═══════════════ */}
       <section className="relative h-[88vh] min-h-[560px] w-full overflow-hidden sm:h-[85vh]">
-        <img
-          src={brandImage('hero-photo.webp')}
+        <HeroMedia
+          videoFile="hero-loop.mp4"
+          fallbackSrc={brandImage('hero-photo.webp')}
           alt="A Little Nap Subhav power recliner in a contemporary living room"
-          fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div
