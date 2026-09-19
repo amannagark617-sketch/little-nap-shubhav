@@ -2,12 +2,15 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
+import PlaceholderImage from '../components/PlaceholderImage'
 import { IconArrowRight, IconCheck, IconGear, IconSearch, IconShield, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
 import { productFeatures, qualityStages } from '../data/company'
 
 /** One icon per stage, in order: sourcing, inward check, in-process control, final sign-off. */
 const STAGE_ICONS = [IconGear, IconSearch, IconShield, IconCheck]
+/** Matching photo slug per stage — same order as qualityStages. */
+const STAGE_IMAGES = ['material-selection', 'inward-inspection', 'in-process-control', 'final-inspection']
 
 export default function Quality() {
   useEffect(() => {
@@ -51,7 +54,7 @@ export default function Quality() {
 
                   <div
                     className={`glass glass-hover group relative flex flex-col gap-8 overflow-hidden
-                                p-8 sm:p-10 lg:flex-row lg:items-center lg:gap-12 ${
+                                p-8 sm:p-10 lg:flex-row lg:items-center lg:gap-10 ${
                                   flip ? 'lg:flex-row-reverse' : ''
                                 }`}
                   >
@@ -86,6 +89,17 @@ export default function Quality() {
                         {stage.title}
                       </h2>
                       <p className="mt-3 max-w-2xl leading-relaxed text-ink-500">{stage.body}</p>
+                    </div>
+
+                    <div className="relative z-10 w-full shrink-0 lg:w-60">
+                      <PlaceholderImage
+                        path={`quality/${STAGE_IMAGES[i]}.webp`}
+                        label={`Stage ${stage.step} photo`}
+                        recommended="900 × 700"
+                        alt={stage.title}
+                        aspect="4 / 3"
+                        className="w-full rounded-xl"
+                      />
                     </div>
                   </div>
                 </Reveal>

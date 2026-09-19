@@ -8,8 +8,10 @@ import FacilitySection from '../components/FacilitySection'
 import MapPanel from '../components/MapPanel'
 import RangeQuickNav from '../components/RangeQuickNav'
 import CampaignCarousel from '../components/CampaignCarousel'
+import ProcessSlider from '../components/ProcessSlider'
 import PartnerBanner from '../components/PartnerBanner'
 import InsightsTeaser from '../components/InsightsTeaser'
+import PlaceholderImage from '../components/PlaceholderImage'
 import {
   IconArrowRight,
   IconCinema,
@@ -214,6 +216,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══════════════ INSIDE THE PLANT ═══════════════ */}
+      <section className="section pt-0">
+        <div className="container-page">
+          <Reveal>
+            <p className="eyebrow">See it happen</p>
+            <h2 className="h-section">Inside the plant.</h2>
+            <p className="lede">
+              Twelve real stages, from prototype to packed unit — the same walkthrough
+              the Manufacturing page covers in full.
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="mt-10">
+            <ProcessSlider />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══════════════ THE PLACE ═══════════════ */}
       {/* Renders only once the client's facility photographs are present. */}
       <FacilitySection
@@ -256,7 +275,7 @@ export default function Home() {
           <Reveal>
             <div className="glass-strong relative overflow-hidden p-10 sm:p-14">
               <Aurora tone="azure" intensity="normal" />
-              <div className="relative grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+              <div className="relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                 <div>
                   <p className="eyebrow">Our unique strength</p>
                   <h2 className="h-section">A women-led factory floor.</h2>
@@ -270,13 +289,23 @@ export default function Home() {
                     <IconArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
-                <div className="text-center">
-                  <p className="font-display text-[5.5rem] leading-none text-emphasis sm:text-[7rem]">
-                    <Counter to={80} suffix="%" />
-                  </p>
-                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-500">
-                    of our workforce
-                  </p>
+                <div>
+                  <PlaceholderImage
+                    path="culture/women-led-floor.webp"
+                    label="The women-led floor"
+                    recommended="1200 × 900"
+                    alt="Women on the Little Nap Subhav production floor"
+                    aspect="4 / 3"
+                    className="w-full rounded-2xl"
+                  />
+                  <div className="mt-4 flex items-baseline gap-3">
+                    <p className="font-display text-4xl leading-none text-emphasis">
+                      <Counter to={80} suffix="%" />
+                    </p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-500">
+                      of our workforce
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -336,17 +365,27 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={140}>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {culture.map((c, i) => (
-                <li
-                  key={c}
-                  className="glass glass-hover px-5 py-4 text-sm font-medium text-ink-700"
-                  style={{ transitionDelay: `${i * 30}ms` }}
-                >
-                  {c}
-                </li>
-              ))}
-            </ul>
+            <div>
+              <PlaceholderImage
+                path="culture/team-celebration.webp"
+                label="A celebration on the floor"
+                recommended="1400 × 900"
+                alt="Little Nap Subhav team celebrating together"
+                aspect="16 / 10"
+                className="w-full rounded-2xl"
+              />
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                {culture.map((c, i) => (
+                  <li
+                    key={c}
+                    className="glass glass-hover px-5 py-4 text-sm font-medium text-ink-700"
+                    style={{ transitionDelay: `${i * 30}ms` }}
+                  >
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </div>
       </section>

@@ -5,7 +5,8 @@ import Reveal from '../components/Reveal'
 import Counter from '../components/Counter'
 import Lightbox from '../components/Lightbox'
 import Aurora from '../components/Aurora'
-import { IconArrowRight, IconChevron } from '../components/Icons'
+import PlaceholderImage from '../components/PlaceholderImage'
+import { IconArrowRight, IconChevron, IconPlay } from '../components/Icons'
 import { factoryImage, processSteps, stageOrder } from '../data/factory'
 import { capability } from '../data/company'
 
@@ -236,6 +237,34 @@ export default function Manufacturing() {
               </Reveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ---- Plant walkthrough video ---- */}
+      <section className="section pt-0">
+        <div className="container-page">
+          <Reveal>
+            <p className="eyebrow">See it in motion</p>
+            <h2 className="h-section">A walkthrough of the line.</h2>
+          </Reveal>
+          <Reveal delay={100} className="relative mt-10">
+            <PlaceholderImage
+              path="factory/plant-walkthrough.webp"
+              label="Plant walkthrough video — cover frame"
+              recommended="1600 × 900"
+              alt="Little Nap Subhav plant walkthrough video"
+              aspect="16 / 9"
+              className="w-full rounded-2xl"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 flex items-center justify-center"
+            >
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lift sm:h-20 sm:w-20">
+                <IconPlay className="h-8 w-8 text-ink-900 sm:h-9 sm:w-9" />
+              </span>
+            </span>
+          </Reveal>
         </div>
       </section>
 

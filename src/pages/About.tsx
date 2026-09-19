@@ -6,6 +6,7 @@ import Counter from '../components/Counter'
 import { IconArrowRight, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
 import FacilitySection from '../components/FacilitySection'
+import PlaceholderImage from '../components/PlaceholderImage'
 import {
   capability,
   clients,
@@ -99,18 +100,24 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="glass-strong relative overflow-hidden p-12 text-center">
-              <Aurora tone="signature" intensity="rich" />
-              <p className="relative font-display text-7xl text-emphasis">
-                <Counter to={80} suffix="%+" />
-              </p>
-              <p className="relative mt-3 text-sm font-semibold uppercase tracking-[0.18em] text-ink-500">
-                Of our workforce are women
-              </p>
-              <p className="relative mx-auto mt-6 max-w-sm text-sm leading-relaxed text-ink-500">
-                Committed to diversity, inclusion and sustainable social impact — in
-                a sector where it remains the exception.
-              </p>
+            <div className="space-y-5">
+              <PlaceholderImage
+                path="culture/women-led-floor.webp"
+                label="The women-led floor"
+                recommended="1200 × 900"
+                alt="Women on the Little Nap Subhav production floor"
+                aspect="4 / 3"
+                className="w-full rounded-2xl"
+              />
+              <div className="glass-strong relative overflow-hidden p-8 text-center">
+                <Aurora tone="signature" intensity="rich" />
+                <p className="relative font-display text-5xl text-emphasis">
+                  <Counter to={80} suffix="%+" />
+                </p>
+                <p className="relative mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-500">
+                  Of our workforce are women
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -159,13 +166,23 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={120}>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {culture.map((c) => (
-                <li key={c} className="glass glass-hover px-5 py-4 text-sm font-medium text-ink-700">
-                  {c}
-                </li>
-              ))}
-            </ul>
+            <div>
+              <PlaceholderImage
+                path="culture/team-celebration.webp"
+                label="A celebration on the floor"
+                recommended="1400 × 900"
+                alt="Little Nap Subhav team celebrating together"
+                aspect="16 / 10"
+                className="w-full rounded-2xl"
+              />
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                {culture.map((c) => (
+                  <li key={c} className="glass glass-hover px-5 py-4 text-sm font-medium text-ink-700">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </div>
       </section>
