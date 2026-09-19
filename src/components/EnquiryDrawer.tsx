@@ -1,7 +1,50 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEnquiry } from '../context/EnquiryContext'
 import { IconArrowRight, IconClose } from './Icons'
+
+/**
+ * A quantity field bound straight to the clamped store value fights the
+ * visitor mid-edit: clearing it to type a fresh number reads as 0, gets
+ * clamped straight back to 1, and the next keystroke appends onto that
+ * instead of replacing it. Keeping the typed text as local state and only
+ * committing (and re-clamping) on blur lets editing feel normal.
+ */
+function QuantityField({
+  productId,
+  quantity,
+  setQuantity,
+}: {
+  productId: string
+  quantity: number
+  setQuantity: (productId: string, quantity: number) => void
+}) {
+  const [raw, setRaw] = useState(String(quantity))
+
+  useEffect(() => setRaw(String(quantity)), [quantity])
+
+  return (
+    <input
+      id={`qty-${productId}`}
+      type="number"
+      min={1}
+      max={100000}
+      value={raw}
+      onChange={(e) => setRaw(e.target.value)}
+      onBlur={() => {
+        const n = Number(raw)
+        const next = raw !== '' && Number.isFinite(n) ? Math.max(1, Math.min(100000, Math.round(n))) : quantity
+        setQuantity(productId, next)
+        // Mirrors setQuantity's own clamping so the field reflects the
+        // committed value immediately, even when it lands on the same
+        // number as before (which wouldn't otherwise re-trigger the effect).
+        setRaw(String(next))
+      }}
+      className="h-11 w-24 rounded-lg border border-ink-100 bg-porcelain-50 px-3
+                 text-sm text-ink-900 focus:border-accent-300 focus:outline-none"
+    />
+  )
+}
 
 /**
  * The slide-over that shows what the visitor has collected for quotation.
@@ -114,15 +157,10 @@ export default function EnquiryDrawer() {
                     >
                       Indicative qty
                     </label>
-                    <input
-                      id={`qty-${line.productId}`}
-                      type="number"
-                      min={1}
-                      max={100000}
-                      value={line.quantity}
-                      onChange={(e) => setQuantity(line.productId, Number(e.target.value))}
-                      className="h-11 w-24 rounded-lg border border-ink-100 bg-porcelain-50 px-3
-                                 text-sm text-ink-900 focus:border-accent-300 focus:outline-none"
+                    <QuantityField
+                      productId={line.productId}
+                      quantity={line.quantity}
+                      setQuantity={setQuantity}
                     />
                   </div>
                 </li>
