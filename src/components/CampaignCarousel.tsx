@@ -87,7 +87,7 @@ export default function CampaignCarousel() {
           <PlaceholderImage
             key={active.id}
             path={active.image}
-            label={`Creative — ${active.eyebrow}`}
+            label={`Creative, ${active.eyebrow}`}
             recommended="1400 × 1000"
             alt={active.imageAlt}
             aspect="4 / 3"

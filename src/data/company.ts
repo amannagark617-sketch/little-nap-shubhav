@@ -37,7 +37,7 @@ export const company = {
     website: 'www.lnsindia.co.in',
     address: {
       label: 'Manufacturing Plant',
-      name: 'Little Nap Subhav Dewas — Manufacturing Plant',
+      name: 'Little Nap Subhav Dewas, Manufacturing Plant',
       lines: [
         'Shree Shubham Logistics Park, 27–28',
         'AB Road Bypass, Dewas',
@@ -100,7 +100,7 @@ export const differentiators = [
   },
   {
     title: 'Skilled Workforce',
-    body: 'Trained craftspeople across carpentry, foaming, upholstery, sewing and fitting — with continuous in-house skill development.',
+    body: 'Trained craftspeople across carpentry, foaming, upholstery, sewing and fitting, with continuous in-house skill development.',
     icon: 'people',
   },
   {
@@ -158,7 +158,7 @@ export const capability = {
     'Scalable operations to meet increasing customer demand.',
   ],
   workforce: {
-    headline: 'Our Unique Strength — A Women-Led Workforce',
+    headline: 'Our Unique Strength, A Women-Led Workforce',
     points: [
       'More than 80% of our workforce comprises of women.',
       'Empowering women through skill development and employment opportunities.',
@@ -173,7 +173,7 @@ export const qualityStages = [
   {
     step: '01',
     title: 'Raw Material Selection & R&D',
-    body: 'Premium raw materials — including plywood, foam, fabric, reclining mechanisms and accessories — are carefully selected and approved by our R&D team.',
+    body: 'Premium raw materials, including plywood, foam, fabric, reclining mechanisms and accessories, are carefully selected and approved by our R&D team.',
   },
   {
     step: '02',
@@ -232,7 +232,7 @@ export const clients = [
 export const partnership = [
   {
     title: 'Business Commitment',
-    body: 'Capacity planned around committed volumes — up to 1,000 cinema seating and 500 recliner units per month.',
+    body: 'Capacity planned around committed volumes, up to 1,000 cinema seating and 500 recliner units per month.',
   },
   {
     title: 'Long-Term Partnership',

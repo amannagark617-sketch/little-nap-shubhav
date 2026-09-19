@@ -100,10 +100,6 @@ export default {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        marquee: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
         /* Slow drifting colour fields that glass panels sit on top of. */
         drift: {
           '0%, 100%': { transform: 'translate3d(0,0,0) scale(1)' },
@@ -137,7 +133,6 @@ export default {
         'fade-up': 'fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both',
         'fade-in': 'fade-in 0.4s ease-out both',
         'scale-in': 'scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both',
-        marquee: 'marquee 40s linear infinite',
         drift: 'drift 26s ease-in-out infinite',
         'drift-slow': 'drift 38s ease-in-out infinite',
         float: 'float 7s ease-in-out infinite',

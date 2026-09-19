@@ -40,7 +40,7 @@ export default function Footer() {
             <Logo tone="light" />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink-300">
               {company.tagline} Engineering and manufacturing world-class motion
-              furniture from Dewas, Madhya Pradesh — for brands across India and
+              furniture from Dewas, Madhya Pradesh, for brands across India and
               beyond.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -169,7 +169,7 @@ export default function Footer() {
           </p>
           <p>
             This site presents manufacturing capability and product ranges. It is
-            not an online store — every enquiry is quoted individually.
+            not an online store, every enquiry is quoted individually.
           </p>
         </div>
       </div>

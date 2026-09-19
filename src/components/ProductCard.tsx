@@ -27,7 +27,7 @@ export default function ProductCard({ product, onOpen }: Props) {
       >
         <img
           src={productImage(product.image)}
-          alt={`${product.name} — ${range.name} range`}
+          alt={`${product.name}, ${range.name} range`}
           loading="lazy"
           decoding="async"
           className="h-full w-full object-cover transition-transform duration-[1.2s]

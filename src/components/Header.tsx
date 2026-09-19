@@ -62,7 +62,7 @@ export default function Header() {
                           : 'h-[68px] border border-transparent bg-transparent'
                       }`}
         >
-          <Link to="/" aria-label="Little Nap Subhav — home" className="shrink-0">
+          <Link to="/" aria-label="Little Nap Subhav, home" className="shrink-0">
             <Logo />
           </Link>
 

@@ -19,7 +19,7 @@ export const processSteps: ProcessStep[] = [
     name: 'N.P.D. Lab',
     image: 'npd-lab.webp',
     stage: 'Preparation',
-    body: 'New product development. Prototypes are modelled, sat in and revised here before a model is released to the line — this is where ODM briefs become buildable drawings.',
+    body: 'New product development. Prototypes are modelled, sat in and revised here before a model is released to the line, this is where ODM briefs become buildable drawings.',
   },
   {
     id: 'cnc-panel-saw',
@@ -47,7 +47,7 @@ export const processSteps: ProcessStep[] = [
     name: 'Carpentry & Structure Assembly',
     image: 'carpentry-assembly.webp',
     stage: 'Structure',
-    body: 'Cut components become the load-bearing frame. Joints, corner blocks and reinforcement are built in at this stage — everything the chair’s service life depends on.',
+    body: 'Cut components become the load-bearing frame. Joints, corner blocks and reinforcement are built in at this stage, everything the chair’s service life depends on.',
   },
   {
     id: 'foaming',

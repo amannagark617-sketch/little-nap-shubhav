@@ -276,6 +276,18 @@
     text-wrap: balance;
   }
 
+  /* Tailwind only emits @keyframes for names it sees behind its own
+     `animate-*` utility in scanned content — since this class references
+     the keyframe directly rather than through that utility, the keyframe
+     is declared by hand here so it actually ships in the build. */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
   .marquee-track {
     animation: marquee 48s linear infinite;
   }

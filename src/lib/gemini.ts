@@ -57,7 +57,7 @@ function buildKnowledgeBase(): string {
         .map((p) => p.name)
         .join(', ')
       const specs = r.specHighlights.map((s) => `${s.label}: ${s.value}`).join('; ')
-      return `- ${r.name} (${r.positioning}). Models: ${models}. ${r.description} Range-level construction — ${specs}.`
+      return `- ${r.name} (${r.positioning}). Models: ${models}. ${r.description} Range-level construction, ${specs}.`
     })
     .join('\n')
 
@@ -89,7 +89,7 @@ CONSTRUCTION FEATURES (apply across the catalogue)
 ${productFeatures.map((f) => `- ${f.title}: ${f.body}`).join('\n')}
 
 QUALITY SYSTEM (four stages)
-${qualityStages.map((q) => `${q.step}. ${q.title} — ${q.body}`).join('\n')}
+${qualityStages.map((q) => `${q.step}. ${q.title}, ${q.body}`).join('\n')}
 
 FACTORY PROCESS AREAS (order of flow)
 ${processSteps.map((s) => `- ${s.name} (${s.stage}): ${s.body}`).join('\n')}
@@ -127,12 +127,13 @@ HARD RULES
    discuss the internal commercial terms of the listed clients.
 
 STYLE
-Concise and practical — usually two to four short sentences, or a tight bulleted
+Concise and practical, usually two to four short sentences, or a tight bulleted
 list when recommending models. Plain British English. No emoji. No markdown
-headings. Do not open with a greeting after the first turn. When you recommend
-models, name the range and say in one clause why it fits what they described.
-When a visitor sounds ready, suggest they add models to the enquiry list and
-send it through the contact form.
+headings. No em dashes, use a comma or a full stop instead. Do not open with a
+greeting after the first turn. When you recommend models, name the range and
+say in one clause why it fits what they described. When a visitor sounds
+ready, suggest they add models to the enquiry list and send it through the
+contact form.
 
 KNOWLEDGE BASE
 ${buildKnowledgeBase()}
@@ -252,7 +253,7 @@ async function askViaProxy(
 function describe(err: unknown): string {
   const raw = err instanceof Error ? err.message : String(err)
   if (/api[_ -]?key|permission|unauthenticated|401|403/i.test(raw)) {
-    return 'The advisor is not authorised — the API key looks missing or invalid.'
+    return 'The advisor is not authorised, the API key looks missing or invalid.'
   }
   if (/quota|429|resource[_ ]exhausted/i.test(raw)) {
     return 'The advisor has hit its usage limit for now. Please try again shortly.'
@@ -265,7 +266,7 @@ function describe(err: unknown): string {
 
 /** Opening prompts offered before the visitor types anything. */
 export const suggestedPrompts = [
-  'I run a 6-screen multiplex — what should I be looking at?',
+  'I run a 6-screen multiplex, what should I be looking at?',
   'What is the difference between the Premium and Reserved ranges?',
   'Walk me through how a unit is built and inspected.',
   'Can you manufacture to our own drawings?',

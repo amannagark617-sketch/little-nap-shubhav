@@ -115,7 +115,7 @@ export const ranges: Range[] = [
     name: 'Reserved',
     positioning: 'Signature design series',
     description:
-      'Our signature series — tighter, more architectural silhouettes with slimmer arms and a more upright stance. Reserved is built for brands that want a recliner which does not look like a recliner.',
+      'Our signature series, tighter, more architectural silhouettes with slimmer arms and a more upright stance. Reserved is built for brands that want a recliner which does not look like a recliner.',
     specHighlights: [
       { label: 'Construction', value: 'Reinforced ply frame' },
       { label: 'Foam', value: 'High-density, firm-profile seat' },
@@ -157,7 +157,7 @@ export const ranges: Range[] = [
     name: 'Cinema Seating',
     positioning: 'Multiplex and home theatre',
     description:
-      'Seating built for commercial duty cycles — multiplexes, private screening rooms and home theatres. Specified with the accessories an auditorium needs, including cup holders, consoles and row configurations.',
+      'Seating built for commercial duty cycles, multiplexes, private screening rooms and home theatres. Specified with the accessories an auditorium needs, including cup holders, consoles and row configurations.',
     specHighlights: [
       { label: 'Application', value: 'Multiplex and home theatre' },
       { label: 'Configuration', value: 'Single, row and lounger' },
@@ -176,7 +176,7 @@ export const products: Product[] = [
     range: 'super-economical',
     image: 'joy.webp',
     blurb:
-      'A compact single recliner with a clean box arm and a low visual weight — the easiest chair in the catalogue to place in a small living room.',
+      'A compact single recliner with a clean box arm and a low visual weight, the easiest chair in the catalogue to place in a small living room.',
     traits: ['Compact footprint', 'Box arm', 'Manual recline'],
   },
   {
@@ -214,7 +214,7 @@ export const products: Product[] = [
     range: 'economical',
     image: 'nest.webp',
     blurb:
-      'Higher sides and a more enclosing seat give Nest a settled, wrapped feel — popular where the chair doubles as a reading or nursing seat.',
+      'Higher sides and a more enclosing seat give Nest a settled, wrapped feel, popular where the chair doubles as a reading or nursing seat.',
     traits: ['Enclosing sides', 'Wrapped seat', 'Manual or motorised'],
   },
   {
@@ -272,7 +272,7 @@ export const products: Product[] = [
     range: 'luxury',
     image: 'crown.webp',
     blurb:
-      'A wide, low-slung stance with a generous back and substantial arm bolsters — the most sofa-like single seat we build.',
+      'A wide, low-slung stance with a generous back and substantial arm bolsters, the most sofa-like single seat we build.',
     traits: ['Wide stance', 'Arm bolsters', 'Motorised available'],
   },
   {
@@ -330,7 +330,7 @@ export const products: Product[] = [
     range: 'motion-sofa',
     image: 'budapest.webp',
     blurb:
-      'A fuller motion sofa with deeper seats and more substantial arms — the mainstream three-seat configuration for family living rooms.',
+      'A fuller motion sofa with deeper seats and more substantial arms, the mainstream three-seat configuration for family living rooms.',
     traits: ['Deep seats', 'Substantial arms', 'Family scale'],
   },
   {
@@ -365,7 +365,7 @@ export const products: Product[] = [
     altImage: 'popup-pullout-bed.webp',
     altImageLabel: 'Bed mode',
     blurb:
-      'A pull-out base with a pop-up seat section that levels into a flat sleeping surface — a compact conversion that keeps the sofa footprint tight.',
+      'A pull-out base with a pop-up seat section that levels into a flat sleeping surface, a compact conversion that keeps the sofa footprint tight.',
     traits: ['Pop-up seat', 'Pull-out base', 'Compact footprint'],
   },
 

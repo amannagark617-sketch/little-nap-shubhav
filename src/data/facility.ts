@@ -41,7 +41,7 @@ export const facilityShots: FacilityShot[] = [
     file: 'showroom-recliners.webp',
     title: 'The recliner floor',
     caption:
-      'Single seats from Super Economical through to Reserved, side by side — the quickest way to feel the difference between the tiers.',
+      'Single seats from Super Economical through to Reserved, side by side, the quickest way to feel the difference between the tiers.',
   },
   {
     id: 'proud-moments',

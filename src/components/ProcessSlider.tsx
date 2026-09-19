@@ -56,7 +56,7 @@ export default function ProcessSlider() {
       onBlur={() => setPaused(false)}
       role="region"
       aria-roledescription="carousel"
-      aria-label="Inside the plant — the production process"
+      aria-label="Inside the plant, the production process"
     >
       <div
         className="relative h-[22rem] cursor-grab touch-pan-y select-none active:cursor-grabbing sm:h-[28rem] lg:h-[32rem]"

@@ -35,7 +35,7 @@ export default function Products() {
   }
 
   useEffect(() => {
-    document.title = 'Products — Little Nap Subhav India Pvt. Ltd.'
+    document.title = 'Products, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   const visible = useMemo(() => {

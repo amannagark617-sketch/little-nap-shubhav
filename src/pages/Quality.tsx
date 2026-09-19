@@ -14,7 +14,7 @@ const STAGE_IMAGES = ['material-selection', 'inward-inspection', 'in-process-con
 
 export default function Quality() {
   useEffect(() => {
-    document.title = 'Quality Assurance — Little Nap Subhav India Pvt. Ltd.'
+    document.title = 'Quality Assurance, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   return (
@@ -35,71 +35,45 @@ export default function Quality() {
       <section className="section relative overflow-hidden">
         <Aurora tone="signature" intensity="subtle" />
         <div className="container-page relative">
-          <ol className="relative flex flex-col gap-8">
+          <ol className="relative flex flex-col gap-6">
             {qualityStages.map((stage, i) => {
               const Icon = STAGE_ICONS[i % STAGE_ICONS.length]
               const flip = i % 2 === 1
               return (
-                <Reveal as="li" key={stage.step} delay={i * 100} className="relative">
-                  {/* The connector: a gradient thread running stage to stage,
-                      not a flat grey rule — reads as a single continuous
-                      process rather than four separate boxes. */}
-                  {i < qualityStages.length - 1 && (
-                    <div
-                      aria-hidden="true"
-                      className="absolute left-1/2 top-full z-0 hidden h-8 w-px
-                                 bg-gradient-to-b from-accent-400/70 to-ink-300/40 lg:block"
-                    />
-                  )}
-
-                  <div
-                    className={`glass glass-hover group relative flex flex-col gap-8 overflow-hidden
-                                p-8 sm:p-10 lg:flex-row lg:items-center lg:gap-10 ${
-                                  flip ? 'lg:flex-row-reverse' : ''
-                                }`}
-                  >
-                    {/* Oversized watermark numeral — the editorial touch that
-                        makes each stage feel like a considered spread rather
-                        than a list item. */}
-                    <span
-                      aria-hidden="true"
-                      className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none
-                                  font-display text-[9rem] font-bold leading-none text-ink-900/[0.05]
-                                  transition-colors duration-500 group-hover:text-accent-500/[0.08]
-                                  sm:text-[12rem] ${flip ? 'right-2 sm:right-4' : 'left-2 sm:left-4'}`}
-                    >
-                      {stage.step}
-                    </span>
-
-                    <div className="relative z-10 flex shrink-0 flex-col items-start gap-4 lg:w-48">
-                      <span
-                        className="flex h-16 w-16 items-center justify-center rounded-2xl
-                                   bg-ink-900 text-accent-300 shadow-lift transition-transform
-                                   duration-500 group-hover:scale-105 group-hover:rotate-3"
-                      >
-                        <Icon className="h-7 w-7" />
-                      </span>
-                      <span className="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent-600">
-                        Stage {stage.step}
-                      </span>
-                    </div>
-
-                    <div className="relative z-10 lg:flex-1">
-                      <h2 className="font-display text-2xl text-ink-900 sm:text-[1.75rem]">
-                        {stage.title}
-                      </h2>
-                      <p className="mt-3 max-w-2xl leading-relaxed text-ink-500">{stage.body}</p>
-                    </div>
-
-                    <div className="relative z-10 w-full shrink-0 lg:w-60">
+                <Reveal as="li" key={stage.step} delay={i * 100}>
+                  <div className="glass glass-hover grid overflow-hidden lg:grid-cols-2">
+                    <div className={`relative min-h-[16rem] lg:min-h-[24rem] ${flip ? 'lg:order-2' : ''}`}>
                       <PlaceholderImage
                         path={`quality/${STAGE_IMAGES[i]}.webp`}
                         label={`Stage ${stage.step} photo`}
-                        recommended="900 × 700"
+                        recommended="1200 × 900"
                         alt={stage.title}
                         aspect="4 / 3"
-                        className="w-full rounded-xl"
+                        framed={false}
+                        className="h-full w-full lg:absolute lg:inset-0"
                       />
+                    </div>
+
+                    <div
+                      className={`relative flex flex-col justify-center p-8 sm:p-10 lg:p-12 ${
+                        flip ? 'lg:order-1' : ''
+                      }`}
+                    >
+                      <div className="flex items-center gap-3.5">
+                        <span
+                          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl
+                                     bg-ink-900 text-accent-300"
+                        >
+                          <Icon className="h-5 w-5" />
+                        </span>
+                        <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent-600">
+                          Stage {stage.step} of {qualityStages.length}
+                        </span>
+                      </div>
+                      <h2 className="mt-5 font-display text-2xl text-ink-900 sm:text-[1.75rem]">
+                        {stage.title}
+                      </h2>
+                      <p className="mt-3 leading-relaxed text-ink-500">{stage.body}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -121,7 +95,7 @@ export default function Quality() {
                 A unique identification code is assigned to each finished product
                 and a quality inspection video is recorded before dispatch.
                 Complete quality records are maintained, so if a question is ever
-                raised about a specific unit — months or years later — there is a
+                raised about a specific unit, months or years later, there is a
                 documented answer rather than a guess.
               </p>
             </div>

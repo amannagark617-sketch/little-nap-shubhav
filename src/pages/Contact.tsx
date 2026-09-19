@@ -21,7 +21,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error'
 
 const enquiryTypes = [
   'OEM / private label manufacturing',
-  'ODM — develop a new model',
+  'ODM, develop a new model',
   'Cinema or auditorium project',
   'Distribution / dealership',
   'Factory visit',
@@ -34,13 +34,13 @@ export default function Contact() {
   const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(() => {
-    document.title = 'Contact — Little Nap Subhav India Pvt. Ltd.'
+    document.title = 'Contact, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   const enquirySummary = useMemo(
     () =>
       lines
-        .map((l) => `• ${l.name} (${l.range}) — indicative qty ${l.quantity}`)
+        .map((l) => `• ${l.name} (${l.range}), indicative qty ${l.quantity}`)
         .join('\n'),
     [lines],
   )
@@ -65,8 +65,8 @@ export default function Contact() {
         `Name: ${payload.name}`,
         `Company: ${payload.companyName}`,
         `Email: ${payload.email}`,
-        `Phone: ${payload.phone || '—'}`,
-        `Country / region: ${payload.country || '—'}`,
+        `Phone: ${payload.phone || 'Not specified'}`,
+        `Country / region: ${payload.country || 'Not specified'}`,
         `Enquiry type: ${payload.enquiryType}`,
         `Range of interest: ${payload.range || 'Not specified'}`,
         '',
@@ -74,11 +74,11 @@ export default function Contact() {
         payload.enquiryList,
         '',
         'Message:',
-        payload.message || '—',
+        payload.message || 'Not specified',
       ].join('\n')
 
       window.location.href = `mailto:${company.contact.email}?subject=${encodeURIComponent(
-        `Website enquiry — ${payload.companyName || payload.name}`,
+        `Website enquiry, ${payload.companyName || payload.name}`,
       )}&body=${encodeURIComponent(body)}`
 
       setStatus('sent')
@@ -137,7 +137,7 @@ export default function Contact() {
                   </h2>
                   <p className="mx-auto mt-3 max-w-md leading-relaxed text-ink-600">
                     {FORM_ENDPOINT
-                      ? 'Thank you — our team will come back to you shortly. For anything urgent, call us directly.'
+                      ? 'Thank you, our team will come back to you shortly. For anything urgent, call us directly.'
                       : `We have opened a pre-filled email in your mail app. If nothing appeared, write to ${company.contact.email} and we will pick it up from there.`}
                   </p>
                   <div className="mt-7 flex flex-wrap justify-center gap-3">
@@ -258,7 +258,7 @@ export default function Contact() {
 
                     {count === 0 ? (
                       <p className="mt-4 rounded-xl border border-dashed border-ink-200 px-5 py-6 text-center text-sm text-ink-400">
-                        Nothing selected — that is fine. Describe what you need below
+                        Nothing selected, that is fine. Describe what you need below
                         and we will work it out together.
                       </p>
                     ) : (
@@ -327,7 +327,7 @@ export default function Contact() {
 
                   <p className="mt-4 text-xs leading-relaxed text-ink-400">
                     We use your details only to respond to this enquiry. Nothing on
-                    this site is an online sale — every order is quoted individually.
+                    this site is an online sale, every order is quoted individually.
                   </p>
                 </form>
               )}
@@ -438,7 +438,7 @@ export default function Contact() {
               <p className="eyebrow">Where to find us</p>
               <h2 className="h-section">{company.contact.address.name}</h2>
               <p className="lede">
-                On the AB Road bypass at Dewas, a short drive from Indore — with two
+                On the AB Road bypass at Dewas, a short drive from Indore, with two
                 dry ports nearby and overnight reach to the major shipping ports.
               </p>
             </div>

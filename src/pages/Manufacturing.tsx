@@ -15,7 +15,7 @@ export default function Manufacturing() {
   const [lightbox, setLightbox] = useState<number | null>(null)
 
   useEffect(() => {
-    document.title = 'Manufacturing — Little Nap Subhav India Pvt. Ltd.'
+    document.title = 'Manufacturing, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   const step = processSteps[active]
@@ -250,7 +250,7 @@ export default function Manufacturing() {
           <Reveal delay={100} className="relative mt-10">
             <PlaceholderImage
               path="factory/plant-walkthrough.webp"
-              label="Plant walkthrough video — cover frame"
+              label="Plant walkthrough video, cover frame"
               recommended="1600 × 900"
               alt="Little Nap Subhav plant walkthrough video"
               aspect="16 / 9"

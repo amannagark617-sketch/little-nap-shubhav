@@ -127,7 +127,7 @@ export default function MapPanel({ variant = 'full' }: Props) {
               })}
             </dl>
             <p className="mt-4 text-xs leading-relaxed text-ink-400">
-              Times are India Standard Time. We host buyers and technical teams —
+              Times are India Standard Time. We host buyers and technical teams,
               please arrange a visit in advance so the right people are on site.
             </p>
           </div>

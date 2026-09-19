@@ -5,7 +5,7 @@ import Aurora from '../components/Aurora'
 
 export default function NotFound() {
   useEffect(() => {
-    document.title = 'Page not found — Little Nap Subhav India Pvt. Ltd.'
+    document.title = 'Page not found, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   return (

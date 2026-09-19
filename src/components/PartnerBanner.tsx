@@ -21,7 +21,7 @@ export default function PartnerBanner() {
             One manufacturing partner for the whole programme.
           </h2>
           <p className="mt-4 max-w-md leading-relaxed text-ink-500">
-            Not a single order — a relationship. We plan capacity around your
+            Not a single order, a relationship. We plan capacity around your
             volumes, develop new models with you, and hold the same quality
             standard from the first unit to the ten-thousandth.
           </p>

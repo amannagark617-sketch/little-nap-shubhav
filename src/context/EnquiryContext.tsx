@@ -108,7 +108,7 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
       clear,
       toSummary: () =>
         lines
-          .map((l) => `• ${l.name} (${l.range}) — indicative qty ${l.quantity}`)
+          .map((l) => `• ${l.name} (${l.range}), indicative qty ${l.quantity}`)
           .join('\n'),
       isOpen,
       open: () => setIsOpen(true),

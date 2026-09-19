@@ -72,7 +72,7 @@ export default function Home() {
           <Reveal delay={320}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
               {company.legalName} engineers and manufactures world-class motion
-              furniture — recliners, motion sofas, cinema seating and sofa beds —
+              furniture, recliners, motion sofas, cinema seating and sofa beds,
               for brands that need consistent quality at volume.
             </p>
           </Reveal>
@@ -174,7 +174,7 @@ export default function Home() {
             <p className="eyebrow">See it happen</p>
             <h2 className="h-section">Inside the plant.</h2>
             <p className="lede">
-              Twelve real stages, from prototype to packed unit — the same walkthrough
+              Twelve real stages, from prototype to packed unit, the same walkthrough
               the Manufacturing page covers in full.
             </p>
           </Reveal>
@@ -189,7 +189,7 @@ export default function Home() {
       <FacilitySection
         eyebrow="The place"
         title="Come and see where it is made."
-        lede="A purpose-built plant and a showroom stocked with the full range — so a buyer can walk the line in the morning and sit in every model by the afternoon."
+        lede="A purpose-built plant and a showroom stocked with the full range, so a buyer can walk the line in the morning and sit in every model by the afternoon."
         className="bg-gradient-to-b from-porcelain-200/50 via-porcelain-50 to-porcelain-200/50"
       />
 
@@ -232,7 +232,7 @@ export default function Home() {
                   <h2 className="h-section">A women-led factory floor.</h2>
                   <p className="lede">
                     More than 80% of our workforce are women. That is not an accident
-                    of hiring — it is the result of deliberate recruitment, training
+                    of hiring, it is the result of deliberate recruitment, training
                     and skill development, and it shapes how the whole plant runs.
                   </p>
                   <Link to="/about" className="btn-glass mt-8">
@@ -311,7 +311,7 @@ export default function Home() {
               <p className="lede">
                 Safety training, health check-ups, recognition and the celebrations
                 that mark a year together. Culture on the floor is what keeps skilled
-                people here — and skilled people are what keep quality consistent.
+                people here, and skilled people are what keep quality consistent.
               </p>
             </div>
           </Reveal>
@@ -354,7 +354,7 @@ export default function Home() {
                 </h2>
                 <p className="lede">
                   From high-volume entry recliners through to full-flat cinema
-                  loungers — all on the same frame, foam and mechanism discipline.
+                  loungers, all on the same frame, foam and mechanism discipline.
                 </p>
               </div>
               <Link to="/products" className="btn-glass shrink-0">

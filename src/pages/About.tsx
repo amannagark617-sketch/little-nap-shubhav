@@ -21,7 +21,7 @@ import {
 
 export default function About() {
   useEffect(() => {
-    document.title = 'About — Little Nap Subhav India Pvt. Ltd.'
+    document.title = 'About, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   return (
@@ -35,7 +35,7 @@ export default function About() {
             in central India.
           </>
         }
-        lede={`${company.legalName} designs and manufactures motion furniture from Dewas, Madhya Pradesh — supplying recliners, motion sofas, cinema seating and sofa beds to brands under their own name.`}
+        lede={`${company.legalName} designs and manufactures motion furniture from Dewas, Madhya Pradesh, supplying recliners, motion sofas, cinema seating and sofa beds to brands under their own name.`}
       />
 
       {/* ---- Vision & mission ---- */}
@@ -85,7 +85,7 @@ export default function About() {
               <h2 className="h-section">A women-led factory floor.</h2>
               <p className="lede">
                 More than 80% of our workforce are women. That is not a statistic we
-                arrived at by accident — it is the result of deliberate recruitment,
+                arrived at by accident, it is the result of deliberate recruitment,
                 training and skill development, and it shapes how the plant runs.
               </p>
               <ul className="mt-8 space-y-3.5">
@@ -159,7 +159,7 @@ export default function About() {
               <p className="lede">
                 Safety training, health check-ups, recognition and the celebrations
                 that mark a year together. The culture on the floor is what keeps
-                skilled people here — and skilled people are what keep quality
+                skilled people here, and skilled people are what keep quality
                 consistent.
               </p>
             </div>
@@ -192,7 +192,7 @@ export default function About() {
       <FacilitySection
         eyebrow="The place"
         title="Our plant and showroom."
-        lede="A purpose-built facility in Dewas with a showroom stocked across every range — so a visiting buyer can walk the line and sit in the models on the same day."
+        lede="A purpose-built facility in Dewas with a showroom stocked across every range, so a visiting buyer can walk the line and sit in the models on the same day."
         className="bg-gradient-to-b from-porcelain-200/55 to-transparent"
       />
 
@@ -227,7 +227,7 @@ export default function About() {
             <p className="eyebrow">Our clients</p>
             <h2 className="h-section">Brands we manufacture for.</h2>
             <p className="lede">
-              Much of what we build carries someone else's label — which is rather
+              Much of what we build carries someone else's label, which is rather
               the point of a good OEM partner.
             </p>
           </Reveal>

@@ -116,7 +116,7 @@ export default function ProductModal({ product, onClose }: Props) {
               <img
                 key={active.src}
                 src={productImage(active.src)}
-                alt={`${product.name} — ${active.label}`}
+                alt={`${product.name}, ${active.label}`}
                 className="h-full w-full animate-fade-in object-cover"
               />
             </div>
@@ -187,7 +187,7 @@ export default function ProductModal({ product, onClose }: Props) {
               </dl>
               <p className="mt-3 text-xs leading-relaxed text-ink-400">
                 Dimensions, mechanism type, foam density and upholstery are confirmed
-                against your specification — this is an OEM/ODM programme, not a
+                against your specification, this is an OEM/ODM programme, not a
                 fixed catalogue item.
               </p>
             </div>

@@ -32,7 +32,7 @@ export const insightDrafts: InsightDraft[] = [
     id: 'cinema-seating-buyers-guide',
     title: 'A buyer’s guide to cinema seating specifications',
     excerpt:
-      'Row spacing, recline travel, accessories and duty cycle — what an auditorium fit-out actually needs to spec.',
+      'Row spacing, recline travel, accessories and duty cycle, what an auditorium fit-out actually needs to spec.',
     image: 'insights/cinema-seating-buyers-guide.webp',
   },
 ]

@@ -16,7 +16,7 @@ export default function WhatsAppButton() {
   if (dismissed) return null
 
   const message = encodeURIComponent(
-    'Hello — I would like to enquire about Little Nap Subhav products.',
+    'Hello, I would like to enquire about Little Nap Subhav products.',
   )
 
   return (

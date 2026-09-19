@@ -10,7 +10,7 @@ import { IconClose, IconSend, IconSparkle } from './Icons'
 type Entry = AdvisorMessage & { id: number; pending?: boolean; error?: boolean }
 
 const GREETING =
-  'Hello — I can help you find the right range for your project, explain how we build and inspect a unit, or talk through OEM customisation. What are you working on?'
+  'Hello, I can help you find the right range for your project, explain how we build and inspect a unit, or talk through OEM customisation. What are you working on?'
 
 /**
  * A floating Gemini-backed assistant, grounded in the same facts the site
