@@ -6,6 +6,10 @@ import SplitText from '../components/SplitText'
 import Parallax from '../components/Parallax'
 import FacilitySection from '../components/FacilitySection'
 import MapPanel from '../components/MapPanel'
+import RangeQuickNav from '../components/RangeQuickNav'
+import CampaignCarousel from '../components/CampaignCarousel'
+import PartnerBanner from '../components/PartnerBanner'
+import InsightsTeaser from '../components/InsightsTeaser'
 import {
   IconArrowRight,
   IconCinema,
@@ -156,6 +160,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══════════════ QUICK NAV + CAMPAIGN BANNER ═══════════════ */}
+      <section className="relative overflow-hidden pb-20 pt-4 sm:pb-28">
+        <div className="container-page relative space-y-10">
+          <Reveal>
+            <RangeQuickNav />
+          </Reveal>
+          <Reveal delay={100}>
+            <CampaignCarousel />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══════════════ WHO WE ARE ═══════════════ */}
       <section className="section relative overflow-hidden">
         <Aurora tone="indigo" intensity="subtle" />
@@ -265,6 +281,13 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ═══════════════ PARTNER BANNER ═══════════════ */}
+      <section className="pb-20 sm:pb-28">
+        <div className="container-page">
+          <PartnerBanner />
         </div>
       </section>
 
@@ -383,6 +406,26 @@ export default function Home() {
               </Reveal>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ═══════════════ INSIGHTS ═══════════════ */}
+      <section className="section relative overflow-hidden bg-gradient-to-b from-porcelain-200/45 to-transparent">
+        <Aurora tone="azure" intensity="subtle" />
+        <div className="container-page relative">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="eyebrow">Insights</p>
+              <h2 className="h-section">From the floor and the industry.</h2>
+              <p className="lede">
+                Notes on manufacturing, materials and specifying motion
+                furniture at volume. The first pieces are in progress.
+              </p>
+            </div>
+          </Reveal>
+          <div className="mt-12">
+            <InsightsTeaser />
+          </div>
         </div>
       </section>
 

@@ -274,6 +274,34 @@ export function IconSend(p: IconProps) {
   )
 }
 
+export function IconImage(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2" />
+      <circle cx="9" cy="10" r="1.6" />
+      <path d="m5 17 4.5-5 3.5 4 2.5-3 4 4" />
+    </svg>
+  )
+}
+
+export function IconPlay(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M10 8.5 15.5 12 10 15.5Z" />
+    </svg>
+  )
+}
+
+export function IconWhatsapp(p: IconProps) {
+  return (
+    <svg {...base} {...p}>
+      <path d="M6.5 17.5 5 20l2.6-1.4A8 8 0 1 0 4.5 14Z" />
+      <path d="M9 9.8c0 3 2.4 5.4 5.4 5.4.8 0 1-.3 1-.9v-.9c0-.4-.3-.6-.6-.7l-1.5-.4c-.3 0-.5 0-.7.3l-.3.5a4.6 4.6 0 0 1-2.3-2.3l.5-.3c.2-.2.3-.4.2-.7L10.3 9c0-.3-.3-.6-.7-.6h-.9c-.5 0-.8.3-.8 1Z" />
+    </svg>
+  )
+}
+
 /** Name-indexed lookup for icons chosen in the data files. */
 export const iconMap = {
   gear: IconGear,

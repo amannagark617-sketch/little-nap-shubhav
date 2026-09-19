@@ -256,6 +256,13 @@
     right: calc(1.25rem + var(--safe-r));
   }
 
+  /* Mirror of .pin-fab for the opposite corner (the WhatsApp button), so it
+     never collides with the Comfort Advisor launcher. */
+  .pin-fab-left {
+    bottom: calc(1.25rem + var(--safe-b));
+    left: calc(1.25rem + var(--safe-l));
+  }
+
   .pb-safe {
     padding-bottom: calc(var(--safe-b));
   }

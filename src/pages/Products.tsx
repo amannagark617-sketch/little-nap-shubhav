@@ -6,7 +6,12 @@ import ProductModal from '../components/ProductModal'
 import Reveal from '../components/Reveal'
 import Aurora from '../components/Aurora'
 import { IconSearch, IconClose } from '../components/Icons'
-import { products, rangeById, ranges, type Product, type RangeId } from '../data/products'
+import { productImage, products, rangeById, ranges, type Product, type RangeId } from '../data/products'
+
+/** One representative photo per range, shown as a small thumbnail on its filter tab. */
+const rangeThumb = Object.fromEntries(
+  ranges.map((r) => [r.id, products.find((p) => p.range === r.id)!.image]),
+) as Record<RangeId, string>
 
 type Filter = RangeId | 'all'
 
@@ -98,12 +103,21 @@ export default function Products() {
                   type="button"
                   onClick={() => setFilter(r.id)}
                   aria-pressed={filter === r.id}
-                  className={`min-h-[44px] shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
-                    filter === r.id
-                      ? 'bg-navy-900 text-white shadow-lift'
-                      : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
-                  }`}
+                  className={`flex min-h-[44px] shrink-0 items-center gap-2 rounded-full py-1.5 pl-1.5
+                              pr-4 text-sm font-medium transition-all duration-300 ${
+                                filter === r.id
+                                  ? 'bg-navy-900 text-white shadow-lift'
+                                  : 'border border-navy-200/70 bg-white/50 text-navy-600 hover:-translate-y-0.5 hover:border-navy-300 hover:bg-white'
+                              }`}
                 >
+                  <img
+                    src={productImage(rangeThumb[r.id])}
+                    alt=""
+                    aria-hidden="true"
+                    className={`h-7 w-7 shrink-0 rounded-full object-cover ring-2 transition-colors ${
+                      filter === r.id ? 'ring-gold-400' : 'ring-white'
+                    }`}
+                  />
                   {r.name}
                 </button>
               ))}

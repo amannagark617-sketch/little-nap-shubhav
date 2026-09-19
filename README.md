@@ -37,7 +37,7 @@ without them — the AI advisor simply does not appear.
 
 | Page | What it does |
 |---|---|
-| **Home** | Brand-led: hero, who we are, vision and mission, the plant and showroom, capability figures, the women-led workforce, differentiators, culture — with the product ranges appearing well down the page |
+| **Home** | Brand-led: hero, a photo quick-nav into the ranges, a campaign banner, who we are, the plant and showroom, capability figures, the women-led workforce, a partner banner, differentiators, culture, the product ranges, an Insights preview, clients, and the map |
 | **Products** | 22 models across 8 ranges. Filter by range, free-text search, URL-synced state, detail modal |
 | **Manufacturing** | Interactive 12-stage walkthrough of the plant, capability figures, photo gallery with lightbox |
 | **Quality** | The four-stage inspection process and what traceability means per unit |
@@ -46,21 +46,32 @@ without them — the AI advisor simply does not appear.
 
 ### Design
 
-Light and editorial: a warm ivory base with navy reserved for type and gold for
-accents. Content sits on **frosted glass panels** over slow-drifting colour
-fields, which is what gives the blur something to work against. A single deep
-navy band closes the page — it grounds the layout rather than setting a dark
-theme.
+Light and editorial: a cool porcelain base — white with a faint blue lean
+pulled from the brand navy, deliberately not warm/ivory — with navy reserved
+for type and gold for accents. Content sits on **frosted glass panels** over
+saturated, slow-drifting colour fields (`<Aurora>`), which is what the blur
+actually refracts; a thin colour wash alone reads as a flat card, so the
+fields carry real saturation and the hero/closing sections get an extra
+gold+indigo `signature` glow. A single deep navy band closes the page — it
+grounds the layout rather than setting a dark theme.
 
 Every glass surface declares a solid background colour first and only then
-layers `backdrop-filter` behind an `@supports` guard, so a browser without
-backdrop-filter still gets an opaque, readable card.
+layers `backdrop-filter` (plus a diagonal sheen and a colour-tinted shadow)
+behind an `@supports` guard, so a browser without backdrop-filter still gets
+an opaque, readable card.
 
-Motion: headlines reveal word by word, sections fade up on scroll, figures count
-up, the hero image drifts on a shallow parallax, a gold hairline tracks scroll
-progress, and the client list marquees. All of it is decoration — every
-animation is switched off under `prefers-reduced-motion`, and no content's
-visibility depends on one.
+Typography leads with `-apple-system` / `BlinkMacSystemFont`, so Safari/macOS/
+iOS render the OS's own San Francisco font — nothing bundled or licensed,
+just invoked. Everyone else falls through to Inter. Headings are a bold,
+tightly-tracked cut of that same sans face rather than a separate display
+face, matching how Apple's own type system works.
+
+Motion: headlines reveal word by word, the hero animates in on load (not just
+on scroll — see the note in `Reveal.tsx` if you're touching it), sections
+fade up on scroll, figures count up, the hero image drifts on a shallow
+parallax, a gold hairline tracks scroll progress, and the client list
+marquees. All of it is decoration — every animation is switched off under
+`prefers-reduced-motion`, and no content's visibility depends on one.
 
 ### Features worth knowing about
 
@@ -101,6 +112,49 @@ better with them.
 To add them, drop the files into `public/images/facility/` using the filenames
 in that folder's README, or drop the originals into `scripts/_source/facility/`
 and run `npm run images`. Nothing else needs changing.
+
+---
+
+## Homepage creative slots — action needed
+
+The homepage has three more sections built around photography that doesn't
+exist yet, using the same self-healing pattern as the facility gallery:
+
+- **Campaign banner** (`CampaignCarousel`) — a 3-slide rotating promotional
+  strip under the hero. Files and sizes: `public/images/campaigns/README.md`.
+- **Partner banner** (`PartnerBanner`) — the wide "one manufacturing partner"
+  section. File and size: `public/images/partner/README.md`.
+- **Insights teaser** (`InsightsTeaser`) — three preview cards for a blog that
+  doesn't exist yet (see below). Files and sizes: `public/images/insights/README.md`.
+
+Unlike the facility gallery, these don't hide themselves when the photo is
+missing — each renders `<PlaceholderImage>` instead: a clearly labelled slot
+stating what to shoot and at what size, with the exact file path to drop it
+at. Once that file exists, the component starts rendering it automatically —
+no code change needed either way. This is deliberate: the campaign and
+partner sections carry real copy and calls to action regardless of whether
+the photo exists yet, so they shouldn't disappear the way an empty photo
+gallery should.
+
+The homepage also has a photo-led quick-navigation strip (`RangeQuickNav`)
+under the hero and photo thumbnails on the Products page's range filters —
+both use the product photography already in the repository, so there is
+nothing to supply for those.
+
+### The "Insights" section is a preview, not a blog
+
+There is no blog yet. `InsightsTeaser` renders three draft article titles
+(`src/data/insights.ts`) as plain cards — not links, since there is nowhere
+for them to go — each marked "Coming soon". When a real blog exists, give
+each draft a `slug`, wrap the card in a `<Link>`, and drop the pill. See the
+comment at the top of `insights.ts`.
+
+### A floating WhatsApp button, with one unverified assumption
+
+`WhatsAppButton` (bottom-left, mirroring the Comfort Advisor on the right)
+opens a chat using `company.contact.whatsapp` in `src/data/company.ts` — the
+Google-listing phone number, on the **unconfirmed** assumption that it is
+also the WhatsApp Business number. If it isn't, update that one field.
 
 ---
 
@@ -186,9 +240,40 @@ Worth knowing before this goes live:
 - **Client names are set as text, not logos.** The logos in the deck are
   photographs of signage and printed marks, too low-quality to use. Text
   wordmarks read better and avoid misusing third-party trademarks.
-- **The logo is a raster mark plus live type.** No vector original was
-  available. Replacing `public/images/brand/mark.png` with an SVG is easy if
-  one exists.
+- **The logo is a raster mark plus live type.** The deck's only full lockup
+  (icon + wordmark together) is baked into one low-resolution slide image —
+  confirmed by rendering the source PDF at up to 24x zoom, which did not
+  sharpen the wordmark, meaning it is raster, not vector, and cannot be
+  improved by re-extracting it. Used as a header logo it reads soft. The icon
+  half is the real, unmodified asset (`public/images/brand/mark.png`); the
+  wordmark is live text. If a proper source file exists — pulled from
+  lnsindia.co.in's own site header, or a vector/AI file from whoever designed
+  it — swap it in and `Logo.tsx` becomes unnecessary; see the comment at the
+  top of that file.
+- **The WhatsApp number is an unverified assumption.** The floating WhatsApp
+  button uses the Google-listing phone number on the assumption that it is
+  also the WhatsApp Business line — not confirmed. See
+  `company.contact.whatsapp` in `src/data/company.ts`.
+
+---
+
+## Planned: a CMS and blog
+
+Not built yet, but worth recording the intended shape so it lands as a clean
+addition rather than a rewrite. This site is a static build with no backend —
+that is why it is fast and free to host — so an editable admin panel needs
+somewhere to persist content and a way to authenticate an editor.
+Recommended approach: a headless CMS (Sanity, Contentful, or similar)
+alongside the current site, rather than a bespoke backend. An editor changes
+content there; the site rebuilds and redeploys automatically. This keeps the
+static-hosting deployment story (see `DEPLOYMENT.md`) intact and adds no
+server code to maintain.
+
+The content in `src/data/*.ts` is already structured close to what such a CMS
+would model (a `Product`, a `Range`, a `Campaign`, an `InsightDraft` are each
+already a plain typed record) — migrating a data file to CMS-sourced content
+later is a matter of swapping the import for a fetch call, not restructuring
+the page components that consume it.
 
 ---
 
