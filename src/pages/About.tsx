@@ -6,7 +6,7 @@ import { IconArrowRight, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
 import FacilitySection from '../components/FacilitySection'
 import PlaceholderImage from '../components/PlaceholderImage'
-import { brandImage } from '../data/factory'
+import { brandImage, clientLogo } from '../data/factory'
 import {
   capability,
   clients,
@@ -253,10 +253,18 @@ export default function About() {
           </Reveal>
 
           <ul className="mt-11 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {clients.map((name, i) => (
-              <Reveal as="li" key={name} delay={i * 50}>
+            {clients.map((client, i) => (
+              <Reveal as="li" key={client.name} delay={i * 50}>
                 <div className="glass glass-hover flex h-full items-center justify-center px-5 py-9 text-center">
-                  <span className="font-display text-xl text-ink-700">{name}</span>
+                  {client.logo ? (
+                    <img
+                      src={clientLogo(client.logo)}
+                      alt={client.name}
+                      className="max-h-14 w-auto max-w-[80%] object-contain"
+                    />
+                  ) : (
+                    <span className="font-display text-xl text-ink-700">{client.name}</span>
+                  )}
                 </div>
               </Reveal>
             ))}

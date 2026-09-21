@@ -24,7 +24,7 @@ import {
   stats,
   vision,
 } from '../data/company'
-import { brandImage } from '../data/factory'
+import { brandImage, clientLogo } from '../data/factory'
 import { productImage, products, ranges } from '../data/products'
 
 const rangePreview = ranges.map((r) => ({
@@ -440,14 +440,23 @@ export default function Home() {
         </div>
         <div className="marquee-mask relative mt-9 overflow-hidden">
           <ul className="marquee-track flex w-max items-center gap-16 pr-16">
-            {[...clients, ...clients].map((name, i) => (
-              <li
-                key={`${name}-${i}`}
-                aria-hidden={i >= clients.length}
-                className="whitespace-nowrap font-display text-2xl text-ink-300
-                           transition-colors duration-300 hover:text-ink-700"
-              >
-                {name}
+            {[...clients, ...clients].map((client, i) => (
+              <li key={`${client.name}-${i}`} aria-hidden={i >= clients.length}>
+                {client.logo ? (
+                  <img
+                    src={clientLogo(client.logo)}
+                    alt={client.name}
+                    className="h-9 w-auto max-w-[9rem] object-contain opacity-70
+                               transition-opacity duration-300 hover:opacity-100"
+                  />
+                ) : (
+                  <span
+                    className="whitespace-nowrap font-display text-2xl text-ink-300
+                               transition-colors duration-300 hover:text-ink-700"
+                  >
+                    {client.name}
+                  </span>
+                )}
               </li>
             ))}
           </ul>

@@ -209,17 +209,22 @@ export const productFeatures = [
   },
 ] as const
 
-/** Clients named on the corporate deck, rendered as wordmarks rather than logos. */
-export const clients = [
-  'Green Soul',
-  'The Sleep Company',
-  'Duroflex',
-  'Sleepyhead',
-  'SleepyCat',
-  'Little Nap Recliners',
-  'Asian Paints',
-  'Godrej Interio',
-] as const
+/**
+ * Clients named on the corporate deck. `logo` is a filename under
+ * images/brand/clients/ (via `clientLogo` in data/factory.ts) — provided by
+ * the client for real trademarks, never generated. A client without one
+ * renders as a plain wordmark instead.
+ */
+export const clients: { name: string; logo?: string }[] = [
+  { name: 'Green Soul' },
+  { name: 'The Sleep Company' },
+  { name: 'Duroflex' },
+  { name: 'Sleepyhead' },
+  { name: 'SleepyCat', logo: 'sleepycat.webp' },
+  { name: 'Little Nap Recliners', logo: 'little-nap-recliners.webp' },
+  { name: 'Asian Paints', logo: 'asian-paints.webp' },
+  { name: 'Godrej Interio', logo: 'godrej-interio.webp' },
+]
 
 /** What a long-term OEM partnership with LNS looks like in practice. */
 export const partnership = [

@@ -115,3 +115,7 @@ export function factoryImage(file: string): string {
 export function brandImage(file: string): string {
   return `${import.meta.env.BASE_URL}images/brand/${file}`
 }
+
+export function clientLogo(file: string): string {
+  return `${import.meta.env.BASE_URL}images/brand/clients/${file}`
+}

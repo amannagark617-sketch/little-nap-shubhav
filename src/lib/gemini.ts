@@ -98,7 +98,7 @@ PARTNERSHIP MODEL
 ${partnership.map((p) => `- ${p.title}: ${p.body}`).join('\n')}
 
 CLIENTS
-${clients.join(', ')}.
+${clients.map((c) => c.name).join(', ')}.
 `.trim()
 }
 
