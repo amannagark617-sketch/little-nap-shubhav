@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import PlaceholderImage from '../components/PlaceholderImage'
 import { IconArrowRight, IconCheck, IconGear, IconSearch, IconShield, iconMap } from '../components/Icons'
@@ -19,17 +18,42 @@ export default function Quality() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Quality assurance"
-        title={
-          <>
-            Four inspections
-            <br />
-            before it leaves the gate.
-          </>
-        }
-        lede="Quality is checked where it is created, not only at the end. Material is approved before it is bought, inspected when it arrives, controlled while the unit is built, and recorded before dispatch."
-      />
+      {/* ---- Hero: a split panel, same language as the stage cards below ---- */}
+      <section className="section pb-10 pt-14 sm:pt-16">
+        <div className="container-page">
+          <div className="glass-strong grid overflow-hidden lg:grid-cols-2">
+            <div className="relative min-h-[16rem] lg:min-h-[26rem]">
+              <PlaceholderImage
+                path="quality/hero-overview.webp"
+                label="Quality hero photo"
+                recommended="1400 × 1200"
+                alt="Quality control at the Little Nap Subhav plant"
+                aspect="4 / 3"
+                framed={false}
+                className="h-full w-full lg:absolute lg:inset-0"
+              />
+            </div>
+            <div className="relative flex flex-col justify-center p-8 sm:p-10 lg:p-14">
+              <Reveal>
+                <p className="eyebrow">Quality assurance</p>
+              </Reveal>
+              <h1 className="mt-5 font-display text-[2.1rem] leading-[1.1] text-ink-900 sm:text-[2.6rem] lg:text-[3rem]">
+                Four inspections
+                <br />
+                before it leaves the gate.
+              </h1>
+              <Reveal delay={200}>
+                <p className="mt-6 leading-relaxed text-ink-500">
+                  Quality is checked where it is created, not only at the end.
+                  Material is approved before it is bought, inspected when it
+                  arrives, controlled while the unit is built, and recorded
+                  before dispatch.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ---- The four stages ---- */}
       <section className="section relative overflow-hidden">

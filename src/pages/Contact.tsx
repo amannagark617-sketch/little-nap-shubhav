@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import { IconArrowRight, IconCheck, IconMail, IconPhone, IconPin } from '../components/Icons'
 import Aurora from '../components/Aurora'
@@ -26,6 +25,14 @@ const enquiryTypes = [
   'Distribution / dealership',
   'Factory visit',
   'Something else',
+]
+
+/** Positions and stagger for the hero's signal-ping nodes. */
+const SIGNAL_PINGS = [
+  { top: '22%', left: '78%', delay: '0s' },
+  { top: '68%', left: '85%', delay: '0.6s' },
+  { top: '78%', left: '16%', delay: '1.2s' },
+  { top: '32%', left: '10%', delay: '1.8s' },
 ]
 
 export default function Contact() {
@@ -115,11 +122,59 @@ export default function Contact() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Contact"
-        title="Start an enquiry."
-        lede="Tell us the models, the volumes and the timeline. We will come back with a specification, a sample plan and an honest production schedule."
-      />
+      {/* ---- Hero: an abstract signal/network canvas, no photo ---- */}
+      <section className="relative flex h-[52vh] min-h-[380px] w-full items-center overflow-hidden bg-ink-950">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
+            backgroundSize: '56px 56px',
+            maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 75%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 75%)',
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2
+                     rounded-full bg-white/[0.06] blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -right-16 -top-16 h-64 w-64 animate-spin rounded-full border border-dashed border-white/15"
+          style={{ animationDuration: '30s' }}
+        />
+        {SIGNAL_PINGS.map((p, i) => (
+          <span
+            key={i}
+            aria-hidden="true"
+            className="absolute h-2 w-2 rounded-full bg-white/70"
+            style={{ top: p.top, left: p.left }}
+          >
+            <span
+              className="absolute inset-0 animate-ping rounded-full bg-white/50"
+              style={{ animationDelay: p.delay, animationDuration: '2.6s' }}
+            />
+          </span>
+        ))}
+
+        <div className="container-page relative">
+          <Reveal>
+            <p className="eyebrow-light">Contact</p>
+          </Reveal>
+          <h1 className="mt-5 max-w-2xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
+            Start an enquiry.
+          </h1>
+          <Reveal delay={200}>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+              Tell us the models, the volumes and the timeline. We will come back
+              with a specification, a sample plan and an honest production
+              schedule.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="section relative overflow-hidden">
         <Aurora tone="azure" intensity="subtle" />

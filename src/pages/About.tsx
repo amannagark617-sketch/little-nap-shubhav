@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
 import Counter from '../components/Counter'
 import { IconArrowRight, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
 import FacilitySection from '../components/FacilitySection'
 import PlaceholderImage from '../components/PlaceholderImage'
+import { brandImage } from '../data/factory'
 import {
   capability,
   clients,
@@ -26,17 +26,37 @@ export default function About() {
 
   return (
     <>
-      <PageHero
-        eyebrow="About us"
-        title={
-          <>
+      {/* ---- Hero: full-bleed, centered ---- */}
+      <section className="relative flex h-[68vh] min-h-[440px] w-full items-center overflow-hidden">
+        <img
+          src={brandImage('hero-portrait.webp')}
+          alt="A Little Nap Subhav recliner in a contemporary living room"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-ink-950/70" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-ink-950/40"
+        />
+        <div className="container-page relative text-center">
+          <Reveal>
+            <p className="eyebrow-light justify-center">About us</p>
+          </Reveal>
+          <h1 className="mx-auto mt-5 max-w-2xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
             Comfort, engineered
             <br />
             in central India.
-          </>
-        }
-        lede={`${company.legalName} designs and manufactures motion furniture from Dewas, Madhya Pradesh, supplying recliners, motion sofas, cinema seating and sofa beds to brands under their own name.`}
-      />
+          </h1>
+          <Reveal delay={200}>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              {company.legalName} designs and manufactures motion furniture from
+              Dewas, Madhya Pradesh, supplying recliners, motion sofas, cinema
+              seating and sofa beds to brands under their own name.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ---- Vision & mission ---- */}
       <section className="section relative overflow-hidden">

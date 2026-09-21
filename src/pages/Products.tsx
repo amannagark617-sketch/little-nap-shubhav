@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import ProductModal from '../components/ProductModal'
 import Reveal from '../components/Reveal'
 import Aurora from '../components/Aurora'
 import { IconSearch, IconClose } from '../components/Icons'
 import { productImage, products, rangeById, ranges, type Product, type RangeId } from '../data/products'
+
+/** A representative spread across ranges for the hero mosaic. */
+const HERO_MOSAIC = ['legacy.webp', 'crown.webp', 'bourbon.webp', 'manhattan.webp', 'milan.webp', 'miller-emerald.webp']
 
 /** One representative photo per range, shown as a small thumbnail on its filter tab. */
 const rangeThumb = Object.fromEntries(
@@ -64,17 +66,41 @@ export default function Products() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Products"
-        title={
-          <>
+      {/* ---- Hero: a mosaic of the catalogue itself ---- */}
+      <section className="relative h-[62vh] min-h-[420px] w-full overflow-hidden">
+        <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
+          {HERO_MOSAIC.map((img) => (
+            <div key={img} className="relative overflow-hidden">
+              <img
+                src={productImage(img)}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink-950/92 via-ink-950/55 to-ink-950/25"
+        />
+        <div className="container-page relative flex h-full flex-col justify-end pb-14 sm:pb-16">
+          <Reveal>
+            <p className="eyebrow-light">Products</p>
+          </Reveal>
+          <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
             {products.length} models across
             <br />
             eight considered ranges.
-          </>
-        }
-        lede="Every model here is manufactured to order. Ranges set the construction standard; dimensions, mechanism, foam and upholstery are specified against your programme."
-      />
+          </h1>
+          <Reveal delay={200}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              Every model here is manufactured to order. Ranges set the construction
+              standard, dimensions, mechanism, foam and upholstery are specified
+              against your programme.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ---- Filter bar ---- */}
       <div className="stick-below-header sticky z-30 px-3 sm:px-5">
