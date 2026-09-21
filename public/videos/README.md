@@ -43,22 +43,23 @@ ffmpeg -i yourclip.mov -vf "scale=1920:-2" -an -c:v libvpx-vp9 \
 
 ## Header logo animation
 
-`header-logo.mp4` / `header-logo.webm` are the client's own logo reveal clip,
-cropped tight to the lockup (no surrounding padding) and played once by
-`HeaderLogo.tsx` in place of the static header logo on every fresh page
-load — it plays through once, then simply rests on its final frame (the
-same lockup `Logo.tsx` shows as a still image) for the rest of that visit.
-Real footage, supplied by the client — not a placeholder. Same dual-format,
-muted, `canPlayType`-based selection as the hero loop above. To refresh it
-from an updated source clip:
+`header-logo.webm` is the client's own logo reveal clip — a genuinely
+transparent VP9 WebM (a real alpha channel, not a solid-color background),
+played by `HeaderLogo.tsx` in place of the static header logo. It autoplays
+on load, replays itself after a 20-second pause, and replays again whenever
+the logo is clicked. There's no MP4 sibling: H.264 doesn't carry alpha in
+browsers, so a browser that can't play alpha WebM gets the plain static
+`Logo` instead of a version with a solid background box.
 
-```bash
-ffmpeg -i yourclip.mp4 -an -vf "crop=1280:560:0:60,scale=560:-2" \
-  -c:v libx264 -crf 24 -preset slow -movflags +faststart header-logo.mp4
-
-ffmpeg -i header-logo.mp4 -c:v libvpx-vp9 -crf 34 -b:v 0 -an header-logo.webm
-```
-
-The crop rectangle assumes the same 1280×720 source framing as the original
-clip; adjust it if a new source is framed differently — it should tightly
-bound the logo lockup across the whole animation, not just its final frame.
+**This file must never be re-encoded, cropped, or compressed with the
+ffmpeg build in this environment.** It doesn't actually support VP9 alpha:
+it will tag output as `alpha_mode: 1` and even name the pixel format
+`yuva420p`, but decoding that same output always comes back fully opaque —
+verified by round-tripping a known-transparent frame through it. The
+current file was confirmed to have real working transparency by rendering
+it in an actual Chromium instance (Playwright) and screenshotting it over a
+solid color, since ffmpeg's own frame extraction can't be trusted to show
+it correctly either. If a new cut of this animation is ever needed, get it
+pre-exported as alpha WebM from whatever tool made the original (After
+Effects, or similar) and drop it in as-is — do not pipe it through ffmpeg
+here, and re-verify with the same browser-render test before trusting it.

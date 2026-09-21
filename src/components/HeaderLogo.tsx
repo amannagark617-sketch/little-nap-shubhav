@@ -1,50 +1,68 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
 
+/** How long the header logo sits still before it replays on its own. */
+const REPLAY_DELAY_MS = 20_000
+
 /**
- * The client's own logo reveal clip, played once at the top of the header on
- * every fresh page load. The clip's own background is a light gray, visibly
- * boxy against the header's white bar, so the moment it finishes playing —
- * or fails to play at all — this swaps over to the plain static <Logo>,
- * which has a real transparent background. The video is only ever the
- * transient few seconds before that; the resting state is always the clean
- * static lockup, never a frozen video frame.
+ * The client's own logo reveal clip — a genuine transparent WebM (VP9 with
+ * an alpha channel), so it sits directly on the header bar with no
+ * background box. Autoplays on load, replays itself automatically after a
+ * pause, and replays again on demand when the logo is clicked.
+ *
+ * Left completely unprocessed: any re-encode/crop pass through this
+ * project's ffmpeg strips the alpha channel (verified — the encoder here
+ * can tag a stream "alpha_mode" without actually writing decodable alpha
+ * data), so the file the client supplied ships byte-for-byte.
+ *
+ * Falls back to the plain static <Logo> outright when webm/vp9 isn't
+ * supported (older Safari) rather than ever showing the clip without its
+ * transparency — a plain video fallback here would mean a black box.
  */
 export default function HeaderLogo() {
-  const [src, setSrc] = useState<string | null>(null)
-  const [done, setDone] = useState(false)
+  const [supported, setSupported] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const replayTimer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduced) return
 
-    const base = `${import.meta.env.BASE_URL}videos/header-logo`
     const probe = document.createElement('video')
-    if (probe.canPlayType('video/mp4; codecs="avc1.42E01E"')) {
-      setSrc(`${base}.mp4`)
-    } else if (probe.canPlayType('video/webm; codecs="vp9"')) {
-      setSrc(`${base}.webm`)
-    } else {
-      setDone(true)
+    if (probe.canPlayType('video/webm; codecs="vp9"')) {
+      setSupported(true)
     }
   }, [])
 
-  if (!src) return <Logo />
+  useEffect(() => () => window.clearTimeout(replayTimer.current), [])
+
+  const replay = () => {
+    const video = videoRef.current
+    if (!video) return
+    window.clearTimeout(replayTimer.current)
+    video.currentTime = 0
+    video.play().catch(() => {})
+  }
+
+  const scheduleReplay = () => {
+    window.clearTimeout(replayTimer.current)
+    replayTimer.current = window.setTimeout(replay, REPLAY_DELAY_MS)
+  }
+
+  if (!supported) return <Logo />
 
   return (
-    <span className="relative inline-flex h-12 w-auto">
-      <Logo className={`transition-opacity duration-500 ${done ? 'opacity-100' : 'opacity-0'}`} />
+    <span className="inline-flex h-12 w-auto cursor-pointer" onClick={replay}>
       <video
-        src={src}
+        ref={videoRef}
+        src={`${import.meta.env.BASE_URL}videos/header-logo.webm`}
         autoPlay
         muted
         playsInline
-        onEnded={() => setDone(true)}
-        onError={() => setDone(true)}
-        aria-label="Little Nap Subhav India Pvt. Ltd."
-        className={`absolute inset-0 h-12 w-auto object-contain transition-opacity duration-500 ${
-          done ? 'pointer-events-none opacity-0' : 'opacity-100'
-        }`}
+        onEnded={scheduleReplay}
+        onError={() => setSupported(false)}
+        aria-label="Little Nap Subhav India Pvt. Ltd. — click to replay"
+        className="h-12 w-auto object-contain"
       />
     </span>
   )
