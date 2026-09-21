@@ -6,7 +6,6 @@ import ScrollToTop from './components/ScrollToTop'
 import ScrollProgress from './components/ScrollProgress'
 import EnquiryDrawer from './components/EnquiryDrawer'
 import EnquiryPopup from './components/EnquiryPopup'
-import BrandIntro from './components/BrandIntro'
 import AIAdvisor from './components/AIAdvisor'
 import WhatsAppButton from './components/WhatsAppButton'
 import { EnquiryProvider } from './context/EnquiryContext'
@@ -64,7 +63,6 @@ export default function App() {
       <EnquiryPopup />
       <AIAdvisor />
       <WhatsAppButton />
-      <BrandIntro />
     </EnquiryProvider>
   )
 }

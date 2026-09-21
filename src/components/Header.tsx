@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo'
+import HeaderLogo from './HeaderLogo'
 import { IconClose, IconMenu, IconArrowRight } from './Icons'
 import { useEnquiry } from '../context/EnquiryContext'
 
@@ -64,7 +65,7 @@ export default function Header() {
           style={{ height: 'var(--header-h)' }}
         >
           <Link to="/" aria-label="Little Nap Subhav, home" className="shrink-0">
-            <Logo />
+            <HeaderLogo />
           </Link>
 
           <nav aria-label="Primary" className="hidden lg:block">

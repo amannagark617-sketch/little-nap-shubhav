@@ -41,11 +41,24 @@ ffmpeg -i yourclip.mov -vf "scale=1920:-2" -an -c:v libvpx-vp9 \
 
 `-an` strips any audio track (it would never play anyway, and it bloats the file).
 
-## Brand intro
+## Header logo animation
 
-`brand-intro.mp4` / `brand-intro.webm` are the client's own logo reveal
-animation, played once per session by `BrandIntro.tsx` before a first-time
-visitor lands on the homepage. Real footage, supplied by the client — not a
-placeholder. Same dual-format, muted, `canPlayType`-based selection as the
-hero loop above; replace both files with an updated cut whenever the client
-provides one, same two filenames.
+`header-logo.mp4` / `header-logo.webm` are the client's own logo reveal clip,
+cropped tight to the lockup (no surrounding padding) and played once by
+`HeaderLogo.tsx` in place of the static header logo on every fresh page
+load — it plays through once, then simply rests on its final frame (the
+same lockup `Logo.tsx` shows as a still image) for the rest of that visit.
+Real footage, supplied by the client — not a placeholder. Same dual-format,
+muted, `canPlayType`-based selection as the hero loop above. To refresh it
+from an updated source clip:
+
+```bash
+ffmpeg -i yourclip.mp4 -an -vf "crop=1280:560:0:60,scale=560:-2" \
+  -c:v libx264 -crf 24 -preset slow -movflags +faststart header-logo.mp4
+
+ffmpeg -i header-logo.mp4 -c:v libvpx-vp9 -crf 34 -b:v 0 -an header-logo.webm
+```
+
+The crop rectangle assumes the same 1280×720 source framing as the original
+clip; adjust it if a new source is framed differently — it should tightly
+bound the logo lockup across the whole animation, not just its final frame.
