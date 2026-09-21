@@ -50,9 +50,9 @@ export default function Lightbox({ items, index, onClose, onNavigate }: Props) {
       role="dialog"
       aria-modal="true"
       aria-label={item.title}
-      className="fixed inset-0 z-[70] flex flex-col bg-ink-950/95 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-ink-950/95 backdrop-blur-sm animate-fade-in"
     >
-      <div className="flex items-center justify-between gap-4 px-5 py-4">
+      <div className="flex shrink-0 items-center justify-between gap-4 px-5 py-4">
         <p className="text-sm font-medium text-ink-200">
           {index + 1} / {items.length}
         </p>
@@ -68,7 +68,13 @@ export default function Lightbox({ items, index, onClose, onNavigate }: Props) {
         </button>
       </div>
 
-      <div className="flex flex-1 items-center justify-center px-4 pb-4" onClick={onClose}>
+      {/* min-h-0 lets this flex item shrink below the image's intrinsic size —
+          without it, a tall source photo forces the dialog past 100vh and
+          pushes the caption below off screen with no way to scroll to it. */}
+      <div
+        className="flex min-h-0 flex-1 items-center justify-center px-4 pb-4"
+        onClick={onClose}
+      >
         <img
           key={item.src}
           src={item.src}
@@ -78,7 +84,7 @@ export default function Lightbox({ items, index, onClose, onNavigate }: Props) {
         />
       </div>
 
-      <div className="px-5 pb-7 text-center">
+      <div className="shrink-0 px-5 pb-7 text-center">
         <h2 className="font-display text-2xl text-white">{item.title}</h2>
         {item.caption && (
           <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-ink-200">
