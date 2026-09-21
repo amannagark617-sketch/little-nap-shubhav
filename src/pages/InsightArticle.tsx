@@ -108,9 +108,9 @@ export default function InsightArticle() {
                   come back with a specification and an honest production
                   schedule.
                 </p>
-                <Link to="/contact" className="btn-primary mt-6">
+                <Link to="/contact" className="group btn-primary mt-6">
                   Start an enquiry
-                  <IconArrowRight className="h-4 w-4" />
+                  <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </Reveal>

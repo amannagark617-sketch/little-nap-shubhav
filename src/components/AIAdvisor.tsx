@@ -115,7 +115,7 @@ export default function AIAdvisor() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? 'Close the Comfort Advisor' : 'Open the Comfort Advisor'}
         aria-expanded={open}
-        className={`pin-fab fixed z-[58] inline-flex items-center gap-2 rounded-full
+        className={`pin-fab-left fixed z-[58] inline-flex items-center gap-2 rounded-full
                     bg-ink-900 py-3.5 pl-4 pr-5 text-sm font-semibold text-white shadow-lg
                     shadow-ink-950/25 transition-all duration-300 hover:bg-ink-800
                     active:scale-95 ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
@@ -126,8 +126,8 @@ export default function AIAdvisor() {
 
       {/* Panel */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-[59] flex justify-end px-0 sm:inset-x-auto
-                    sm:bottom-[calc(1.25rem+var(--safe-b))] sm:right-[calc(1.25rem+var(--safe-r))]
+        className={`fixed inset-x-0 bottom-0 z-[59] flex justify-start px-0 sm:inset-x-auto
+                    sm:bottom-[calc(1.25rem+var(--safe-b))] sm:left-[calc(1.25rem+var(--safe-l))]
                     sm:px-0 ${open ? '' : 'pointer-events-none'}`}
         aria-hidden={!open}
       >

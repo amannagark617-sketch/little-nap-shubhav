@@ -119,11 +119,11 @@ export default function Footer() {
                     href={address.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-xs
+                    className="group mt-1 inline-flex min-h-[44px] items-center gap-1.5 text-xs
                                font-semibold text-accent-300 transition-colors hover:text-accent-200"
                   >
                     Open in Google Maps
-                    <IconArrowRight className="h-3.5 w-3.5" />
+                    <IconArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </a>
                 </div>
               </li>

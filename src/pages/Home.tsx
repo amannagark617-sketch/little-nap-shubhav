@@ -79,9 +79,9 @@ export default function Home() {
 
           <Reveal delay={420}>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link to="/about" className="btn bg-white text-ink-900 hover:-translate-y-0.5 hover:bg-white/90">
+              <Link to="/about" className="group btn bg-white text-ink-900 hover:-translate-y-0.5 hover:bg-white/90">
                 Our story
-                <IconArrowRight className="h-4 w-4" />
+                <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link to="/manufacturing" className="btn-ghost-light">
                 Inside the plant
@@ -235,9 +235,9 @@ export default function Home() {
                     of hiring, it is the result of deliberate recruitment, training
                     and skill development, and it shapes how the whole plant runs.
                   </p>
-                  <Link to="/about" className="btn-glass mt-8">
+                  <Link to="/about" className="group btn-glass mt-8">
                     More about our people
-                    <IconArrowRight className="h-4 w-4" />
+                    <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </div>
                 <div>
@@ -357,9 +357,9 @@ export default function Home() {
                   loungers, all on the same frame, foam and mechanism discipline.
                 </p>
               </div>
-              <Link to="/products" className="btn-glass shrink-0">
+              <Link to="/products" className="group btn-glass shrink-0">
                 Full catalogue
-                <IconArrowRight className="h-4 w-4" />
+                <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </Reveal>
@@ -420,11 +420,11 @@ export default function Home() {
             <div className="mt-8 text-center">
               <Link
                 to="/insights"
-                className="inline-flex min-h-[44px] items-center text-sm font-semibold
+                className="group inline-flex min-h-[44px] items-center text-sm font-semibold
                            text-accent-600 underline-offset-4 hover:underline"
               >
                 Read all articles
-                <IconArrowRight className="ml-1.5 h-4 w-4" />
+                <IconArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </Reveal>
@@ -490,9 +490,9 @@ export default function Home() {
                   a production schedule.
                 </p>
                 <div className="mt-9 flex flex-wrap justify-center gap-3">
-                  <Link to="/contact" className="btn-secondary">
+                  <Link to="/contact" className="group btn-secondary">
                     Start an enquiry
-                    <IconArrowRight className="h-4 w-4" />
+                    <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                   <Link to="/products" className="btn-glass">
                     Browse the catalogue

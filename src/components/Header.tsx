@@ -119,9 +119,9 @@ export default function Header() {
               )}
             </button>
 
-            <Link to="/contact" className="btn-primary hidden min-h-[44px] !px-5 !py-2.5 md:inline-flex">
+            <Link to="/contact" className="group btn-primary hidden min-h-[44px] !px-5 !py-2.5 md:inline-flex">
               Request a quote
-              <IconArrowRight className="h-4 w-4" />
+              <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
 
             <button
@@ -187,7 +187,7 @@ export default function Header() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `flex items-center justify-between rounded-xl px-4 py-3.5 font-display
+                      `group flex items-center justify-between rounded-xl px-4 py-3.5 font-display
                        text-xl transition-colors ${
                          isActive
                            ? 'glass text-ink-900'
@@ -196,7 +196,7 @@ export default function Header() {
                     }
                   >
                     {item.label}
-                    <IconArrowRight className="h-4 w-4 text-accent-500" />
+                    <IconArrowRight className="h-4 w-4 text-accent-500 transition-transform duration-300 group-hover:translate-x-1" />
                   </NavLink>
                 </li>
               ))}

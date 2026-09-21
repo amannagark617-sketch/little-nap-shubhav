@@ -77,9 +77,9 @@ export default function CampaignCarousel() {
           <p className="mt-3 max-w-md text-[0.98rem] leading-relaxed text-ink-500">
             {active.body}
           </p>
-          <Link to={active.href} className="btn-primary mt-7 w-fit">
+          <Link to={active.href} className="group btn-primary mt-7 w-fit">
             {active.cta}
-            <IconArrowRight className="h-4 w-4" />
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 

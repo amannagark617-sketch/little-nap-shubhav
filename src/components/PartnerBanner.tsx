@@ -42,9 +42,9 @@ export default function PartnerBanner() {
             </div>
           </div>
 
-          <Link to="/contact" className="btn-secondary mt-8 w-fit">
+          <Link to="/contact" className="group btn-secondary mt-8 w-fit">
             Talk to our team
-            <IconArrowRight className="h-4 w-4" />
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 

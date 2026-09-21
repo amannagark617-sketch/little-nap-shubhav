@@ -21,9 +21,9 @@ export default function NotFound() {
           factory tour are both still where you left them.
         </p>
         <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <Link to="/" className="btn-primary">
+          <Link to="/" className="group btn-primary">
             Back to home
-            <IconArrowRight className="h-4 w-4" />
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
           <Link to="/products" className="btn-outline">
             Browse products

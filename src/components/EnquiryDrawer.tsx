@@ -177,10 +177,10 @@ export default function EnquiryDrawer() {
                 close()
                 navigate('/contact')
               }}
-              className="btn-primary w-full"
+              className="group btn-primary w-full"
             >
               Continue to enquiry
-              <IconArrowRight className="h-4 w-4" />
+              <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
             <button
               type="button"

@@ -296,9 +296,9 @@ export default function Manufacturing() {
               We host buyers and technical teams at the Dewas plant. Tell us when
               works and we will arrange a walkthrough of the full line.
             </p>
-            <Link to="/contact" className="btn-primary mt-8">
+            <Link to="/contact" className="group btn-primary mt-8">
               Arrange a factory visit
-              <IconArrowRight className="h-4 w-4" />
+              <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </Reveal>
         </div>

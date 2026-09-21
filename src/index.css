@@ -144,6 +144,9 @@
   }
 
   /* --- Buttons ------------------------------------------------------------ */
+  /* `group` can't be pulled in through @apply (Tailwind rejects it), so
+     every .btn-family class also gets the literal `group` class in JSX
+     wherever it's used with an arrow icon that should slide on hover. */
   .btn {
     @apply relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5
            text-sm font-semibold tracking-wide transition-all duration-300
@@ -240,14 +243,15 @@
     top: calc(var(--header-h) + var(--safe-t));
   }
 
-  /* Floating bottom-right control, clear of the home indicator. */
+  /* Floating bottom-right control, clear of the home indicator. Bottom-right
+     is the conventional corner for a WhatsApp launcher. */
   .pin-fab {
     bottom: calc(1.25rem + var(--safe-b));
     right: calc(1.25rem + var(--safe-r));
   }
 
-  /* Mirror of .pin-fab for the opposite corner (the WhatsApp button), so it
-     never collides with the Comfort Advisor launcher. */
+  /* Mirror of .pin-fab for the opposite corner (the Comfort Advisor), so it
+     never collides with the WhatsApp button. */
   .pin-fab-left {
     bottom: calc(1.25rem + var(--safe-b));
     left: calc(1.25rem + var(--safe-l));

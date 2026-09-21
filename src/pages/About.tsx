@@ -281,9 +281,9 @@ export default function About() {
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 lg:justify-end">
-                  <Link to="/contact" className="btn-secondary">
+                  <Link to="/contact" className="group btn-secondary">
                     Get in touch
-                    <IconArrowRight className="h-4 w-4" />
+                    <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                   <Link to="/manufacturing" className="btn-glass">
                     See the factory

@@ -99,10 +99,10 @@ export default function EnquiryPopup() {
               dismiss()
               navigate('/contact')
             }}
-            className="btn-primary justify-center"
+            className="group btn-primary justify-center"
           >
             Start an enquiry
-            <IconArrowRight className="h-4 w-4" />
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </button>
           <button type="button" onClick={dismiss} className="btn-outline justify-center">
             Maybe later

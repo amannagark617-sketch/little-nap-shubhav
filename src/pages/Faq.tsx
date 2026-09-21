@@ -78,9 +78,9 @@ export default function Faq() {
                 </strong>{' '}
                 Send us the specifics and we will answer directly.
               </p>
-              <Link to="/contact" className="btn-primary mt-6">
+              <Link to="/contact" className="group btn-primary mt-6">
                 Get in touch
-                <IconArrowRight className="h-4 w-4" />
+                <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </Reveal>

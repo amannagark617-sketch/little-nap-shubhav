@@ -374,10 +374,10 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="btn-primary mt-8 w-full sm:w-auto"
+                    className="group btn-primary mt-8 w-full sm:w-auto"
                   >
                     {status === 'sending' ? 'Sending…' : 'Send enquiry'}
-                    <IconArrowRight className="h-4 w-4" />
+                    <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
 
                   <p className="mt-4 text-xs leading-relaxed text-ink-400">

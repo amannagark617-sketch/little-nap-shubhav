@@ -2,9 +2,12 @@ import { IconWhatsapp } from './Icons'
 import { company } from '../data/company'
 
 /**
- * A floating WhatsApp quick-contact button, mirroring the Comfort Advisor on
- * the opposite corner so neither ever overlaps the other. Opens a chat with
- * `company.contact.whatsapp` and a pre-filled greeting message.
+ * A floating WhatsApp quick-contact button, on the conventional bottom-right
+ * corner, mirrored by the Comfort Advisor on the opposite corner so neither
+ * ever overlaps the other. Opens a chat with `company.contact.whatsapp` and
+ * a pre-filled greeting message. The soft pulse ring is a standing
+ * attention cue, not a one-off animation, so it keeps running for as long
+ * as the button is on screen.
  */
 export default function WhatsAppButton() {
   const message = encodeURIComponent(
@@ -17,11 +20,19 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="pin-fab-left fixed z-[57] inline-flex h-14 w-14 items-center justify-center
+      className="pin-fab fixed z-[57] inline-flex h-14 w-14 items-center justify-center
                  rounded-full bg-[#25D366] text-white shadow-lift transition-transform
-                 duration-300 hover:scale-105 active:scale-95"
+                 duration-300 hover:scale-110 active:scale-95"
     >
-      <IconWhatsapp className="h-7 w-7" />
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 animate-ping rounded-full bg-[#25D366] opacity-60 [animation-duration:2.4s]"
+      />
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 rounded-full ring-1 ring-white/40"
+      />
+      <IconWhatsapp className="relative h-7 w-7" />
     </a>
   )
 }

@@ -62,10 +62,10 @@ export default function MapPanel({ variant = 'full' }: Props) {
             href={address.directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-xs"
+            className="group btn-primary text-xs"
           >
             Get directions
-            <IconArrowRight className="h-4 w-4" />
+            <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
           <a
             href={address.mapsUrl}

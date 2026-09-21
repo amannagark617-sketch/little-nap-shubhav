@@ -210,9 +210,9 @@ export default function ProductModal({ product, onClose }: Props) {
                   </>
                 )}
               </button>
-              <Link to="/contact" className="btn-outline flex-1" onClick={onClose}>
+              <Link to="/contact" className="group btn-outline flex-1" onClick={onClose}>
                 Talk to us
-                <IconArrowRight className="h-4 w-4" />
+                <IconArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </div>
           </div>
