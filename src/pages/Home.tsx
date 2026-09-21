@@ -446,8 +446,10 @@ export default function Home() {
                   <img
                     src={clientLogo(client.logo)}
                     alt={client.name}
-                    className="h-9 w-auto max-w-[14rem] object-contain opacity-70
-                               transition-opacity duration-300 hover:opacity-100"
+                    className={`w-auto max-w-[14rem] object-contain opacity-70
+                               transition-opacity duration-300 hover:opacity-100 ${
+                                 client.compact ? 'h-14' : 'h-9'
+                               }`}
                   />
                 ) : (
                   <span

@@ -214,15 +214,22 @@ export const productFeatures = [
  * images/brand/clients/ (via `clientLogo` in data/factory.ts) — provided by
  * the client for real trademarks, never generated. A client without one
  * renders as a plain wordmark instead.
+ *
+ * `compact` marks a logo whose real lockup is closer to square (an icon
+ * badge or a stacked icon-over-wordmark) rather than a wide horizontal
+ * wordmark. Scaling every logo to the same height makes a compact one look
+ * shrunken next to a wide one at equal height, since it has far less width
+ * to show for it, so compact logos render at a taller height instead, to
+ * read as similarly sized rather than literally identical in height.
  */
-export const clients: { name: string; logo?: string }[] = [
+export const clients: { name: string; logo?: string; compact?: boolean }[] = [
   { name: 'Green Soul', logo: 'green-soul.webp' },
   { name: 'The Sleep Company', logo: 'the-sleep-company.webp' },
   { name: 'Duroflex', logo: 'duroflex.webp' },
   { name: 'Sleepyhead', logo: 'sleepyhead.webp' },
-  { name: 'SleepyCat', logo: 'sleepycat.webp' },
-  { name: 'Little Nap Recliners', logo: 'little-nap-recliners.webp' },
-  { name: 'Asian Paints', logo: 'asian-paints.webp' },
+  { name: 'SleepyCat', logo: 'sleepycat.webp', compact: true },
+  { name: 'Little Nap Recliners', logo: 'little-nap-recliners.webp', compact: true },
+  { name: 'Asian Paints', logo: 'asian-paints.webp', compact: true },
   { name: 'Godrej Interio', logo: 'godrej-interio.webp' },
 ]
 
