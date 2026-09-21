@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import ScrollProgress from './components/ScrollProgress'
 import EnquiryDrawer from './components/EnquiryDrawer'
+import EnquiryPopup from './components/EnquiryPopup'
 import AIAdvisor from './components/AIAdvisor'
 import WhatsAppButton from './components/WhatsAppButton'
 import { EnquiryProvider } from './context/EnquiryContext'
@@ -20,6 +21,9 @@ const Manufacturing = lazy(() => import('./pages/Manufacturing'))
 const Quality = lazy(() => import('./pages/Quality'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
+const Insights = lazy(() => import('./pages/Insights'))
+const InsightArticle = lazy(() => import('./pages/InsightArticle'))
+const Faq = lazy(() => import('./pages/Faq'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 /** Holds the viewport height while a route chunk arrives, avoiding a jump. */
@@ -47,12 +51,16 @@ export default function App() {
             <Route path="/quality" element={<Quality />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<InsightArticle />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
       <Footer />
       <EnquiryDrawer />
+      <EnquiryPopup />
       <AIAdvisor />
       <WhatsAppButton />
     </EnquiryProvider>

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --header-h: 80px;
+    --header-h: 72px;
 
     /* Device safe areas. These are 0 everywhere except on hardware with a
        notch, rounded corners or a home indicator, and only resolve at all
@@ -229,18 +229,6 @@
   /* --- Safe-area helpers -------------------------------------------------
      Each keeps its original spacing and adds the device inset on top, so
      nothing moves on hardware without one. */
-  .pad-header {
-    padding-top: calc(0.75rem + var(--safe-t));
-    padding-left: calc(0.75rem + var(--safe-l));
-    padding-right: calc(0.75rem + var(--safe-r));
-  }
-  @media (min-width: 640px) {
-    .pad-header {
-      padding-top: calc(1rem + var(--safe-t));
-      padding-left: calc(1.25rem + var(--safe-l));
-      padding-right: calc(1.25rem + var(--safe-r));
-    }
-  }
 
   /* Main content clears the fixed header plus any top inset. */
   .pad-main {

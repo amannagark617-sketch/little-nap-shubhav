@@ -28,9 +28,9 @@ export default function Logo({ tone = 'dark', className = '', markOnly = false }
     <img
       src={brandImage('logo-full.webp')}
       alt="Little Nap Subhav India Pvt. Ltd."
-      width={700}
-      height={350}
-      className={`h-14 w-auto object-contain ${tone === 'light' ? 'brightness-0 invert' : ''} ${className}`}
+      width={646}
+      height={297}
+      className={`h-12 w-auto object-contain ${tone === 'light' ? 'brightness-0 invert' : ''} ${className}`}
     />
   )
 }

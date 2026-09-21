@@ -409,13 +409,25 @@ export default function Home() {
               <h2 className="h-section">From the floor and the industry.</h2>
               <p className="lede">
                 Notes on manufacturing, materials and specifying motion
-                furniture at volume. The first pieces are in progress.
+                furniture at volume.
               </p>
             </div>
           </Reveal>
           <div className="mt-12">
             <InsightsTeaser />
           </div>
+          <Reveal delay={200}>
+            <div className="mt-8 text-center">
+              <Link
+                to="/insights"
+                className="inline-flex min-h-[44px] items-center text-sm font-semibold
+                           text-accent-600 underline-offset-4 hover:underline"
+              >
+                Read all articles
+                <IconArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

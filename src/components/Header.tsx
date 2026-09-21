@@ -52,15 +52,16 @@ export default function Header() {
         Skip to content
       </a>
 
-      <header className="pad-header fixed inset-x-0 top-0 z-50">
-        {/* The bar is a floating glass pill that tightens as you scroll. */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 border-b bg-white/95 backdrop-blur-md
+                    transition-shadow duration-300 ${
+                      scrolled ? 'border-ink-100 shadow-sm' : 'border-ink-100/60'
+                    }`}
+        style={{ paddingTop: 'var(--safe-t)' }}
+      >
         <div
-          className={`mx-auto flex max-w-content items-center justify-between gap-6 rounded-full
-                      px-4 transition-all duration-500 sm:px-6 ${
-                        scrolled
-                          ? 'glass-strong h-[64px]'
-                          : 'h-[68px] border border-transparent bg-transparent'
-                      }`}
+          className="container-page flex items-center justify-between gap-6"
+          style={{ height: 'var(--header-h)' }}
         >
           <Link to="/" aria-label="Little Nap Subhav, home" className="shrink-0">
             <Logo />

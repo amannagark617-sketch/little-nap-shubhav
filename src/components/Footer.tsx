@@ -9,6 +9,8 @@ const siteLinks = [
   { to: '/manufacturing', label: 'Manufacturing' },
   { to: '/quality', label: 'Quality' },
   { to: '/about', label: 'About us' },
+  { to: '/insights', label: 'Insights' },
+  { to: '/faq', label: 'FAQ' },
   { to: '/contact', label: 'Contact' },
 ]
 
