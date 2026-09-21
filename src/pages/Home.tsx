@@ -446,7 +446,7 @@ export default function Home() {
                   <img
                     src={clientLogo(client.logo)}
                     alt={client.name}
-                    className="h-9 w-auto max-w-[9rem] object-contain opacity-70
+                    className="h-9 w-auto max-w-[14rem] object-contain opacity-70
                                transition-opacity duration-300 hover:opacity-100"
                   />
                 ) : (

@@ -260,7 +260,7 @@ export default function About() {
                     <img
                       src={clientLogo(client.logo)}
                       alt={client.name}
-                      className="max-h-14 w-auto max-w-[80%] object-contain"
+                      className="max-h-14 w-auto max-w-full object-contain"
                     />
                   ) : (
                     <span className="font-display text-xl text-ink-700">{client.name}</span>

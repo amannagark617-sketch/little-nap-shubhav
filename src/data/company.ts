@@ -216,10 +216,10 @@ export const productFeatures = [
  * renders as a plain wordmark instead.
  */
 export const clients: { name: string; logo?: string }[] = [
-  { name: 'Green Soul' },
-  { name: 'The Sleep Company' },
-  { name: 'Duroflex' },
-  { name: 'Sleepyhead' },
+  { name: 'Green Soul', logo: 'green-soul.webp' },
+  { name: 'The Sleep Company', logo: 'the-sleep-company.webp' },
+  { name: 'Duroflex', logo: 'duroflex.webp' },
+  { name: 'Sleepyhead', logo: 'sleepyhead.webp' },
   { name: 'SleepyCat', logo: 'sleepycat.webp' },
   { name: 'Little Nap Recliners', logo: 'little-nap-recliners.webp' },
   { name: 'Asian Paints', logo: 'asian-paints.webp' },
