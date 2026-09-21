@@ -54,13 +54,7 @@ export default function Home() {
         />
 
         <div className="container-page relative flex h-full flex-col justify-end pb-16 sm:pb-20">
-          <Reveal>
-            <span className="inline-flex w-fit items-center gap-2.5 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-sm">
-              Est. in Dewas, Madhya Pradesh
-            </span>
-          </Reveal>
-
-          <h1 className="mt-6 max-w-2xl font-display text-[2.6rem] leading-[1.05] text-white sm:text-[3.6rem] lg:text-[4.4rem]">
+          <h1 className="max-w-2xl font-display text-[2.6rem] leading-[1.05] text-white sm:text-[3.6rem] lg:text-[4.4rem]">
             <SplitText as="span" className="block">
               Where production
             </SplitText>

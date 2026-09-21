@@ -40,3 +40,12 @@ ffmpeg -i yourclip.mov -vf "scale=1920:-2" -an -c:v libvpx-vp9 \
 ```
 
 `-an` strips any audio track (it would never play anyway, and it bloats the file).
+
+## Brand intro
+
+`brand-intro.mp4` / `brand-intro.webm` are the client's own logo reveal
+animation, played once per session by `BrandIntro.tsx` before a first-time
+visitor lands on the homepage. Real footage, supplied by the client — not a
+placeholder. Same dual-format, muted, `canPlayType`-based selection as the
+hero loop above; replace both files with an updated cut whenever the client
+provides one, same two filenames.
