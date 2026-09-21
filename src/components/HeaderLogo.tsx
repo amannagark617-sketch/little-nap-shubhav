@@ -51,8 +51,17 @@ export default function HeaderLogo() {
 
   if (!supported) return <Logo />
 
+  // The clip's own lockup only fills part of its 1280x720 frame (padding on
+  // every side plus the ® mark reaching toward the top). Cropped and scaled
+  // up via CSS alone here — the file itself is never touched — so the logo
+  // reads at roughly the same size as the wordmark in <Logo>, not shrunk
+  // down inside its own frame's empty margin.
   return (
-    <span className="inline-flex h-12 w-auto cursor-pointer" onClick={replay}>
+    <span
+      className="relative inline-block cursor-pointer overflow-hidden"
+      style={{ height: 56, width: 108 }}
+      onClick={replay}
+    >
       <video
         ref={videoRef}
         src={`${import.meta.env.BASE_URL}videos/header-logo.webm`}
@@ -62,7 +71,7 @@ export default function HeaderLogo() {
         onEnded={scheduleReplay}
         onError={() => setSupported(false)}
         aria-label="Little Nap Subhav India Pvt. Ltd. — click to replay"
-        className="h-12 w-auto object-contain"
+        style={{ position: 'absolute', top: 0, left: -15, height: 69, width: 122 }}
       />
     </span>
   )
