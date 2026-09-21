@@ -3,15 +3,16 @@ import Logo from './Logo'
 
 /**
  * The client's own logo reveal clip, played once at the top of the header on
- * every fresh page load, then left resting on its final frame (the same
- * lockup <Logo> shows). Falls back to the plain static logo outright for
- * reduced-motion visitors, and the moment playback can't happen for any
- * reason — an unsupported format, a failed load — so the header logo is
- * never at risk of coming up blank.
+ * every fresh page load. The clip's own background is a light gray, visibly
+ * boxy against the header's white bar, so the moment it finishes playing —
+ * or fails to play at all — this swaps over to the plain static <Logo>,
+ * which has a real transparent background. The video is only ever the
+ * transient few seconds before that; the resting state is always the clean
+ * static lockup, never a frozen video frame.
  */
 export default function HeaderLogo() {
   const [src, setSrc] = useState<string | null>(null)
-  const [failed, setFailed] = useState(false)
+  const [done, setDone] = useState(false)
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -24,22 +25,27 @@ export default function HeaderLogo() {
     } else if (probe.canPlayType('video/webm; codecs="vp9"')) {
       setSrc(`${base}.webm`)
     } else {
-      setFailed(true)
+      setDone(true)
     }
   }, [])
 
-  if (failed || !src) return <Logo />
+  if (!src) return <Logo />
 
   return (
-    <video
-      key={src}
-      src={src}
-      autoPlay
-      muted
-      playsInline
-      onError={() => setFailed(true)}
-      aria-label="Little Nap Subhav India Pvt. Ltd."
-      className="h-12 w-auto rounded-lg border border-ink-100 object-contain"
-    />
+    <span className="relative inline-flex h-12 w-auto">
+      <Logo className={`transition-opacity duration-500 ${done ? 'opacity-100' : 'opacity-0'}`} />
+      <video
+        src={src}
+        autoPlay
+        muted
+        playsInline
+        onEnded={() => setDone(true)}
+        onError={() => setDone(true)}
+        aria-label="Little Nap Subhav India Pvt. Ltd."
+        className={`absolute inset-0 h-12 w-auto object-contain transition-opacity duration-500 ${
+          done ? 'pointer-events-none opacity-0' : 'opacity-100'
+        }`}
+      />
+    </span>
   )
 }
