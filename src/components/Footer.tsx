@@ -162,9 +162,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-white/10 pt-8 text-xs text-ink-300">
+        <div className="mt-14 flex flex-col gap-2 border-t border-white/10 pt-8 text-xs text-ink-300 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {company.legalName}. All rights reserved.
+            © {new Date().getFullYear()} {company.registration.legalName}. All rights reserved.
+          </p>
+          <p className="text-ink-400">
+            CIN {company.registration.cin} · GSTIN {company.registration.gstin}
           </p>
         </div>
       </div>

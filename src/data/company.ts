@@ -50,6 +50,12 @@ export const company = {
         ),
     },
   },
+  /** Statutory registration details, as registered, for the footer's compliance line. */
+  registration: {
+    legalName: 'LITTLE NAP SUBHAV INDIA PRIVATE LIMITED',
+    cin: 'U36999MP2022PTC063150',
+    gstin: '23AAFCL2047L1ZK',
+  },
 } as const
 
 /**
