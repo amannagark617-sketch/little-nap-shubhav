@@ -4,12 +4,8 @@ import { company } from '../data/company'
 
 /**
  * A floating WhatsApp quick-contact button, mirroring the Comfort Advisor on
- * the opposite corner so neither ever overlaps the other.
- *
- * Uses `company.contact.whatsapp` — see the ASSUMPTION note on that field in
- * data/company.ts. This is the one contact channel on the site that has not
- * been confirmed as correct; everything else (email, phone, address) comes
- * from the Google Business listing or the corporate deck.
+ * the opposite corner so neither ever overlaps the other. Opens a chat with
+ * `company.contact.whatsapp` and a pre-filled greeting message.
  */
 export default function WhatsAppButton() {
   const [dismissed, setDismissed] = useState(false)

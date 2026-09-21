@@ -381,8 +381,7 @@ export default function Contact() {
                   </button>
 
                   <p className="mt-4 text-xs leading-relaxed text-ink-400">
-                    We use your details only to respond to this enquiry. Nothing on
-                    this site is an online sale, every order is quoted individually.
+                    We use your details only to respond to this enquiry.
                   </p>
                 </form>
               )}

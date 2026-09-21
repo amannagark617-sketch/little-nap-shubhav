@@ -26,13 +26,6 @@ export const company = {
     /** The number printed on the corporate deck. */
     altPhone: '+91 88178 52528',
     altPhoneHref: '+918817852528',
-    /**
-     * ASSUMPTION, not confirmed: the floating WhatsApp button uses the
-     * Google-listing number on the (unverified) basis that Indian
-     * businesses commonly run WhatsApp on their primary contact line. If
-     * this number is not WhatsApp-enabled, or a different line is, update
-     * this and nothing else needs to change.
-     */
     whatsapp: '916232005722',
     website: 'www.lnsindia.co.in',
     address: {

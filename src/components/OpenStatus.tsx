@@ -65,16 +65,16 @@ export default function OpenStatus({ className = '' }: { className?: string }) {
   return (
     <span
       className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold ${
-        isOpen ? 'bg-emerald-50 text-emerald-800' : 'bg-ink-50 text-ink-500'
+        isOpen ? 'bg-ink-900 text-white' : 'bg-ink-50 text-ink-500'
       } ${className}`}
     >
       <span className="relative flex h-2 w-2">
         {isOpen && (
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/60" />
         )}
         <span
           className={`relative inline-flex h-2 w-2 rounded-full ${
-            isOpen ? 'bg-emerald-500' : 'bg-ink-300'
+            isOpen ? 'bg-white' : 'bg-ink-300'
           }`}
         />
       </span>

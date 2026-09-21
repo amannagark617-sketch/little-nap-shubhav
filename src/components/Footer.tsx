@@ -160,16 +160,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div
-          className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs
-                     text-ink-300 sm:flex-row sm:items-center sm:justify-between"
-        >
+        <div className="mt-14 border-t border-white/10 pt-8 text-xs text-ink-300">
           <p>
             © {new Date().getFullYear()} {company.legalName}. All rights reserved.
-          </p>
-          <p>
-            This site presents manufacturing capability and product ranges. It is
-            not an online store, every enquiry is quoted individually.
           </p>
         </div>
       </div>

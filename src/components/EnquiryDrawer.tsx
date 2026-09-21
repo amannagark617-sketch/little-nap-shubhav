@@ -111,8 +111,8 @@ export default function EnquiryDrawer() {
             <div className="rounded-2xl border border-dashed border-ink-200 p-8 text-center">
               <p className="font-display text-lg text-ink-800">Build a specification</p>
               <p className="mt-2 text-sm leading-relaxed text-ink-500">
-                Add models from any range and set indicative quantities. We will
-                quote the list as one enquiry, nothing is priced or sold online.
+                Add models from any range and set indicative quantities, and we
+                will quote the list as one enquiry.
               </p>
               <button
                 type="button"
