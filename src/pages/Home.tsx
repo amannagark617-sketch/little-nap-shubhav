@@ -14,6 +14,7 @@ import PlaceholderImage from '../components/PlaceholderImage'
 import HeroMedia from '../components/HeroMedia'
 import Tilt3D from '../components/Tilt3D'
 import ParallaxLayer from '../components/ParallaxLayer'
+import { useScrollRecede } from '../hooks/useScrollRecede'
 import { IconArrowRight, iconMap } from '../components/Icons'
 import {
   brandPillars,
@@ -36,6 +37,8 @@ const rangePreview = ranges.map((r) => ({
 }))
 
 export default function Home() {
+  const hero = useScrollRecede<HTMLDivElement>(600)
+
   return (
     <>
       {/* ═══════════════ HERO — full-bleed banner ═══════════════ */}
@@ -57,7 +60,10 @@ export default function Home() {
           className="absolute inset-0 bg-gradient-to-r from-ink-950/70 via-ink-950/5 to-transparent"
         />
 
-        <div className="container-page relative flex h-full flex-col justify-end pb-16 sm:pb-20">
+        <div
+          ref={hero.ref}
+          style={hero.style}
+          className="container-page relative flex h-full flex-col justify-end pb-16 sm:pb-20">
           <h1 className="max-w-2xl font-display text-[2.6rem] leading-[1.05] text-white sm:text-[3.6rem] lg:text-[4.4rem]">
             <SplitText as="span" className="block">
               Where production

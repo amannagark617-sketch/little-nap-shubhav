@@ -5,6 +5,7 @@ import ProductModal from '../components/ProductModal'
 import Reveal from '../components/Reveal'
 import Aurora from '../components/Aurora'
 import Tilt3D from '../components/Tilt3D'
+import { useScrollRecede } from '../hooks/useScrollRecede'
 import { IconSearch, IconClose } from '../components/Icons'
 import { productImage, products, rangeById, ranges, type Product, type RangeId } from '../data/products'
 
@@ -22,6 +23,7 @@ const isRangeId = (v: string | null): v is RangeId =>
   !!v && ranges.some((r) => r.id === v)
 
 export default function Products() {
+  const hero = useScrollRecede<HTMLDivElement>(500)
   const [params, setParams] = useSearchParams()
   const [query, setQuery] = useState('')
   const [selected, setSelected] = useState<Product | null>(null)
@@ -84,7 +86,11 @@ export default function Products() {
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-t from-ink-950/92 via-ink-950/55 to-ink-950/25"
         />
-        <div className="container-page relative flex h-full flex-col justify-end pb-14 sm:pb-16">
+        <div
+          ref={hero.ref}
+          style={hero.style}
+          className="container-page relative flex h-full flex-col justify-end pb-14 sm:pb-16"
+        >
           <Reveal>
             <p className="eyebrow-light">Products</p>
           </Reveal>

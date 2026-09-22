@@ -5,11 +5,13 @@ import Counter from '../components/Counter'
 import Lightbox from '../components/Lightbox'
 import Aurora from '../components/Aurora'
 import PlaceholderImage from '../components/PlaceholderImage'
+import { useScrollRecede } from '../hooks/useScrollRecede'
 import { IconArrowRight, IconChevron, IconPlay } from '../components/Icons'
 import { factoryImage, processSteps, stageOrder } from '../data/factory'
 import { capability } from '../data/company'
 
 export default function Manufacturing() {
+  const hero = useScrollRecede<HTMLDivElement>(400)
   const [active, setActive] = useState(0)
   const [lightbox, setLightbox] = useState<number | null>(null)
 
@@ -32,7 +34,7 @@ export default function Manufacturing() {
           />
         </div>
         <div className="relative bg-ink-950 py-10 sm:py-12">
-          <div className="container-page relative">
+          <div ref={hero.ref} style={hero.style} className="container-page relative">
             <Reveal>
               <p className="eyebrow-light">Manufacturing</p>
             </Reveal>

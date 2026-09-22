@@ -7,6 +7,7 @@ import Aurora from '../components/Aurora'
 import FacilitySection from '../components/FacilitySection'
 import PlaceholderImage from '../components/PlaceholderImage'
 import Tilt3D from '../components/Tilt3D'
+import { useScrollRecede } from '../hooks/useScrollRecede'
 import { brandImage, clientLogo } from '../data/factory'
 import {
   capability,
@@ -21,6 +22,7 @@ import {
 } from '../data/company'
 
 export default function About() {
+  const hero = useScrollRecede<HTMLDivElement>(500)
   useEffect(() => {
     document.title = 'About, Little Nap Subhav India Pvt. Ltd.'
   }, [])
@@ -40,7 +42,7 @@ export default function About() {
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-ink-950/40"
         />
-        <div className="container-page relative text-center">
+        <div ref={hero.ref} style={hero.style} className="container-page relative text-center">
           <Reveal>
             <p className="eyebrow-light justify-center">About us</p>
           </Reveal>
