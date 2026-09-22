@@ -185,7 +185,7 @@ export default function Header() {
 
       {/* ---- Mobile drawer ---- */}
       <div
-        className={`fixed inset-0 z-[55] lg:hidden ${menuOpen ? '' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-[60] lg:hidden ${menuOpen ? '' : 'pointer-events-none'}`}
         aria-hidden={!menuOpen}
       >
         <div

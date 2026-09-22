@@ -23,7 +23,7 @@ export default function Footer() {
   const sunday = openingHours.find((h) => h.day === 0)!
 
   return (
-    <footer className="relative overflow-hidden bg-ink-900 text-ink-200">
+    <footer className="pad-quickbar relative overflow-hidden bg-ink-900 text-ink-200">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-40 -top-48 h-[36rem] w-[36rem] rounded-full

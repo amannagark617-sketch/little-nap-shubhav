@@ -115,10 +115,10 @@ export default function AIAdvisor() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? 'Close the Comfort Advisor' : 'Open the Comfort Advisor'}
         aria-expanded={open}
-        className={`pin-fab-left fixed z-[58] inline-flex items-center gap-2 rounded-full
+        className={`pin-fab-left fixed z-[58] hidden items-center gap-2 rounded-full
                     bg-ink-900 py-3.5 pl-4 pr-5 text-sm font-semibold text-white shadow-lg
                     shadow-ink-950/25 transition-all duration-300 hover:bg-ink-800
-                    active:scale-95 ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
+                    active:scale-95 lg:inline-flex ${open ? 'pointer-events-none opacity-0' : 'opacity-100'}`}
       >
         <IconSparkle className="h-5 w-5 text-accent-400" />
         Comfort Advisor

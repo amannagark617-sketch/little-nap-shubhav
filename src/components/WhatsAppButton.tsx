@@ -8,6 +8,10 @@ import { company } from '../data/company'
  * a pre-filled greeting message. The soft pulse ring is a standing
  * attention cue, not a one-off animation, so it keeps running for as long
  * as the button is on screen.
+ *
+ * Hidden below `lg` — <MobileQuickBar> covers the same action there, and a
+ * floating button stacked on top of that bar would be redundant clutter on
+ * a small screen.
  */
 export default function WhatsAppButton() {
   const message = encodeURIComponent(
@@ -20,9 +24,9 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="pin-fab fixed z-[57] inline-flex h-14 w-14 items-center justify-center
+      className="pin-fab fixed z-[57] hidden h-14 w-14 items-center justify-center
                  rounded-full bg-[#25D366] text-white shadow-lift transition-transform
-                 duration-300 hover:scale-110 active:scale-95"
+                 duration-300 hover:scale-110 active:scale-95 lg:inline-flex"
     >
       <span
         aria-hidden="true"

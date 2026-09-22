@@ -10,6 +10,10 @@
        reserve space for a bar that isn't there. */
     --utility-h: 0px;
 
+    /* <MobileQuickBar> — the persistent bottom action bar — only renders
+       below lg, matching its own `lg:hidden`. */
+    --quickbar-h: 56px;
+
     /* Device safe areas. These are 0 everywhere except on hardware with a
        notch, rounded corners or a home indicator, and only resolve at all
        because the viewport meta sets viewport-fit=cover. */
@@ -22,6 +26,12 @@
   @media (min-width: 768px) {
     :root {
       --utility-h: 38px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --quickbar-h: 0px;
     }
   }
 
@@ -252,6 +262,12 @@
   /* Sticky elements that sit directly under the header. */
   .stick-below-header {
     top: calc(var(--header-h) + var(--utility-h) + var(--safe-t));
+  }
+
+  /* Whatever sits last on the page clears the fixed <MobileQuickBar>, so its
+     own bottom padding/safe-area handling never gets covered by it. */
+  .pad-quickbar {
+    padding-bottom: calc(var(--quickbar-h) + var(--safe-b));
   }
 
   /* Floating bottom-right control, clear of the home indicator. Bottom-right

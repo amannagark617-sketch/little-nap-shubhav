@@ -8,6 +8,7 @@ import EnquiryDrawer from './components/EnquiryDrawer'
 import EnquiryPopup from './components/EnquiryPopup'
 import AIAdvisor from './components/AIAdvisor'
 import WhatsAppButton from './components/WhatsAppButton'
+import MobileQuickBar from './components/MobileQuickBar'
 import { EnquiryProvider } from './context/EnquiryContext'
 import Home from './pages/Home'
 
@@ -63,6 +64,7 @@ export default function App() {
       <EnquiryPopup />
       <AIAdvisor />
       <WhatsAppButton />
+      <MobileQuickBar />
     </EnquiryProvider>
   )
 }
