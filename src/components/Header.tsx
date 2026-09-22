@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import HeaderLogo from './HeaderLogo'
-import { IconClose, IconMenu, IconArrowRight } from './Icons'
+import { IconClose, IconMenu, IconArrowRight, IconPhone, IconPin, IconNewspaper } from './Icons'
 import { useEnquiry } from '../context/EnquiryContext'
+import { company } from '../data/company'
 
 const nav = [
   { to: '/products', label: 'Products' },
@@ -60,6 +61,41 @@ export default function Header() {
                     }`}
         style={{ paddingTop: 'var(--safe-t)' }}
       >
+        {/* ---- Utility bar: call, directions, blog ---- */}
+        <div
+          className="hidden items-center justify-end gap-1 bg-ink-900 px-3 text-ink-300 md:flex"
+          style={{ height: 'var(--utility-h)' }}
+        >
+          <a
+            href={`tel:${company.contact.phoneHref}`}
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium
+                       transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <IconPhone className="h-3.5 w-3.5" />
+            {company.contact.phone}
+          </a>
+          <span aria-hidden="true" className="h-3.5 w-px bg-white/15" />
+          <a
+            href={company.contact.address.directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium
+                       transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <IconPin className="h-3.5 w-3.5" />
+            Get directions
+          </a>
+          <span aria-hidden="true" className="h-3.5 w-px bg-white/15" />
+          <Link
+            to="/insights"
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium
+                       transition-colors hover:bg-white/10 hover:text-white"
+          >
+            <IconNewspaper className="h-3.5 w-3.5" />
+            Blog
+          </Link>
+        </div>
+
         <div
           className="container-page flex items-center justify-between gap-6"
           style={{ height: 'var(--header-h)' }}
@@ -75,25 +111,15 @@ export default function Header() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `relative inline-flex min-h-[44px] items-center rounded-full px-4 text-sm
-                       font-medium transition-all duration-300 ${
+                      `inline-flex min-h-[44px] items-center rounded-full px-4 text-sm
+                       font-semibold transition-all duration-300 ${
                         isActive
-                          ? 'text-ink-900'
-                          : 'text-ink-500 hover:-translate-y-0.5 hover:text-ink-900'
+                          ? 'bg-ink-900 text-white shadow-lift'
+                          : 'text-ink-500 hover:-translate-y-0.5 hover:bg-ink-100/70 hover:text-ink-900'
                       }`
                     }
                   >
-                    {({ isActive }) => (
-                      <>
-                        {item.label}
-                        <span
-                          className={`absolute inset-x-4 bottom-1 h-px bg-gradient-to-r from-transparent
-                                      via-accent-400 to-transparent transition-all duration-300 ${
-                                        isActive ? 'opacity-100' : 'opacity-0'
-                                      }`}
-                        />
-                      </>
-                    )}
+                    {item.label}
                   </NavLink>
                 </li>
               ))}
@@ -203,6 +229,35 @@ export default function Header() {
               ))}
             </ul>
           </nav>
+
+          <div className="grid grid-cols-3 gap-2 border-t border-white/60 px-5 py-4">
+            <a
+              href={`tel:${company.contact.phoneHref}`}
+              className="flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl
+                         text-ink-600 transition-colors hover:bg-white/60"
+            >
+              <IconPhone className="h-4 w-4" />
+              <span className="text-[0.7rem] font-medium">Call</span>
+            </a>
+            <a
+              href={company.contact.address.directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl
+                         text-ink-600 transition-colors hover:bg-white/60"
+            >
+              <IconPin className="h-4 w-4" />
+              <span className="text-[0.7rem] font-medium">Directions</span>
+            </a>
+            <Link
+              to="/insights"
+              className="flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-xl
+                         text-ink-600 transition-colors hover:bg-white/60"
+            >
+              <IconNewspaper className="h-4 w-4" />
+              <span className="text-[0.7rem] font-medium">Blog</span>
+            </Link>
+          </div>
 
           <div className="space-y-3 border-t border-white/60 p-5 pb-[calc(1.25rem+var(--safe-b))]">
             <button

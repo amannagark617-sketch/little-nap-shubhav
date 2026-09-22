@@ -21,6 +21,7 @@ import {
   Settings2,
   PenLine,
   Truck,
+  Newspaper,
 } from 'lucide-react'
 
 /**
@@ -53,6 +54,7 @@ export const IconShield = ShieldCheck
 export const IconGear = Settings2
 export const IconPencil = PenLine
 export const IconTruck = Truck
+export const IconNewspaper = Newspaper
 
 type IconProps = SVGProps<SVGSVGElement>
 

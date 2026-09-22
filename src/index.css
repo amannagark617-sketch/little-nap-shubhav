@@ -5,6 +5,10 @@
 @layer base {
   :root {
     --header-h: 72px;
+    /* The utility bar (phone / directions / blog) only renders at md: and up
+       — this stays 0 on mobile so .pad-main and .stick-below-header don't
+       reserve space for a bar that isn't there. */
+    --utility-h: 0px;
 
     /* Device safe areas. These are 0 everywhere except on hardware with a
        notch, rounded corners or a home indicator, and only resolve at all
@@ -15,9 +19,15 @@
     --safe-l: env(safe-area-inset-left, 0px);
   }
 
+  @media (min-width: 768px) {
+    :root {
+      --utility-h: 38px;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--header-h) + var(--safe-t));
+    scroll-padding-top: calc(var(--header-h) + var(--utility-h) + var(--safe-t));
     -webkit-text-size-adjust: 100%;
   }
 
@@ -233,14 +243,15 @@
      Each keeps its original spacing and adds the device inset on top, so
      nothing moves on hardware without one. */
 
-  /* Main content clears the fixed header plus any top inset. */
+  /* Main content clears the fixed header (plus the utility bar, on the
+     widths where it renders) plus any top inset. */
   .pad-main {
-    padding-top: calc(var(--header-h) + var(--safe-t));
+    padding-top: calc(var(--header-h) + var(--utility-h) + var(--safe-t));
   }
 
   /* Sticky elements that sit directly under the header. */
   .stick-below-header {
-    top: calc(var(--header-h) + var(--safe-t));
+    top: calc(var(--header-h) + var(--utility-h) + var(--safe-t));
   }
 
   /* Floating bottom-right control, clear of the home indicator. Bottom-right
