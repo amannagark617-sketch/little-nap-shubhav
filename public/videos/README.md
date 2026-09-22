@@ -47,19 +47,37 @@ ffmpeg -i yourclip.mov -vf "scale=1920:-2" -an -c:v libvpx-vp9 \
 transparent VP9 WebM (a real alpha channel, not a solid-color background),
 played by `HeaderLogo.tsx` in place of the static header logo. It autoplays
 on load, replays itself after a 20-second pause, and replays again whenever
-the logo is clicked. There's no MP4 sibling: H.264 doesn't carry alpha in
-browsers, so a browser that can't play alpha WebM gets the plain static
-`Logo` instead of a version with a solid background box.
+the logo is clicked.
 
-**This file must never be re-encoded, cropped, or compressed with the
-ffmpeg build in this environment.** It doesn't actually support VP9 alpha:
-it will tag output as `alpha_mode: 1` and even name the pixel format
-`yuva420p`, but decoding that same output always comes back fully opaque —
-verified by round-tripping a known-transparent frame through it. The
-current file was confirmed to have real working transparency by rendering
-it in an actual Chromium instance (Playwright) and screenshotting it over a
-solid color, since ffmpeg's own frame extraction can't be trusted to show
-it correctly either. If a new cut of this animation is ever needed, get it
-pre-exported as alpha WebM from whatever tool made the original (After
-Effects, or similar) and drop it in as-is — do not pipe it through ffmpeg
-here, and re-verify with the same browser-render test before trusting it.
+`header-logo-composited.webm` is a second, opaque VP9 file for browsers
+that decode `header-logo.webm` but don't render its transparency — recent
+iOS/Safari (and everything on iOS uses WebKit underneath, even Chrome
+there) is exactly this case: it plays the alpha file and composites it
+fully opaque, which showed up as a solid black box behind the logo on a
+real iPhone, even though its plain VP9 decode is otherwise fine.
+`HeaderLogo.tsx` decides which one a visitor gets by drawing the alpha
+file's first frame to a canvas and checking whether a corner pixel is
+actually transparent — `canPlayType('video/webm; codecs="vp9"')` alone
+isn't enough, since that browser passes it. If a corner isn't transparent
+(or the file errors outright), it swaps the same `<video>` element over to
+this composited file instead of giving up on animation entirely, and only
+falls back to the plain static `Logo` if that also fails. It was generated
+by rendering `header-logo.webm` in a real Chromium (which decodes its
+alpha correctly) over solid white to match the header's own background,
+capturing the composited frames, and re-encoding just those frames —
+never the alpha source itself — as an ordinary opaque clip.
+
+**`header-logo.webm` must never be re-encoded, cropped, or compressed with
+the ffmpeg build in this environment.** It doesn't actually support VP9
+alpha: it will tag output as `alpha_mode: 1` and even name the pixel
+format `yuva420p`, but decoding that same output always comes back fully
+opaque — verified by round-tripping a known-transparent frame through it.
+The current file was confirmed to have real working transparency by
+rendering it in an actual Chromium instance (Playwright) and screenshotting
+it over a solid color, since ffmpeg's own frame extraction can't be
+trusted to show it correctly either. If a new cut of this animation is
+ever needed, get it pre-exported as alpha WebM from whatever tool made the
+original (After Effects, or similar) and drop it in as-is — do not pipe it
+through ffmpeg here, re-verify with the same browser-render test before
+trusting it, and regenerate `header-logo-composited.webm` from the new
+file using the same real-Chromium-render-to-white-background approach.

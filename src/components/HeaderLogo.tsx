@@ -8,45 +8,59 @@ const SETTLE_TRANSITION_MS = 700
 /** A short beat after the clip finishes before it eases into the zoomed mark. */
 const SETTLE_DELAY_MS = 350
 
+const ALPHA_SRC = `${import.meta.env.BASE_URL}videos/header-logo.webm`
+const COMPOSITED_SRC = `${import.meta.env.BASE_URL}videos/header-logo-composited.webm`
+
+type Phase = 'probe-alpha' | 'probe-composited' | 'alpha' | 'composited' | 'static'
 type ContentBox = { x: number; y: number; w: number; h: number }
 
 /**
- * The client's own logo reveal clip — a genuine transparent WebM (VP9 with
- * an alpha channel), so it sits directly on the header bar with no
- * background box. Autoplays on load, replays itself automatically after a
- * pause, and replays again on demand when the logo is clicked.
+ * The client's own logo reveal clip. There are two versions of it:
  *
- * Left completely unprocessed: any re-encode/crop pass through this
- * project's ffmpeg strips the alpha channel (verified — the encoder here
- * can tag a stream "alpha_mode" without actually writing decodable alpha
- * data), so the file the client supplied ships byte-for-byte. That rules
- * out trimming the clip's own footage to make its settled mark read bigger
- * — instead, once the clip finishes playing, a CSS transform smoothly
- * zooms the still-paused video in on just the mark (found by scanning its
- * last frame's alpha channel for the bounding box of non-transparent
- * pixels), so it reads like a proper static logo rather than a small
- * shape adrift in a wide frame. Replaying — by click or on the automatic
- * timer — eases back out to the full frame first, then restarts the clip,
- * so the wide-to-settled transition always runs the same way.
+ * 1. `header-logo.webm` — the original, genuinely transparent (VP9 with an
+ *    alpha channel), untouched: any re-encode/crop pass through this
+ *    project's ffmpeg strips the alpha channel (verified — the encoder here
+ *    can tag a stream "alpha_mode" without actually writing decodable alpha
+ *    data), so this file ships byte-for-byte as supplied. Sits directly on
+ *    the header with no background box, on any browser that actually
+ *    renders VP9 alpha.
+ * 2. `header-logo-composited.webm` — the same animation, but with every
+ *    transparent pixel replaced by solid white to match the header's own
+ *    background, and encoded as an ordinary opaque VP9 file (no alpha
+ *    channel at all this time). This is for browsers that decode file 1's
+ *    format but not its transparency — recent iOS/Safari (and everything
+ *    on iOS is forced onto WebKit underneath, even Chrome there) can play
+ *    file 1 and still composite it fully opaque, which showed up as a
+ *    solid black box behind the logo, even though Safari's plain VP9
+ *    decode (with no alpha involved) is otherwise solid. Real device
+ *    testing is what caught the alpha gap — `canPlayType` and even a
+ *    decoded frame both looked fine in this environment's own tooling,
+ *    which doesn't reproduce it. Made by rendering file 1 in a real
+ *    Chromium (which decodes its alpha correctly) over a white background
+ *    and capturing the composited frames — this project's own ffmpeg can't
+ *    read file 1's alpha channel at all, so it never touches it; only the
+ *    already-flattened frames get encoded.
  *
- * The static <Logo> is what every visitor sees first. The clip loads
- * invisibly alongside it (opacity: 0, out of layout flow — never
- * display:none, which some browsers use to stop decoding a hidden video)
- * and only swaps in once its first real frame proves genuinely
- * transparent: draws that frame to an offscreen canvas and checks a
- * corner pixel's alpha channel, rather than trusting
- * `canPlayType('video/webm; codecs="vp9"')`. That check is not enough —
- * recent iOS/Safari can decode this exact file, report it playable, and
- * still composite it fully opaque, since WebKit has never rendered VP9
- * alpha. Testing the actual decoded pixels is what catches that instead
- * of showing a black box behind the logo. If it never proves transparent
- * (or errors, or the format isn't supported at all), the static logo just
- * keeps showing — one video element, one fetch, either way.
+ * Tries file 1 first. Decides from its very first frame: draws it to an
+ * offscreen canvas and checks a corner pixel's actual alpha, rather than
+ * trusting `canPlayType('video/webm; codecs="vp9"')` — that check is not
+ * enough, as above. If that frame isn't genuinely transparent (or the file
+ * errors outright), switches this same video element over to file 2
+ * instead of giving up on animation entirely. Only if file 2 also fails
+ * does it fall back to the plain static <Logo>.
+ *
+ * Whichever file ends up playing, once it finishes, a CSS transform
+ * smoothly zooms the still-paused video in on just the mark (found by
+ * scanning the paused final frame for its content's bounding box), so it
+ * reads like a proper right-sized logo rather than a small shape adrift in
+ * a wide frame. Replaying — by click or the automatic timer — eases back
+ * out to the full frame first, then restarts the clip, so every cycle runs
+ * the same wide-to-settled transition.
  *
  * Plays regardless of prefers-reduced-motion, by deliberate choice.
  */
 export default function HeaderLogo() {
-  const [videoOk, setVideoOk] = useState(false)
+  const [phase, setPhase] = useState<Phase>('probe-alpha')
   const [transform, setTransform] = useState('none')
   const videoRef = useRef<HTMLVideoElement>(null)
   const replayTimer = useRef<number | undefined>(undefined)
@@ -63,31 +77,64 @@ export default function HeaderLogo() {
     [],
   )
 
-  const checkAlpha = () => {
+  // (Re)loads the right source whenever a probe stage begins — including
+  // the very first mount, since a plain `src` attribute alone doesn't
+  // reliably kick off loading a video that's still styled invisible.
+  useEffect(() => {
     const video = videoRef.current
     if (!video) return
+    if (phase === 'probe-alpha') {
+      video.src = ALPHA_SRC
+    } else if (phase === 'probe-composited') {
+      contentBox.current = null // a different clip, so any cached box is stale
+      video.src = COMPOSITED_SRC
+    } else {
+      return
+    }
+    video.load()
+    video.play().catch(() => {})
+  }, [phase])
+
+  const sampleAlpha = () => {
+    const video = videoRef.current
+    if (!video) return false
     try {
       const canvas = document.createElement('canvas')
       canvas.width = video.videoWidth || 1
       canvas.height = video.videoHeight || 1
       const ctx = canvas.getContext('2d')
-      if (!ctx) return
+      if (!ctx) return false
       ctx.drawImage(video, 0, 0)
       const [, , , alpha] = ctx.getImageData(0, 0, 1, 1).data
-      if (alpha < 250) setVideoOk(true)
+      return alpha < 250
     } catch {
-      // Stays on the static logo.
+      return false
     }
   }
 
-  /** Bounding box of the mark's non-transparent pixels in the paused final
-   *  frame, in the video's own pixel coordinates — sampled on a stride
-   *  since the frame is a full 1280x720. Computed once and cached. */
+  const handleLoadedData = () => {
+    if (phase === 'probe-alpha') {
+      setPhase(sampleAlpha() ? 'alpha' : 'probe-composited')
+    } else if (phase === 'probe-composited') {
+      setPhase('composited')
+    }
+  }
+
+  const handleError = () => {
+    setPhase((p) => (p === 'probe-composited' || p === 'composited' ? 'static' : 'probe-composited'))
+  }
+
+  /** Bounding box of the mark's content in the paused final frame, in the
+   *  video's own pixel coordinates — sampled on a stride since the frame
+   *  is a full-size decode. "Content" means non-transparent for the real
+   *  alpha clip, or simply non-white for the white-composited one. Cached
+   *  per clip since it never changes once computed. */
   const findContentBox = (): ContentBox | null => {
     const video = videoRef.current
     if (!video || !video.videoWidth) return null
     const w = video.videoWidth
     const h = video.videoHeight
+    const isAlpha = phase === 'alpha'
     try {
       const canvas = document.createElement('canvas')
       canvas.width = w
@@ -104,7 +151,11 @@ export default function HeaderLogo() {
       let found = false
       for (let y = 0; y < h; y += stride) {
         for (let x = 0; x < w; x += stride) {
-          if (data[(y * w + x) * 4 + 3] > 20) {
+          const i = (y * w + x) * 4
+          const isContent = isAlpha
+            ? data[i + 3] > 20
+            : data[i] < 250 || data[i + 1] < 250 || data[i + 2] < 250
+          if (isContent) {
             found = true
             if (x < minX) minX = x
             if (x > maxX) maxX = x
@@ -164,7 +215,9 @@ export default function HeaderLogo() {
     replayTimer.current = window.setTimeout(replay, REPLAY_DELAY_MS)
   }
 
-  const videoStyle: CSSProperties | undefined = videoOk
+  const visible = phase === 'alpha' || phase === 'composited'
+
+  const videoStyle: CSSProperties | undefined = visible
     ? {
         transform,
         transformOrigin: '0 0',
@@ -173,32 +226,27 @@ export default function HeaderLogo() {
     : undefined
 
   return (
-    <span className="relative inline-flex h-16 cursor-pointer items-center" onClick={videoOk ? replay : undefined}>
-      {!videoOk && <Logo />}
+    <span className="relative inline-flex h-16 cursor-pointer items-center" onClick={visible ? replay : undefined}>
+      {!visible && <Logo />}
       <video
         ref={videoRef}
-        src={`${import.meta.env.BASE_URL}videos/header-logo.webm`}
         autoPlay
         muted
         playsInline
-        onLoadedData={checkAlpha}
+        onLoadedData={handleLoadedData}
         onEnded={handleEnded}
-        onError={() => setVideoOk(false)}
+        onError={handleError}
         aria-label="Little Nap Subhav India Pvt. Ltd. — click to replay"
         style={videoStyle}
-        // Shown at full size the instant transparency is confirmed; kept
+        // Shown at full size once a playable source is confirmed; kept
         // decoding but invisible and out of flow until then. object-contain
-        // shows the clip's full 1280x720 frame during playback, not cropped
-        // to the settled lockup's bounds — the animation moves elements
-        // through a much wider range than that final position, including a
-        // brief glitch-style flash right at the start, so a tight crop
-        // clipped those earlier moments instead of just trimming empty
-        // margin. The zoom-in only ever applies after playback ends.
-        className={
-          videoOk
-            ? 'h-16 w-auto object-contain'
-            : 'absolute h-px w-px overflow-hidden opacity-0'
-        }
+        // shows the clip's full frame during playback, not cropped to the
+        // settled lockup's bounds — the animation moves elements through a
+        // much wider range than that final position, including a brief
+        // glitch-style flash right at the start, so a tight crop clipped
+        // those earlier moments instead of just trimming empty margin. The
+        // zoom-in only ever applies after playback ends.
+        className={visible ? 'h-16 w-auto object-contain' : 'absolute h-px w-px overflow-hidden opacity-0'}
       />
     </span>
   )
