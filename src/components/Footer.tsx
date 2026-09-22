@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import Logo from './Logo'
 import { company, openingHours } from '../data/company'
 import { ranges } from '../data/products'
 import { IconArrowRight, IconMail, IconPhone, IconPin } from './Icons'
@@ -39,7 +38,7 @@ export default function Footer() {
       <div className="container-page relative py-16 pb-[calc(4rem+var(--safe-b))] sm:py-20 sm:pb-[calc(5rem+var(--safe-b))]">
         <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
           <div>
-            <Logo tone="light" />
+            <p className="font-display text-lg text-white">{company.shortName}</p>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink-300">
               {company.tagline} Engineering and manufacturing world-class motion
               furniture from Dewas, Madhya Pradesh, for brands across India and
