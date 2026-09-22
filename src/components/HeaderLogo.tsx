@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
 
 /** How long the header logo sits still before it replays on its own. */
@@ -11,8 +11,11 @@ const SETTLE_DELAY_MS = 350
 const ALPHA_SRC = `${import.meta.env.BASE_URL}videos/header-logo.webm`
 const COMPOSITED_SRC = `${import.meta.env.BASE_URL}videos/header-logo-composited.webm`
 
-type Phase = 'probe-alpha' | 'probe-composited' | 'alpha' | 'composited' | 'static'
-type ContentBox = { x: number; y: number; w: number; h: number }
+type Source = 'alpha' | 'composited'
+type Phase = 'probing' | 'playing' | 'settling' | 'settled' | 'unsettling' | 'static'
+type Rect = { x: number; y: number; w: number; h: number }
+
+const ease = (t: number) => 1 - Math.pow(1 - t, 3)
 
 /**
  * The client's own logo reveal clip. There are two versions of it:
@@ -32,14 +35,11 @@ type ContentBox = { x: number; y: number; w: number; h: number }
  *    on iOS is forced onto WebKit underneath, even Chrome there) can play
  *    file 1 and still composite it fully opaque, which showed up as a
  *    solid black box behind the logo, even though Safari's plain VP9
- *    decode (with no alpha involved) is otherwise solid. Real device
- *    testing is what caught the alpha gap — `canPlayType` and even a
- *    decoded frame both looked fine in this environment's own tooling,
- *    which doesn't reproduce it. Made by rendering file 1 in a real
- *    Chromium (which decodes its alpha correctly) over a white background
- *    and capturing the composited frames — this project's own ffmpeg can't
- *    read file 1's alpha channel at all, so it never touches it; only the
- *    already-flattened frames get encoded.
+ *    decode (with no alpha involved) is otherwise solid. Made by rendering
+ *    file 1 in a real Chromium (which decodes its alpha correctly) over a
+ *    white background and capturing the composited frames — this
+ *    project's own ffmpeg can't read file 1's alpha channel at all, so it
+ *    never touches it; only the already-flattened frames get encoded.
  *
  * Tries file 1 first. Decides from its very first frame: draws it to an
  * offscreen canvas and checks a corner pixel's actual alpha, rather than
@@ -49,51 +49,58 @@ type ContentBox = { x: number; y: number; w: number; h: number }
  * instead of giving up on animation entirely. Only if file 2 also fails
  * does it fall back to the plain static <Logo>.
  *
- * Whichever file ends up playing, once it finishes, a CSS transform
- * smoothly zooms the still-paused video in on just the mark (found by
- * scanning the paused final frame for its content's bounding box), so it
- * reads like a proper right-sized logo rather than a small shape adrift in
- * a wide frame. Replaying — by click or the automatic timer — eases back
- * out to the full frame first, then restarts the clip, so every cycle runs
- * the same wide-to-settled transition.
+ * Once playback ends, the zoom-to-mark effect (see component doc below for
+ * why it exists) is drawn on a <canvas>, not applied to the <video> itself
+ * via a CSS transform. An element with `overflow: hidden` should clip a
+ * transformed child, but Safari has a long-documented bug where it
+ * sometimes doesn't — confirmed on an actual iPhone even after also trying
+ * clip-path and a forced stacking context, the usual workarounds for that
+ * exact bug. A canvas can't have this problem: whatever is drawn to it is
+ * cropped to its own pixel dimensions by definition, in every browser,
+ * with no CSS clipping involved at all. The video keeps playing/pausing
+ * normally throughout and is simply hidden once the canvas takes over, so
+ * there's no visible seam at the swap — both are showing the identical
+ * frame at that instant.
  *
  * Plays regardless of prefers-reduced-motion, by deliberate choice.
  */
 export default function HeaderLogo() {
-  const [phase, setPhase] = useState<Phase>('probe-alpha')
-  const [transform, setTransform] = useState('none')
+  const [source, setSource] = useState<Source>('alpha')
+  const [phase, setPhase] = useState<Phase>('probing')
   const videoRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const replayTimer = useRef<number | undefined>(undefined)
   const settleTimer = useRef<number | undefined>(undefined)
-  const restartTimer = useRef<number | undefined>(undefined)
-  const contentBox = useRef<ContentBox | null>(null)
+  const rafRef = useRef<number | undefined>(undefined)
+  const contentBox = useRef<Rect | null>(null)
+  // The logo's on-screen box, measured once from the video while it's still
+  // visible and reused for every canvas draw in a settle/unsettle cycle —
+  // measuring it live would go straight to zero the instant the video
+  // switches to its invisible, collapsed state, corrupting the canvas size
+  // mid-transition (it settled as a small square instead of the correct
+  // 16:9 shape the first time this shipped).
+  const displayBox = useRef<{ width: number; height: number } | null>(null)
 
   useEffect(
     () => () => {
       window.clearTimeout(replayTimer.current)
       window.clearTimeout(settleTimer.current)
-      window.clearTimeout(restartTimer.current)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
     },
     [],
   )
 
-  // (Re)loads the right source whenever a probe stage begins — including
-  // the very first mount, since a plain `src` attribute alone doesn't
-  // reliably kick off loading a video that's still styled invisible.
+  // (Re)loads the right source whenever it changes — including the very
+  // first mount, since a plain `src` attribute alone doesn't reliably kick
+  // off loading a video that's still styled invisible.
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    if (phase === 'probe-alpha') {
-      video.src = ALPHA_SRC
-    } else if (phase === 'probe-composited') {
-      contentBox.current = null // a different clip, so any cached box is stale
-      video.src = COMPOSITED_SRC
-    } else {
-      return
-    }
+    contentBox.current = null // a different clip, so any cached box is stale
+    video.src = source === 'alpha' ? ALPHA_SRC : COMPOSITED_SRC
     video.load()
     video.play().catch(() => {})
-  }, [phase])
+  }, [source])
 
   const sampleAlpha = () => {
     const video = videoRef.current
@@ -113,15 +120,18 @@ export default function HeaderLogo() {
   }
 
   const handleLoadedData = () => {
-    if (phase === 'probe-alpha') {
-      setPhase(sampleAlpha() ? 'alpha' : 'probe-composited')
-    } else if (phase === 'probe-composited') {
-      setPhase('composited')
+    if (phase !== 'probing') return
+    if (source === 'alpha') {
+      if (sampleAlpha()) setPhase('playing')
+      else setSource('composited')
+    } else {
+      setPhase('playing')
     }
   }
 
   const handleError = () => {
-    setPhase((p) => (p === 'probe-composited' || p === 'composited' ? 'static' : 'probe-composited'))
+    if (source === 'alpha') setSource('composited')
+    else setPhase('static')
   }
 
   /** Bounding box of the mark's content in the paused final frame, in the
@@ -129,12 +139,12 @@ export default function HeaderLogo() {
    *  is a full-size decode. "Content" means non-transparent for the real
    *  alpha clip, or simply non-white for the white-composited one. Cached
    *  per clip since it never changes once computed. */
-  const findContentBox = (): ContentBox | null => {
+  const findContentBox = (): Rect | null => {
     const video = videoRef.current
     if (!video || !video.videoWidth) return null
     const w = video.videoWidth
     const h = video.videoHeight
-    const isAlpha = phase === 'alpha'
+    const isAlpha = source === 'alpha'
     try {
       const canvas = document.createElement('canvas')
       canvas.width = w
@@ -170,30 +180,74 @@ export default function HeaderLogo() {
     }
   }
 
-  /** The CSS transform that zooms the displayed box in on `box`, keeping it
-   *  centred (the same maths as object-fit: contain, just cropped to a
-   *  sub-region instead of the whole frame). */
-  const settleTransformFor = (box: ContentBox) => {
+  const fullFrameRect = (): Rect | null => {
     const video = videoRef.current
-    if (!video || !video.videoWidth) return 'none'
-    const rect = video.getBoundingClientRect()
-    if (!rect.width || !rect.height) return 'none'
-    const k = rect.height / video.videoHeight
-    const scale = Math.min(rect.width / (box.w * k), rect.height / (box.h * k))
-    const tx = (rect.width - box.w * k * scale) / 2 - box.x * k * scale
-    const ty = (rect.height - box.h * k * scale) / 2 - box.y * k * scale
-    return `translate(${tx}px, ${ty}px) scale(${scale})`
+    if (!video || !video.videoWidth) return null
+    return { x: 0, y: 0, w: video.videoWidth, h: video.videoHeight }
   }
 
-  const goSettled = () => {
-    if (!contentBox.current) contentBox.current = findContentBox()
-    if (!contentBox.current) return
-    setTransform(settleTransformFor(contentBox.current))
+  /** Draws the video, cropped to `rect` (in its own pixel coordinates), so
+   *  it fills the canvas — the same maths as object-fit: contain, just
+   *  cropped to a sub-region instead of the whole frame. Sized off
+   *  `displayBox`, not a live measurement (see its own comment). */
+  const drawCropped = (rect: Rect) => {
+    const video = videoRef.current
+    const canvas = canvasRef.current
+    const box = displayBox.current
+    if (!video || !canvas || !box || !box.width || !box.height) return
+    const dpr = window.devicePixelRatio || 1
+    const cw = Math.max(1, Math.round(box.width * dpr))
+    const ch = Math.max(1, Math.round(box.height * dpr))
+    if (canvas.width !== cw) canvas.width = cw
+    if (canvas.height !== ch) canvas.height = ch
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    ctx.clearRect(0, 0, cw, ch)
+    try {
+      ctx.drawImage(video, rect.x, rect.y, rect.w, rect.h, 0, 0, cw, ch)
+    } catch {
+      // Video not in a drawable state this frame — next tick tries again.
+    }
+  }
+
+  const animateCrop = (from: Rect, to: Rect, onDone: () => void) => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    const start = performance.now()
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / SETTLE_TRANSITION_MS)
+      const e = ease(t)
+      drawCropped({
+        x: from.x + (to.x - from.x) * e,
+        y: from.y + (to.y - from.y) * e,
+        w: from.w + (to.w - from.w) * e,
+        h: from.h + (to.h - from.h) * e,
+      })
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(step)
+      } else {
+        rafRef.current = undefined
+        onDone()
+      }
+    }
+    rafRef.current = requestAnimationFrame(step)
   }
 
   const handleEnded = () => {
     window.clearTimeout(settleTimer.current)
-    settleTimer.current = window.setTimeout(goSettled, SETTLE_DELAY_MS)
+    settleTimer.current = window.setTimeout(() => {
+      const video = videoRef.current
+      if (!video) return
+      // Measured now, while still in the 'playing' phase and genuinely
+      // visible — the box this settle/unsettle cycle uses throughout.
+      const box = video.getBoundingClientRect()
+      displayBox.current = { width: box.width, height: box.height }
+      if (!contentBox.current) contentBox.current = findContentBox()
+      const full = fullFrameRect()
+      if (!contentBox.current || !full) return
+      drawCropped(full) // seed the canvas with the current frame before the swap
+      setPhase('settling')
+      animateCrop(full, contentBox.current, () => setPhase('settled'))
+    }, SETTLE_DELAY_MS)
     scheduleReplay()
   }
 
@@ -202,12 +256,25 @@ export default function HeaderLogo() {
     if (!video) return
     window.clearTimeout(replayTimer.current)
     window.clearTimeout(settleTimer.current)
-    window.clearTimeout(restartTimer.current)
-    setTransform('none')
-    restartTimer.current = window.setTimeout(() => {
+
+    const restart = () => {
       video.currentTime = 0
       video.play().catch(() => {})
-    }, SETTLE_TRANSITION_MS)
+    }
+
+    const full = fullFrameRect()
+    if (phase === 'settled' && contentBox.current && full) {
+      setPhase('unsettling')
+      animateCrop(contentBox.current, full, () => {
+        setPhase('playing')
+        restart()
+      })
+      return
+    }
+
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    setPhase('playing')
+    restart()
   }
 
   const scheduleReplay = () => {
@@ -215,28 +282,15 @@ export default function HeaderLogo() {
     replayTimer.current = window.setTimeout(replay, REPLAY_DELAY_MS)
   }
 
-  const visible = phase === 'alpha' || phase === 'composited'
-
-  const videoStyle: CSSProperties | undefined = visible
-    ? {
-        transform,
-        transformOrigin: '0 0',
-        transition: `transform ${SETTLE_TRANSITION_MS}ms cubic-bezier(.22,1,.36,1)`,
-      }
-    : undefined
+  const mediaActive = phase !== 'probing' && phase !== 'static'
+  const canvasActive = phase === 'settling' || phase === 'settled' || phase === 'unsettling'
 
   return (
-    // clipPath (not just overflow-hidden) clips the zoomed video to this
-    // box: WebKit has a long-documented bug where overflow-hidden alone
-    // doesn't reliably clip a transformed child, which let the settled
-    // zoom spill out over whatever sat below the header on a real iPhone
-    // despite clipping correctly in every other engine tested.
     <span
-      className="relative inline-flex h-16 cursor-pointer items-center overflow-hidden"
-      style={{ clipPath: 'inset(0)', isolation: 'isolate' }}
-      onClick={visible ? replay : undefined}
+      className="relative inline-flex h-16 cursor-pointer items-center"
+      onClick={mediaActive ? replay : undefined}
     >
-      {!visible && <Logo />}
+      {!mediaActive && <Logo />}
       <video
         ref={videoRef}
         autoPlay
@@ -246,16 +300,24 @@ export default function HeaderLogo() {
         onEnded={handleEnded}
         onError={handleError}
         aria-label="Little Nap Subhav India Pvt. Ltd. — click to replay"
-        style={videoStyle}
-        // Shown at full size once a playable source is confirmed; kept
-        // decoding but invisible and out of flow until then. object-contain
+        // Shown at full size only while actually playing; the settle/
+        // unsettle zoom is drawn on the canvas below instead (see the
+        // component doc for why). Kept decoding but invisible and out of
+        // flow the rest of the time, never display:none, which some
+        // browsers use to stop decoding a hidden video. object-contain
         // shows the clip's full frame during playback, not cropped to the
         // settled lockup's bounds — the animation moves elements through a
         // much wider range than that final position, including a brief
         // glitch-style flash right at the start, so a tight crop clipped
-        // those earlier moments instead of just trimming empty margin. The
-        // zoom-in only ever applies after playback ends.
-        className={visible ? 'h-16 w-auto object-contain' : 'absolute h-px w-px overflow-hidden opacity-0'}
+        // those earlier moments instead of just trimming empty margin.
+        className={
+          phase === 'playing' ? 'h-16 w-auto object-contain' : 'absolute h-px w-px overflow-hidden opacity-0'
+        }
+      />
+      <canvas
+        ref={canvasRef}
+        aria-hidden="true"
+        className={canvasActive ? 'h-16 w-auto' : 'absolute h-px w-px overflow-hidden opacity-0'}
       />
     </span>
   )
