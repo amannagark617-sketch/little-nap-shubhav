@@ -89,15 +89,25 @@ export default function Home() {
       <section className="relative">
         <div className="container-page relative py-8">
           <Reveal>
-            <ul className="glass grid gap-px p-2 sm:grid-cols-2 lg:grid-cols-4">
-              {brandPillars.map((pillar) => {
+            <ul className="glass relative grid gap-px overflow-hidden p-2 sm:grid-cols-2 lg:grid-cols-4">
+              <li
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 animate-shimmer
+                           bg-[length:200%_100%] bg-[linear-gradient(100deg,transparent_35%,rgba(255,255,255,0.55)_50%,transparent_65%)]"
+              />
+              {brandPillars.map((pillar, i) => {
                 const Icon = iconMap[pillar.icon]
                 return (
                   <li
                     key={pillar.title}
-                    className="flex items-center gap-3 rounded-xl px-4 py-4 transition-colors hover:bg-white/50"
+                    style={{ animationDelay: `${i * 80}ms` }}
+                    className="group flex animate-rise-in items-center gap-3 rounded-xl px-4 py-4
+                               transition-colors duration-300 hover:bg-white/50"
                   >
-                    <Icon className="h-6 w-6 shrink-0 text-accent-500" />
+                    <Icon
+                      className="h-6 w-6 shrink-0 text-accent-500 transition-transform duration-500
+                                 group-hover:-rotate-6 group-hover:scale-110"
+                    />
                     <span className="text-sm font-medium text-ink-700">{pillar.title}</span>
                   </li>
                 )
