@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard'
 import ProductModal from '../components/ProductModal'
 import Reveal from '../components/Reveal'
 import Aurora from '../components/Aurora'
+import Tilt3D from '../components/Tilt3D'
 import { IconSearch, IconClose } from '../components/Icons'
 import { productImage, products, rangeById, ranges, type Product, type RangeId } from '../data/products'
 
@@ -248,7 +249,9 @@ export default function Products() {
                   <ul className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {items.map((p, i) => (
                       <Reveal as="li" key={p.id} delay={i * 50}>
-                        <ProductCard product={p} onOpen={setSelected} />
+                        <Tilt3D className="h-full rounded-2xl">
+                          <ProductCard product={p} onOpen={setSelected} />
+                        </Tilt3D>
                       </Reveal>
                     ))}
                   </ul>
@@ -259,7 +262,9 @@ export default function Products() {
             <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {visible.map((p, i) => (
                 <Reveal as="li" key={p.id} delay={i * 50}>
-                  <ProductCard product={p} onOpen={setSelected} />
+                  <Tilt3D className="h-full rounded-2xl">
+                    <ProductCard product={p} onOpen={setSelected} />
+                  </Tilt3D>
                 </Reveal>
               ))}
             </ul>

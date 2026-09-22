@@ -12,6 +12,8 @@ import PartnerBanner from '../components/PartnerBanner'
 import InsightsTeaser from '../components/InsightsTeaser'
 import PlaceholderImage from '../components/PlaceholderImage'
 import HeroMedia from '../components/HeroMedia'
+import Tilt3D from '../components/Tilt3D'
+import ParallaxLayer from '../components/ParallaxLayer'
 import { IconArrowRight, iconMap } from '../components/Icons'
 import {
   brandPillars,
@@ -38,12 +40,14 @@ export default function Home() {
     <>
       {/* ═══════════════ HERO — full-bleed banner ═══════════════ */}
       <section className="relative h-[88vh] min-h-[560px] w-full overflow-hidden sm:h-[85vh]">
-        <HeroMedia
-          videoBase="hero-loop"
-          fallbackSrc={brandImage('hero-photo.webp')}
-          alt="A Little Nap Subhav power recliner in a contemporary living room"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        <ParallaxLayer speed={0.12} className="absolute inset-x-0 -top-[12%] h-[124%]">
+          <HeroMedia
+            videoBase="hero-loop"
+            fallbackSrc={brandImage('hero-photo.webp')}
+            alt="A Little Nap Subhav power recliner in a contemporary living room"
+            className="h-full w-full object-cover"
+          />
+        </ParallaxLayer>
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/35 to-ink-950/10"
@@ -211,13 +215,15 @@ export default function Home() {
           <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s, i) => (
               <Reveal as="li" key={s.label} delay={i * 90}>
-                <div className="glass glass-hover h-full p-7">
-                  <p className="font-display text-[2.75rem] leading-none text-ink-900">
-                    <Counter to={s.value} suffix={s.suffix} />
-                  </p>
-                  <p className="mt-3 text-sm font-semibold text-ink-800">{s.label}</p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-ink-400">{s.detail}</p>
-                </div>
+                <Tilt3D className="h-full rounded-2xl" max={6}>
+                  <div className="glass glass-hover h-full rounded-2xl p-7">
+                    <p className="font-display text-[2.75rem] leading-none text-ink-900">
+                      <Counter to={s.value} suffix={s.suffix} />
+                    </p>
+                    <p className="mt-3 text-sm font-semibold text-ink-800">{s.label}</p>
+                    <p className="mt-1.5 text-xs leading-relaxed text-ink-400">{s.detail}</p>
+                  </div>
+                </Tilt3D>
               </Reveal>
             ))}
           </ul>
