@@ -226,7 +226,10 @@ export default function HeaderLogo() {
     : undefined
 
   return (
-    <span className="relative inline-flex h-16 cursor-pointer items-center" onClick={visible ? replay : undefined}>
+    <span
+      className="relative inline-flex h-16 cursor-pointer items-center overflow-hidden"
+      onClick={visible ? replay : undefined}
+    >
       {!visible && <Logo />}
       <video
         ref={videoRef}
