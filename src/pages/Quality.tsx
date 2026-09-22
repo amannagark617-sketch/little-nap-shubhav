@@ -4,7 +4,9 @@ import Reveal from '../components/Reveal'
 import PlaceholderImage from '../components/PlaceholderImage'
 import { IconArrowRight, IconCheck, IconGear, IconSearch, IconShield, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
+import { useScrollRecede } from '../hooks/useScrollRecede'
 import { productFeatures, qualityStages } from '../data/company'
+import { qualityImage } from '../data/factory'
 
 /** One icon per stage, in order: sourcing, inward check, in-process control, final sign-off. */
 const STAGE_ICONS = [IconGear, IconSearch, IconShield, IconCheck]
@@ -12,46 +14,46 @@ const STAGE_ICONS = [IconGear, IconSearch, IconShield, IconCheck]
 const STAGE_IMAGES = ['material-selection', 'inward-inspection', 'in-process-control', 'final-inspection']
 
 export default function Quality() {
+  const hero = useScrollRecede<HTMLDivElement>(500)
   useEffect(() => {
     document.title = 'Quality Assurance, Little Nap Subhav India Pvt. Ltd.'
   }, [])
 
   return (
     <>
-      {/* ---- Hero: a split panel, same language as the stage cards below ---- */}
-      <section className="section pb-10 pt-14 sm:pt-16">
-        <div className="container-page">
-          <div className="glass-strong grid overflow-hidden lg:grid-cols-2">
-            <div className="relative min-h-[16rem] lg:min-h-[26rem]">
-              <PlaceholderImage
-                path="quality/hero-overview.webp"
-                label="Quality hero photo"
-                recommended="1400 × 1200"
-                alt="Quality control at the Little Nap Subhav plant"
-                aspect="4 / 3"
-                framed={false}
-                className="h-full w-full lg:absolute lg:inset-0"
-              />
-            </div>
-            <div className="relative flex flex-col justify-center p-8 sm:p-10 lg:p-14">
-              <Reveal>
-                <p className="eyebrow">Quality assurance</p>
-              </Reveal>
-              <h1 className="mt-5 font-display text-[2.1rem] leading-[1.1] text-ink-900 sm:text-[2.6rem] lg:text-[3rem]">
-                Four inspections
-                <br />
-                before it leaves the gate.
-              </h1>
-              <Reveal delay={200}>
-                <p className="mt-6 leading-relaxed text-ink-500">
-                  Quality is checked where it is created, not only at the end.
-                  Material is approved before it is bought, inspected when it
-                  arrives, controlled while the unit is built, and recorded
-                  before dispatch.
-                </p>
-              </Reveal>
-            </div>
-          </div>
+      {/* ---- Hero: full-bleed floor photo in documentary grayscale, text overlaid ---- */}
+      <section className="relative flex h-[64vh] min-h-[440px] w-full items-end overflow-hidden">
+        <img
+          src={qualityImage('hero-overview.webp')}
+          alt="Quality control at the Little Nap Subhav plant"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover grayscale contrast-[1.08] brightness-[0.85]"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-ink-950/35" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/60 to-ink-950/20"
+        />
+        <div
+          ref={hero.ref}
+          style={hero.style}
+          className="container-page relative pb-14 sm:pb-16"
+        >
+          <Reveal>
+            <p className="eyebrow-light">Quality assurance</p>
+          </Reveal>
+          <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
+            Four inspections
+            <br />
+            before it leaves the gate.
+          </h1>
+          <Reveal delay={200}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              Quality is checked where it is created, not only at the end.
+              Material is approved before it is bought, inspected when it
+              arrives, controlled while the unit is built, and recorded before dispatch.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -74,7 +76,7 @@ export default function Quality() {
                         alt={stage.title}
                         aspect="4 / 3"
                         framed={false}
-                        className="h-full w-full lg:absolute lg:inset-0"
+                        className="h-full w-full grayscale contrast-[1.08] brightness-[0.85] lg:absolute lg:inset-0"
                       />
                     </div>
 

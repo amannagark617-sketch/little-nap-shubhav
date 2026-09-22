@@ -23,33 +23,37 @@ export default function Manufacturing() {
 
   return (
     <>
-      {/* ---- Hero: the floor itself, with the copy in a caption bar below ---- */}
-      <section className="relative w-full overflow-hidden">
-        <div className="relative h-[42vh] min-h-[280px]">
-          <img
-            src={factoryImage('carpentry-assembly.webp')}
-            alt="The Little Nap Subhav production floor"
-            fetchPriority="high"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </div>
-        <div className="relative bg-ink-950 py-10 sm:py-12">
-          <div ref={hero.ref} style={hero.style} className="container-page relative">
-            <Reveal>
-              <p className="eyebrow-light">Manufacturing</p>
-            </Reveal>
-            <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
-              Twelve process areas.
-              <br />
-              One continuous line.
-            </h1>
-            <Reveal delay={200}>
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-                Material enters as ply, foam and fabric and leaves as a coded,
-                inspected, boxed unit. Here is every stage it passes through on the way.
-              </p>
-            </Reveal>
-          </div>
+      {/* ---- Hero: full-bleed floor photo in documentary grayscale, text overlaid ---- */}
+      <section className="relative flex h-[64vh] min-h-[440px] w-full items-end overflow-hidden">
+        <img
+          src={factoryImage('carpentry-assembly.webp')}
+          alt="The Little Nap Subhav production floor"
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover grayscale contrast-[1.08] brightness-[0.85]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/45 to-ink-950/10"
+        />
+        <div
+          ref={hero.ref}
+          style={hero.style}
+          className="container-page relative pb-14 sm:pb-16"
+        >
+          <Reveal>
+            <p className="eyebrow-light">Manufacturing</p>
+          </Reveal>
+          <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
+            Twelve process areas.
+            <br />
+            One continuous line.
+          </h1>
+          <Reveal delay={200}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+              Material enters as ply, foam and fabric and leaves as a coded,
+              inspected, boxed unit. Here is every stage it passes through on the way.
+            </p>
+          </Reveal>
         </div>
       </section>
 

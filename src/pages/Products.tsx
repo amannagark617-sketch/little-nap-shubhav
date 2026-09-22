@@ -112,12 +112,13 @@ export default function Products() {
       {/* ---- Filter bar ---- */}
       <div className="stick-below-header sticky z-30 px-3 sm:px-5">
         <div className="glass-strong mx-auto max-w-content px-4 py-3.5 sm:px-5">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div
-              className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1 pb-1"
-              role="group"
-              aria-label="Filter by range"
-            >
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div className="relative min-w-0">
+              <div
+                className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 lg:flex-wrap lg:overflow-visible"
+                role="group"
+                aria-label="Filter by range"
+              >
               <button
                 type="button"
                 onClick={() => setFilter('all')}
@@ -154,6 +155,11 @@ export default function Products() {
                   {r.name}
                 </button>
               ))}
+              </div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-white/95 to-transparent lg:hidden"
+              />
             </div>
 
             <div className="relative shrink-0 lg:w-64">
