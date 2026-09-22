@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import SplitText from '../components/SplitText'
 import PlaceholderImage from '../components/PlaceholderImage'
 import { IconArrowRight, IconCheck, IconGear, IconSearch, IconShield, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
@@ -27,7 +28,7 @@ export default function Quality() {
           src={qualityImage('hero-overview.webp')}
           alt="Quality control at the Little Nap Subhav plant"
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover grayscale contrast-[1.08] brightness-[0.85]"
+          className="absolute inset-0 h-full w-full animate-kenburns object-cover grayscale contrast-[1.08] brightness-[0.85]"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-ink-950/35" />
         <div
@@ -43,9 +44,8 @@ export default function Quality() {
             <p className="eyebrow-light">Quality assurance</p>
           </Reveal>
           <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
-            Four inspections
-            <br />
-            before it leaves the gate.
+            <SplitText as="span" className="block">Four inspections</SplitText>
+            <SplitText as="span" delay={180} className="block">before it leaves the gate.</SplitText>
           </h1>
           <Reveal delay={200}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">

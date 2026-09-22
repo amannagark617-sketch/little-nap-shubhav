@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import ProductModal from '../components/ProductModal'
 import Reveal from '../components/Reveal'
+import SplitText from '../components/SplitText'
 import Aurora from '../components/Aurora'
 import Tilt3D from '../components/Tilt3D'
 import { useScrollRecede } from '../hooks/useScrollRecede'
@@ -72,12 +73,13 @@ export default function Products() {
       {/* ---- Hero: a mosaic of the catalogue itself ---- */}
       <section className="relative h-[62vh] min-h-[420px] w-full overflow-hidden">
         <div className="absolute inset-0 grid grid-cols-3 grid-rows-2">
-          {HERO_MOSAIC.map((img) => (
+          {HERO_MOSAIC.map((img, i) => (
             <div key={img} className="relative overflow-hidden">
               <img
                 src={productImage(img)}
                 alt=""
-                className="h-full w-full object-cover"
+                style={{ animationDelay: `${i * 300}ms` }}
+                className="h-full w-full animate-kenburns object-cover"
               />
             </div>
           ))}
@@ -95,9 +97,10 @@ export default function Products() {
             <p className="eyebrow-light">Products</p>
           </Reveal>
           <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
-            {products.length} models across
-            <br />
-            eight considered ranges.
+            <SplitText as="span" className="block">{`${products.length} models across`}</SplitText>
+            <SplitText as="span" delay={180} className="block">
+              eight considered ranges.
+            </SplitText>
           </h1>
           <Reveal delay={200}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">

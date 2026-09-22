@@ -221,7 +221,7 @@ export default function Home() {
           <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((s, i) => (
               <Reveal as="li" key={s.label} delay={i * 90}>
-                <Tilt3D className="h-full rounded-2xl" max={6}>
+                <Tilt3D className="h-full rounded-2xl" max={10}>
                   <div className="glass glass-hover h-full rounded-2xl p-7">
                     <p className="font-display text-[2.75rem] leading-none text-ink-900">
                       <Counter to={s.value} suffix={s.suffix} />

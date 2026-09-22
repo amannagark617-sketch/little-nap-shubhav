@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import SplitText from '../components/SplitText'
 import { IconArrowRight, IconCheck, IconMail, IconPhone, IconPin } from '../components/Icons'
 import Aurora from '../components/Aurora'
 import MapPanel from '../components/MapPanel'
@@ -164,7 +165,7 @@ export default function Contact() {
             <p className="eyebrow-light">Contact</p>
           </Reveal>
           <h1 className="mt-5 max-w-2xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
-            Start an enquiry.
+            <SplitText as="span" className="block">Start an enquiry.</SplitText>
           </h1>
           <Reveal delay={200}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">

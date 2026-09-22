@@ -87,8 +87,8 @@ export default function Reveal({ children, delay = 0, className = '', as = 'div'
         animate
           ? {
               opacity: shown ? 1 : 0,
-              transform: shown ? 'none' : 'translateY(18px)',
-              transition: `opacity .7s cubic-bezier(.22,1,.36,1) ${delay}ms, transform .7s cubic-bezier(.22,1,.36,1) ${delay}ms`,
+              transform: shown ? 'none' : 'translateY(36px) scale(0.98)',
+              transition: `opacity .8s cubic-bezier(.22,1,.36,1) ${delay}ms, transform .8s cubic-bezier(.22,1,.36,1) ${delay}ms`,
             }
           : undefined
       }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import SplitText from '../components/SplitText'
 import Counter from '../components/Counter'
 import Lightbox from '../components/Lightbox'
 import Aurora from '../components/Aurora'
@@ -29,7 +30,7 @@ export default function Manufacturing() {
           src={factoryImage('carpentry-assembly.webp')}
           alt="The Little Nap Subhav production floor"
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover grayscale contrast-[1.08] brightness-[0.85]"
+          className="absolute inset-0 h-full w-full animate-kenburns object-cover grayscale contrast-[1.08] brightness-[0.85]"
         />
         <div
           aria-hidden="true"
@@ -44,9 +45,8 @@ export default function Manufacturing() {
             <p className="eyebrow-light">Manufacturing</p>
           </Reveal>
           <h1 className="mt-5 max-w-3xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
-            Twelve process areas.
-            <br />
-            One continuous line.
+            <SplitText as="span" className="block">Twelve process areas.</SplitText>
+            <SplitText as="span" delay={180} className="block">One continuous line.</SplitText>
           </h1>
           <Reveal delay={200}>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">

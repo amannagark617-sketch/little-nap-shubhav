@@ -19,7 +19,7 @@ const RESET: CSSProperties = {
  * on touch (no sustained hover to track); plays regardless of
  * prefers-reduced-motion, by deliberate choice.
  */
-export default function Tilt3D({ children, className = '', max = 8 }: Props) {
+export default function Tilt3D({ children, className = '', max = 14 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<CSSProperties>(RESET)
   const [glare, setGlare] = useState({ x: 50, y: 50, o: 0 })
@@ -32,7 +32,7 @@ export default function Tilt3D({ children, className = '', max = 8 }: Props) {
     const rotateY = (px - 0.5) * max * 2
     const rotateX = (0.5 - py) * max * 2
     setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015,1.015,1.015)`,
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.04,1.04,1.04)`,
       transition: 'transform 80ms linear',
     })
     setGlare({ x: px * 100, y: py * 100, o: 1 })

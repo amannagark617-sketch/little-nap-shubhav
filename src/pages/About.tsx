@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal'
+import SplitText from '../components/SplitText'
 import Counter from '../components/Counter'
 import { IconArrowRight, iconMap } from '../components/Icons'
 import Aurora from '../components/Aurora'
@@ -35,7 +36,7 @@ export default function About() {
           src={brandImage('hero-portrait.webp')}
           alt="A Little Nap Subhav recliner in a contemporary living room"
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full animate-kenburns object-cover"
         />
         <div aria-hidden="true" className="absolute inset-0 bg-ink-950/70" />
         <div
@@ -47,9 +48,8 @@ export default function About() {
             <p className="eyebrow-light justify-center">About us</p>
           </Reveal>
           <h1 className="mx-auto mt-5 max-w-2xl font-display text-[2.4rem] leading-[1.08] text-white sm:text-[3.2rem] lg:text-[3.8rem]">
-            Comfort, engineered
-            <br />
-            in central India.
+            <SplitText as="span" className="block">Comfort, engineered</SplitText>
+            <SplitText as="span" delay={180} className="block">in central India.</SplitText>
           </h1>
           <Reveal delay={200}>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
@@ -258,7 +258,7 @@ export default function About() {
           <ul className="mt-11 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {clients.map((client, i) => (
               <Reveal as="li" key={client.name} delay={i * 50}>
-                <Tilt3D className="h-full rounded-2xl" max={6}>
+                <Tilt3D className="h-full rounded-2xl" max={10}>
                   <div className="glass glass-hover flex h-full items-center justify-center px-5 py-9 text-center">
                     {client.logo ? (
                       <img

@@ -23,8 +23,8 @@ export function useScrollRecede<T extends HTMLElement>(range = 500) {
       const rect = el.getBoundingClientRect()
       const progress = Math.min(Math.max(-rect.top / range, 0), 1)
       setStyle({
-        transform: `translate3d(0, ${progress * 34}px, 0) scale(${1 - progress * 0.05})`,
-        opacity: 1 - progress * 0.85,
+        transform: `translate3d(0, ${progress * 70}px, 0) scale(${1 - progress * 0.12})`,
+        opacity: 1 - progress * 0.9,
       })
     }
     const onScroll = () => {
