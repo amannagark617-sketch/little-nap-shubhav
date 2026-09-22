@@ -16,8 +16,8 @@ const SWIPE_THRESHOLD = 40
  * Auto-advances, but stops the moment a visitor touches it (hover, focus, or
  * a drag) so it never fights someone trying to read or click through.
  * Manual control is a drag/swipe on the card itself — no arrow buttons —
- * plus the dot row for jumping straight to a slide. Fully still under
- * prefers-reduced-motion.
+ * plus the dot row for jumping straight to a slide. Auto-advances
+ * regardless of prefers-reduced-motion, by deliberate choice.
  */
 export default function CampaignCarousel() {
   const [index, setIndex] = useState(0)
@@ -30,8 +30,7 @@ export default function CampaignCarousel() {
   }, [])
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced || paused) return
+    if (paused) return
     timerRef.current = window.setInterval(() => go(index + 1), AUTO_ADVANCE_MS)
     return () => {
       if (timerRef.current) window.clearInterval(timerRef.current)

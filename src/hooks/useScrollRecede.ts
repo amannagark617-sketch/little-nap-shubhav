@@ -14,7 +14,6 @@ export function useScrollRecede<T extends HTMLElement>(range = 500) {
   const [style, setStyle] = useState<CSSProperties>({})
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const el = ref.current
     if (!el) return
 

@@ -27,17 +27,14 @@ type Props = {
  * it with no attached sources and fire a spurious, no-op error event, which
  * this sidesteps entirely.
  *
- * Reduced-motion visitors get the plain still photo either way: no video
- * playback, no zoom.
+ * Plays for every visitor regardless of prefers-reduced-motion, by
+ * deliberate choice.
  */
 export default function HeroMedia({ videoBase, fallbackSrc, alt, className = '' }: Props) {
   const [failed, setFailed] = useState(false)
-  const [reduced, setReduced] = useState(false)
   const [src, setSrc] = useState<string | null>(null)
 
   useEffect(() => {
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
-
     const base = `${import.meta.env.BASE_URL}videos/${videoBase}`
     const probe = document.createElement('video')
     if (probe.canPlayType('video/mp4; codecs="avc1.42E01E"')) {
@@ -49,7 +46,7 @@ export default function HeroMedia({ videoBase, fallbackSrc, alt, className = '' 
     }
   }, [videoBase])
 
-  if (!failed && !reduced && src) {
+  if (!failed && src) {
     return (
       <video
         key={src}
@@ -70,7 +67,7 @@ export default function HeroMedia({ videoBase, fallbackSrc, alt, className = '' 
       src={fallbackSrc}
       alt={alt}
       fetchPriority="high"
-      className={`${className} ${reduced ? '' : 'animate-kenburns'}`}
+      className={`${className} animate-kenburns`}
     />
   )
 }

@@ -13,9 +13,6 @@ export default function Parallax({ children, strength = 40, className = '' }: Pr
   const [offset, setOffset] = useState(0)
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
-
     const el = ref.current
     if (!el) return
 

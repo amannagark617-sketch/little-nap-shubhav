@@ -16,23 +16,16 @@ const RESET: CSSProperties = {
  * A pointer-tracking 3D tilt, the light-touch version of "make it 3D" — the
  * card leans toward the cursor with a soft specular highlight, rather than
  * an actual 3D scene. Pure CSS transforms, no new dependency. Does nothing
- * for prefers-reduced-motion or on touch (no sustained hover to track).
+ * on touch (no sustained hover to track); plays regardless of
+ * prefers-reduced-motion, by deliberate choice.
  */
 export default function Tilt3D({ children, className = '', max = 8 }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<CSSProperties>(RESET)
   const [glare, setGlare] = useState({ x: 50, y: 50, o: 0 })
-  const reduced = useRef<boolean | null>(null)
-
-  const prefersReduced = () => {
-    if (reduced.current === null) {
-      reduced.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    }
-    return reduced.current
-  }
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (prefersReduced() || !ref.current) return
+    if (!ref.current) return
     const rect = ref.current.getBoundingClientRect()
     const px = (e.clientX - rect.left) / rect.width
     const py = (e.clientY - rect.top) / rect.height

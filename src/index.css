@@ -308,16 +308,5 @@
   }
 }
 
-/* Motion is decoration here — every animation is safe to switch off. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* By deliberate choice, animations on this site are not gated behind
+   prefers-reduced-motion — every visitor sees the same motion. */

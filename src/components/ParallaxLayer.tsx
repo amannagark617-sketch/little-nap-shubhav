@@ -18,7 +18,6 @@ export default function ParallaxLayer({ children, className = '', speed = 0.25 }
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const el = ref.current
     if (!el) return
 

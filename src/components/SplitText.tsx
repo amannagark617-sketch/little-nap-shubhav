@@ -14,8 +14,9 @@ type Props = {
  * Reveals a headline word by word.
  *
  * Like <Reveal>, visibility is never allowed to depend on the animation: the
- * text renders immediately if motion is reduced or the observer is missing,
- * and a failsafe timer shows it regardless after two seconds.
+ * text renders immediately if the observer is missing, and a failsafe timer
+ * shows it regardless after two seconds. Animates regardless of
+ * prefers-reduced-motion, by deliberate choice.
  */
 export default function SplitText({
   children,
@@ -29,8 +30,7 @@ export default function SplitText({
   const [animate, setAnimate] = useState(false)
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced || typeof IntersectionObserver === 'undefined') return
+    if (typeof IntersectionObserver === 'undefined') return
     const el = ref.current
     if (!el) return
 

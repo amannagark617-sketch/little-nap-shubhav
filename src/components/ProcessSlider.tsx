@@ -12,9 +12,9 @@ const SWIPE_THRESHOLD = 40
  * bleed photography rather than the grid of <FacilitySection>.
  *
  * Same interaction contract as <CampaignCarousel>: auto-advances, pauses on
- * hover/focus/drag, and holds still under prefers-reduced-motion. Manual
- * control is a drag/swipe on the photo itself — no arrow buttons — plus the
- * dot row for jumping straight to a stage.
+ * hover/focus/drag, regardless of prefers-reduced-motion (by deliberate
+ * choice). Manual control is a drag/swipe on the photo itself — no arrow
+ * buttons — plus the dot row for jumping straight to a stage.
  */
 export default function ProcessSlider() {
   const [index, setIndex] = useState(0)
@@ -26,8 +26,7 @@ export default function ProcessSlider() {
   }, [])
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced || paused) return
+    if (paused) return
     const id = window.setInterval(() => go(index + 1), AUTO_ADVANCE_MS)
     return () => window.clearInterval(id)
   }, [index, paused, go])

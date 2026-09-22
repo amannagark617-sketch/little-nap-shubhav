@@ -18,6 +18,7 @@ const REPLAY_DELAY_MS = 20_000
  * Falls back to the plain static <Logo> outright when webm/vp9 isn't
  * supported (older Safari) rather than ever showing the clip without its
  * transparency — a plain video fallback here would mean a black box.
+ * Plays regardless of prefers-reduced-motion, by deliberate choice.
  */
 export default function HeaderLogo() {
   const [supported, setSupported] = useState(false)
@@ -25,9 +26,6 @@ export default function HeaderLogo() {
   const replayTimer = useRef<number | undefined>(undefined)
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduced) return
-
     const probe = document.createElement('video')
     if (probe.canPlayType('video/webm; codecs="vp9"')) {
       setSupported(true)

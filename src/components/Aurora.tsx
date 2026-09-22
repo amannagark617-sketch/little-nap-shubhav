@@ -30,8 +30,8 @@ const OPACITY = { subtle: 'opacity-60', normal: 'opacity-90', rich: 'opacity-100
  * of. Frosted glass needs real colour behind it or the blur has nothing to
  * refract and the panel reads as a flat card — this is what supplies it.
  *
- * Purely decorative: aria-hidden, pointer-events-none, and the drift stops
- * entirely under prefers-reduced-motion (the blobs still render, just static).
+ * Purely decorative: aria-hidden, pointer-events-none. Drifts for every
+ * visitor regardless of prefers-reduced-motion, by deliberate choice.
  */
 export default function Aurora({ tone = 'mixed', className = '', intensity = 'normal' }: Props) {
   const [a, b, c] = FIELDS[tone]

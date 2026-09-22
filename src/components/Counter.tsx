@@ -17,8 +17,7 @@ export default function Counter({ to, suffix = '', duration = 1600, className = 
   const started = useRef(false)
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced || typeof IntersectionObserver === 'undefined') return
+    if (typeof IntersectionObserver === 'undefined') return
 
     const el = ref.current
     if (!el) return

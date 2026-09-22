@@ -17,7 +17,7 @@ const FAILSAFE_MS = 2000
  *
  * Content being visible is never allowed to depend on the animation working:
  *   1. It renders visible by default and only hides once JS has confirmed it
- *      can reveal it again (no reduced-motion, IntersectionObserver exists).
+ *      can reveal it again (IntersectionObserver exists).
  *   2. Above-the-fold content animates in on mount rather than skipping the
  *      effect entirely — this is what makes the hero feel alive on load
  *      instead of popping in fully formed.
@@ -30,8 +30,7 @@ export default function Reveal({ children, delay = 0, className = '', as = 'div'
   const [animate, setAnimate] = useState(false)
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced || typeof IntersectionObserver === 'undefined') return
+    if (typeof IntersectionObserver === 'undefined') return
 
     const el = ref.current
     if (!el) return
