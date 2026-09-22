@@ -2,16 +2,29 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo'
 import HeaderLogo from './HeaderLogo'
-import { IconClose, IconMenu, IconArrowRight, IconPhone, IconPin, IconNewspaper } from './Icons'
+import {
+  IconClose,
+  IconMenu,
+  IconArrowRight,
+  IconPhone,
+  IconPin,
+  IconNewspaper,
+  IconClipboard,
+  IconSofa,
+  IconFactory,
+  IconShield,
+  IconPeople,
+  IconMail,
+} from './Icons'
 import { useEnquiry } from '../context/EnquiryContext'
 import { company } from '../data/company'
 
 const nav = [
-  { to: '/products', label: 'Products' },
-  { to: '/manufacturing', label: 'Manufacturing' },
-  { to: '/quality', label: 'Quality' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/products', label: 'Products', icon: IconSofa },
+  { to: '/manufacturing', label: 'Manufacturing', icon: IconFactory },
+  { to: '/quality', label: 'Quality', icon: IconShield },
+  { to: '/about', label: 'About', icon: IconPeople },
+  { to: '/contact', label: 'Contact', icon: IconMail },
 ]
 
 export default function Header() {
@@ -105,24 +118,28 @@ export default function Header() {
           </Link>
 
           <nav aria-label="Primary" className="hidden lg:block">
-            <ul className="flex items-center gap-1">
-              {nav.map((item) => (
-                <li key={item.to}>
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive }) =>
-                      `inline-flex min-h-[44px] items-center rounded-full px-4 text-sm
-                       font-semibold transition-all duration-300 ${
-                        isActive
-                          ? 'bg-ink-900 text-white shadow-lift'
-                          : 'text-ink-500 hover:-translate-y-0.5 hover:bg-ink-100/70 hover:text-ink-900'
-                      }`
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
+            <ul className="flex items-center gap-1 rounded-full bg-ink-100/60 p-1">
+              {nav.map((item) => {
+                const Icon = item.icon
+                return (
+                  <li key={item.to}>
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        `group inline-flex min-h-[40px] items-center gap-1.5 rounded-full px-4 text-sm
+                         font-semibold transition-all duration-300 ${
+                          isActive
+                            ? 'bg-ink-900 text-white shadow-lift'
+                            : 'text-ink-500 hover:bg-white hover:text-ink-900 hover:shadow-sm'
+                        }`
+                      }
+                    >
+                      <Icon className="h-4 w-4 shrink-0 opacity-70 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100" />
+                      {item.label}
+                    </NavLink>
+                  </li>
+                )
+              })}
             </ul>
           </nav>
 
@@ -130,11 +147,12 @@ export default function Header() {
             <button
               type="button"
               onClick={open}
-              className="relative hidden min-h-[44px] items-center rounded-full border
+              className="relative hidden min-h-[44px] items-center gap-1.5 rounded-full border
                          border-ink-200/70 bg-white/50 px-4 text-sm font-medium text-ink-700
                          transition-all duration-300 hover:-translate-y-0.5 hover:border-ink-300
                          hover:bg-white sm:inline-flex"
             >
+              <IconClipboard className="h-4 w-4 text-ink-400" />
               Enquiry
               {count > 0 && (
                 <span
@@ -214,7 +232,7 @@ export default function Header() {
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `group flex items-center justify-between rounded-xl px-4 py-3.5 font-display
+                      `group flex items-center gap-3 rounded-xl px-4 py-3.5 font-display
                        text-xl transition-colors ${
                          isActive
                            ? 'glass text-ink-900'
@@ -222,8 +240,15 @@ export default function Header() {
                        }`
                     }
                   >
-                    {item.label}
-                    <IconArrowRight className="h-4 w-4 text-accent-500 transition-transform duration-300 group-hover:translate-x-1" />
+                    {({ isActive }) => (
+                      <>
+                        <item.icon
+                          className={`h-5 w-5 shrink-0 ${isActive ? 'text-ink-900' : 'text-ink-400'}`}
+                        />
+                        <span className="flex-1">{item.label}</span>
+                        <IconArrowRight className="h-4 w-4 shrink-0 text-accent-500 transition-transform duration-300 group-hover:translate-x-1" />
+                      </>
+                    )}
                   </NavLink>
                 </li>
               ))}

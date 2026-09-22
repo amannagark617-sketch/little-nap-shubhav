@@ -22,6 +22,7 @@ import {
   PenLine,
   Truck,
   Newspaper,
+  ClipboardList,
 } from 'lucide-react'
 
 /**
@@ -55,6 +56,7 @@ export const IconGear = Settings2
 export const IconPencil = PenLine
 export const IconTruck = Truck
 export const IconNewspaper = Newspaper
+export const IconClipboard = ClipboardList
 
 type IconProps = SVGProps<SVGSVGElement>
 
