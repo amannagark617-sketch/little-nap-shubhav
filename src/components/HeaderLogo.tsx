@@ -226,8 +226,14 @@ export default function HeaderLogo() {
     : undefined
 
   return (
+    // clipPath (not just overflow-hidden) clips the zoomed video to this
+    // box: WebKit has a long-documented bug where overflow-hidden alone
+    // doesn't reliably clip a transformed child, which let the settled
+    // zoom spill out over whatever sat below the header on a real iPhone
+    // despite clipping correctly in every other engine tested.
     <span
       className="relative inline-flex h-16 cursor-pointer items-center overflow-hidden"
+      style={{ clipPath: 'inset(0)', isolation: 'isolate' }}
       onClick={visible ? replay : undefined}
     >
       {!visible && <Logo />}
