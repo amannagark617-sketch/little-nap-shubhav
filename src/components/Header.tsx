@@ -68,7 +68,11 @@ export default function Header() {
       </a>
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b bg-white/95 backdrop-blur-md
+        // Fully opaque, not translucent — a blurred, semi-see-through bar
+        // let whatever photo was scrolled underneath tint it, which never
+        // quite matched the logo canvas's own solid white background and
+        // showed up as a visible box around it on a real phone.
+        className={`fixed inset-x-0 top-0 z-50 border-b bg-white
                     transition-shadow duration-300 ${
                       scrolled ? 'border-ink-100 shadow-sm' : 'border-ink-100/60'
                     }`}
