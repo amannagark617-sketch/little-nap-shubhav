@@ -287,7 +287,7 @@ export default function HeaderLogo() {
 
   return (
     <span
-      className="relative inline-flex h-16 cursor-pointer items-center"
+      className="relative inline-flex h-12 cursor-pointer items-center"
       onClick={mediaActive ? replay : undefined}
     >
       {!mediaActive && <Logo />}
@@ -311,13 +311,13 @@ export default function HeaderLogo() {
         // glitch-style flash right at the start, so a tight crop clipped
         // those earlier moments instead of just trimming empty margin.
         className={
-          phase === 'playing' ? 'h-16 w-auto object-contain' : 'absolute h-px w-px overflow-hidden opacity-0'
+          phase === 'playing' ? 'h-12 w-auto object-contain' : 'absolute h-px w-px overflow-hidden opacity-0'
         }
       />
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        className={canvasActive ? 'h-16 w-auto' : 'absolute h-px w-px overflow-hidden opacity-0'}
+        className={canvasActive ? 'h-12 w-auto' : 'absolute h-px w-px overflow-hidden opacity-0'}
       />
     </span>
   )
