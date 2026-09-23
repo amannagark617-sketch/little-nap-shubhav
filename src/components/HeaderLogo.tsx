@@ -216,8 +216,18 @@ export default function HeaderLogo() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
     ctx.clearRect(0, 0, cw, ch)
+    // `rect`'s own aspect ratio is whatever the mark's bounding box turned
+    // out to be, not necessarily the canvas's 16:9 — drawing it straight
+    // into (0, 0, cw, ch) would stretch it non-uniformly to fill that box
+    // exactly, squashing the logo. Scale uniformly instead and centre the
+    // result, the same maths as object-fit: contain.
+    const scale = Math.min(cw / rect.w, ch / rect.h)
+    const dw = rect.w * scale
+    const dh = rect.h * scale
+    const dx = (cw - dw) / 2
+    const dy = (ch - dh) / 2
     try {
-      ctx.drawImage(video, rect.x, rect.y, rect.w, rect.h, 0, 0, cw, ch)
+      ctx.drawImage(video, rect.x, rect.y, rect.w, rect.h, dx, dy, dw, dh)
     } catch {
       // Video not in a drawable state this frame — next tick tries again.
     }
