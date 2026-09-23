@@ -14,7 +14,13 @@ export default function RangeQuickNav() {
 
   return (
     <nav aria-label="Browse by range" className="relative">
-      <ul className="no-scrollbar flex gap-5 overflow-x-auto px-1 pb-2 sm:justify-center sm:overflow-visible sm:px-0">
+      {/* pt-4/pb-3 give the rise-in and float animations room to move
+          without clipping: overflow-x-auto alone implicitly turns
+          overflow-y into auto too (there's no way to keep one axis
+          scrollable and the other genuinely visible), so anything that
+          animates outside this box's unpadded bounds gets cut off —
+          only visible below `sm`, where this switches to overflow-visible. */}
+      <ul className="no-scrollbar flex gap-5 overflow-x-auto px-1 pb-3 pt-4 sm:justify-center sm:overflow-visible sm:px-0 sm:pt-0">
         {tiles.map(({ range, hero }, i) => (
           <li
             key={range.id}
